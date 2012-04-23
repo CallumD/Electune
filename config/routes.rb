@@ -1,4 +1,6 @@
 Electune::Application.routes.draw do
+  resources :posts
+
   resources :people
 
   # The priority is based upon order of creation:

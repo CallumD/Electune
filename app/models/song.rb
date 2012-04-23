@@ -1,4 +1,5 @@
-class Song
+class Song < ActiveRecord::Base
+
   attr_reader :votes
 
   def initialize

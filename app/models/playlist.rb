@@ -1,4 +1,5 @@
-class Playlist
+class Playlist < ActiveRecord::Base
+
   def initialize
    @songs = Array.new
   end
