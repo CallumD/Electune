@@ -1,5 +1,5 @@
-require_relative '../../lib/playlist'
-require_relative '../../lib/song'
+require_relative '../../app/models/playlist'
+require_relative '../../app/models/song'
 
 describe Playlist, "#songs" do
 

@@ -1,4 +1,4 @@
-require_relative '../../lib/song'
+require_relative '../../app/models/song'
 
 describe Song, "#voting" do
 
