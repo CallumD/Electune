@@ -1,6 +1,10 @@
 class Playlist < ActiveRecord::Base
 
-  def initialize
+attr_accessible :name
+
+has_many :songs
+
+  def after_initialize
    @songs = Array.new
   end
 

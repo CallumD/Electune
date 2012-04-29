@@ -1,8 +1,9 @@
 class Song < ActiveRecord::Base
 
-  attr_reader :votes
+  belongs_to :playlist
+  attr_accessible :votes,:playlist_name
 
-  def initialize
+  def after_initialize
     @votes = 1
   end
 
