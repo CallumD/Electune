@@ -1,4 +1,8 @@
 Electune::Application.routes.draw do
+  get "say/hello"
+
+  get "say/goodbye"
+
   resources :posts
 
   resources :people
