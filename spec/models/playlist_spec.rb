@@ -3,14 +3,14 @@ require_relative '../../app/models/song'
 
 describe Playlist, "#songs" do
 
-  let(:playlist) { playlist = Playlist.new }
+  let(:playlist) { playlist = Playlist.create }
 
   it "should be empty when first initialised" do
     playlist.count.should eq(0)
   end
 
   it "should add to songs via playlist" do
-    playlist.push("songOne")
+    playlist.push(Song.new)
     playlist.count.should eq(1)
   end  
 

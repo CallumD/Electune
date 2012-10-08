@@ -2,7 +2,7 @@ require_relative '../../app/models/song'
 
 describe Song, "#voting" do
 
-  let(:song) { song = Song.new }
+  let(:song) { song = Song.create }
 
   it "should have one vote when initialised" do
     song.votes.should eq(1)

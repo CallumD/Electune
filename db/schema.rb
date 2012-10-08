@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120429103202) do
 
   create_table "songs", :force => true do |t|
     t.integer "votes"
-    t.string  "playlist_name"
+    t.integer  "playlist_id"
   end
 
 end

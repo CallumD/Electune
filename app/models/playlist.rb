@@ -1,15 +1,11 @@
 class Playlist < ActiveRecord::Base
 
-attr_accessible :name
-
-has_many :songs
-
-  def after_initialize
-   @songs = Array.new
-  end
+  attr_accessible :name
+  has_many :songs
+  after_initialize :default_values
 
   def vito song
-    if @songs.include? song
+    if self.songs.include? song
      song.vito 
      checkremove song
     end
@@ -22,32 +18,37 @@ has_many :songs
   end
 
   def upvote song
-    if @songs.include? song
+    if self.songs.include? song
       song.upvote
     end
   end
   
   def fetch song
-    @songs.fetch(@songs.index(song))
+    self.songs.fetch(self.songs.index(song))
   end
   
   def count
-    @songs.count
+    self.songs.count
   end
 
   def push song
-    @songs.push song
+    self.songs.push song
   end
 
   def shift
-    @songs.shift
+    self.songs.shift
   end
   
   def delete song
-    @songs.delete song
+    self.songs.delete song
   end
 
   def include? song
-    @songs.include? song
+    self.songs.include? song
   end
+
+  private
+    def default_values
+      self.songs ||= Array.new
+    end
 end

@@ -1,17 +1,24 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
-  attr_accessible :votes,:playlist_name
+  attr_accessible :votes,:playlist_id
 
-  def after_initialize
+  after_initialize :default_values
+
+  def default_values
     @votes = 1
   end
 
   def upvote
-    @votes += 1
+    self.votes += 1
   end
 
   def vito
-    @votes -= 1
+    self.votes -= 1
   end
+
+  private
+    def default_values
+      self.votes ||= 1
+    end
 end
