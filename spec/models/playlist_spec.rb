@@ -15,8 +15,9 @@ describe Playlist, "#songs" do
   end  
 
   it "should remove song when played" do
-    playlist.push("songOne")
-    playlist.shift.should eq("songOne")
+    song = Song.create!(name: "songOne")
+    playlist.push(song)
+    playlist.shift.should eq(song)
     playlist.count.should eq(0)
   end
 
@@ -29,7 +30,7 @@ describe Playlist, "#songs" do
 
   it "should be possible to remove a song" do
     addThreeSongs
-    playlist.delete("two").should eq("two")
+    playlist.delete(Song.new(name: "two")).should eq(Song.new(name: "two"))
     playlist.count.should eq(2)
     playlist.include?("two").should eq(false)
   end
@@ -60,8 +61,8 @@ describe Playlist, "#songs" do
     playlist.include?(song).should eq(false)
   end
   def addThreeSongs
-    playlist.push("one")
-    playlist.push("two")
-    playlist.push("three")
+    playlist.push(Song.new(name: "one"))
+    playlist.push(Song.new(name: "two"))
+    playlist.push(Song.new(name: "three"))
   end
 end

@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
-  attr_accessible :votes,:playlist_id
+  attr_accessible :votes,:name
 
   after_initialize :default_values
 
