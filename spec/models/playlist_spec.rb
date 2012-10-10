@@ -23,14 +23,18 @@ describe Playlist, "#songs" do
 
   it "should preserve the order in which the songs are added" do
     addThreeSongs
-    playlist.shift.should eq("one")
-    playlist.shift.should eq("two")
-    playlist.shift.should eq("three")
+    song_one = Song.find_by_name "one"
+    song_two = Song.find_by_name "two"
+    song_three = Song.find_by_name "three"
+    playlist.shift.should eq(song_one)
+    playlist.shift.should eq(song_two)
+    playlist.shift.should eq(song_three)
   end
 
   it "should be possible to remove a song" do
     addThreeSongs
-    playlist.delete(Song.new(name: "two")).should eq(Song.new(name: "two"))
+    song_to_remove = Song.find_by_name "two"
+    playlist.delete(song_to_remove).should eq(song_to_remove)
     playlist.count.should eq(2)
     playlist.include?("two").should eq(false)
   end
@@ -61,8 +65,8 @@ describe Playlist, "#songs" do
     playlist.include?(song).should eq(false)
   end
   def addThreeSongs
-    playlist.push(Song.new(name: "one"))
-    playlist.push(Song.new(name: "two"))
-    playlist.push(Song.new(name: "three"))
+    playlist.push(Song.create(name: "one"))
+    playlist.push(Song.create(name: "two"))
+    playlist.push(Song.create(name: "three"))
   end
 end

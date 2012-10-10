@@ -43,6 +43,8 @@ class Playlist < ActiveRecord::Base
   
   def delete song
     self.songs.delete song
+    Song.delete song
+    song
   end
 
   def include? song
