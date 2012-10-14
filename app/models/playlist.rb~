@@ -3,8 +3,6 @@ class Playlist < ActiveRecord::Base
   attr_accessible :name
   has_many :songs
   after_initialize :default_values
-  validates :name, :uniqueness => { :case_sensitive => false }
-  
 
   def vito song
     if self.songs.include? song

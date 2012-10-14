@@ -1,12 +1,4 @@
 Electune::Application.routes.draw do
-  get "say/hello"
-  match "say/hello/:path" => 'say#helloPath'
-
-  get "say/goodbye"
-
-  resources :posts
-
-  resources :people
 
   resources :playlist
 

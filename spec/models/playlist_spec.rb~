@@ -68,7 +68,7 @@ describe Playlist, "#songs" do
   it "should not allow duplicate name" do
     playlist.name = "test";
     playlist.save
-    duplicate = Playlist.new(name: "test")
+    duplicate = Playlist.build(name: "test")
     duplicate.should_not be_valid
   end
   
