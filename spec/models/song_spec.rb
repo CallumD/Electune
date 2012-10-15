@@ -17,6 +17,23 @@ describe Song, "#voting" do
    song.vito
    song.votes.should eq(0)
   end
+  
+  it "should not allow duplicate name" do
+    song.name = "test";
+    song.save
+    duplicate = Song.new(name: "test")
+    duplicate.should_not be_valid
+  end
+  
+  it "should not allow empty name" do
+    song = Song.new(name: "")
+    song.should_not be_valid
+  end
+  
+  it "should not allow name to be blanks" do
+    song = Song.new(name: "     ")
+    song.should_not be_valid
+  end
 end
 
 

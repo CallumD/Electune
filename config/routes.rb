@@ -1,6 +1,8 @@
 Electune::Application.routes.draw do
 
+  root :to => 'playlist#index'
   resources :playlist
+  resources :songs, :only => [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

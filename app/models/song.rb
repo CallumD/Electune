@@ -1,7 +1,9 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
-  attr_accessible :votes,:name
+  attr_accessible :votes, :name
+    validates :name, :uniqueness => { :case_sensitive => false }
+     validates_format_of :name, :with => /(\w)+/i
 
   after_initialize :default_values
 

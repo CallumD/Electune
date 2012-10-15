@@ -10,7 +10,7 @@ describe Playlist, "#songs" do
   end
 
   it "should add to songs via playlist" do
-    playlist.push(Song.new)
+    playlist.push(Song.new name: "test")
     playlist.count.should eq(1)
   end  
 
