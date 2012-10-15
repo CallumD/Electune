@@ -1,9 +1,18 @@
 <h1>Playlist <%= @playlist.name %></h1>
 <p id="error"><%= flash[:error] %></p>
-
+<table>
+<th>Name</th>
+<th>Votes</th>
+<th>Upvote</th>
+<th>Vito</th>
 <% @playlist.songs.each  do |song| %>
-  Song votes: <%= song.votes %>
-  Song name: <%= song.name %>
+<tr>
+  <td><%= song.name %></td>
+  <td><%= song.votes %></td>
+  <td>upvote#</td>
+  <td>vito#</td>
+</tr>
 <% end %>
+</table>
 
 <%= render 'form' %>
