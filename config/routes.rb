@@ -4,7 +4,7 @@ Electune::Application.routes.draw do
   resources :playlist
   resources :songs, :only => [:create]
   
-  match "/songs/upvote/:id" => "songs#upvote", as: "upvote"
+  match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

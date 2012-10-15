@@ -9,7 +9,7 @@
 <tr>
   <td><%= song.name %></td>
   <td><%= song.votes %></td>
-  <td><%= link_to upvote_path song %></td>
+  <td><%= link_to "upvote", upvote_path(song), method: :post %></td>
   <td>vito#</td>
 </tr>
 <% end %>

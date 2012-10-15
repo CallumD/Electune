@@ -8,9 +8,8 @@ class SongsController < ApplicationController
   end
   
     def upvote        
-      song = Song.find params[:song]
+      song = Song.find params[:id]
       song.upvote
-      song.save
-    redirect_to "nowhere"
+      redirect_to root_path
     end
 end

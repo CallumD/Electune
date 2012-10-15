@@ -34,6 +34,13 @@ describe Song, "#voting" do
     song = Song.new(name: "     ")
     song.should_not be_valid
   end
+  
+  it "should persist an upvote" do
+    song = Song.create(name: "upvote")
+    song.upvote
+    from_database = Song.find_by_name "upvote"
+    from_database.votes.should eq(2)
+  end
 end
 
 
