@@ -9,7 +9,7 @@
 <tr>
   <td><%= song.name %></td>
   <td><%= song.votes %></td>
-  <td>upvote#</td>
+  <td><%= link_to upvote_path song %></td>
   <td>vito#</td>
 </tr>
 <% end %>
