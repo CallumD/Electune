@@ -9,7 +9,15 @@ class SongsController < ApplicationController
   
     def upvote        
       song = Song.find params[:id]
-      song.upvote
+      playlist = Playlist.find_by_name "Default" 
+      playlist.upvote song
+      redirect_to root_path
+    end
+    
+    def vito        
+      song = Song.find params[:id]
+      playlist = Playlist.find_by_name "Default" 
+      playlist.vito song
       redirect_to root_path
     end
 end

@@ -2,8 +2,8 @@ class Song < ActiveRecord::Base
 
   belongs_to :playlist
   attr_accessible :votes, :name
-    validates :name, :uniqueness => { :case_sensitive => false }
-     validates_format_of :name, :with => /(\w)+/i
+  
+  validates_format_of :name, :with => /(\w)+/i
 
   after_initialize :default_values
 
@@ -18,6 +18,7 @@ class Song < ActiveRecord::Base
 
   def vito
     self.votes -= 1
+    self.save
   end
 
   private

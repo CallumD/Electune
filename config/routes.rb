@@ -5,6 +5,8 @@ Electune::Application.routes.draw do
   resources :songs, :only => [:create]
   
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
+  
+  match "/songs/vito/:id" => "songs#vito", as: "vito", via: :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

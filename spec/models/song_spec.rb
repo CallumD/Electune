@@ -18,11 +18,11 @@ describe Song, "#voting" do
    song.votes.should eq(0)
   end
   
-  it "should not allow duplicate name" do
+  it "should allow duplicate name" do
     song.name = "test";
     song.save
     duplicate = Song.new(name: "test")
-    duplicate.should_not be_valid
+    duplicate.should be_valid
   end
   
   it "should not allow empty name" do
