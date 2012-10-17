@@ -3,7 +3,7 @@ require_relative '../../app/models/song'
 
 describe Playlist, "#songs" do
 
-  let(:playlist) { playlist = Playlist.create }
+  let(:playlist) { playlist = Playlist.create name: "test" }
 
   it "should be empty when first initialised" do
     playlist.count.should eq(0)
@@ -39,29 +39,11 @@ describe Playlist, "#songs" do
     playlist.include?("two").should eq(false)
   end
 
-  it "should be able to upvote a song" do
-    song = Song.new
-    playlist.push(song)
-    playlist.fetch(song).votes.should eq(1)
-    playlist.upvote song
-    playlist.fetch(song).votes.should eq(2)
-  end
-  
-  it "should be able to vito a song" do
-    song = Song.new
-    playlist.push(song)
-    playlist.fetch(song).votes.should eq(1)
-    playlist.upvote song
-    playlist.fetch(song).votes.should eq(2)
-    playlist.vito song
-    playlist.fetch(song).votes.should eq(1)
-  end
-
   it "should remove song with 0 votes" do
-    song = Song.new
+    song = Song.create name: "test"
     playlist.push(song)
     playlist.fetch(song).votes.should eq(1)
-    playlist.vito song
+    song.vito 
     playlist.include?(song).should eq(false)
   end
   

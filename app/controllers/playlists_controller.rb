@@ -1,10 +1,13 @@
-class PlaylistController < ApplicationController
+class PlaylistsController < ApplicationController
   # GET /playlist
   # GET /playlist.json
-  def index
-    @playlist = Playlist.find_by_name "Default"
-    @song = Song.new
-    
+  def index 
+  
+  end
+  
+  def show
+    @playlist = Playlist.find params[:id]
+    @song = Song.new    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlist }

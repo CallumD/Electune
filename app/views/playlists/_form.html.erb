@@ -1,4 +1,5 @@
 <%= form_for(@song) do |f| %>
+<%= f.hidden_field :playlist, value: playlist.id %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

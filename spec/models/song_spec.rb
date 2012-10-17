@@ -14,8 +14,9 @@ describe Song, "#voting" do
   end
 
   it "should decreate the votes when vitoed" do
+   song.votes = 2
    song.vito
-   song.votes.should eq(0)
+   song.votes.should eq(1)
   end
   
   it "should allow duplicate name" do
@@ -40,6 +41,19 @@ describe Song, "#voting" do
     song.upvote
     from_database = Song.find_by_name "upvote"
     from_database.votes.should eq(2)
+  end
+  
+  it "should be able to upvote a song" do
+    song.votes.should eq(1)
+    song.upvote
+    song.votes.should eq(2)
+  end
+  
+  it "should be able to vito a song" do
+    song.votes.should eq(1)
+    song.upvote 
+    song.vito
+    song.votes.should eq(1)
   end
 end
 

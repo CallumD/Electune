@@ -5,28 +5,8 @@ class Playlist < ActiveRecord::Base
   after_initialize :default_values
   validates :name, :uniqueness => { :case_sensitive => false }
   
-
-  def vito song
-    if self.songs.include? song
-     song.vito 
-     checkremove song
-    end
-  end
-
-  def checkremove song
-    if song.votes == 0
-      delete song
-    end
-  end
-
-  def upvote song
-    if self.songs.include? song
-      song.upvote
-    end
-  end
-  
   def fetch song
-    self.songs.fetch(self.songs.index(song))
+    Song.find song
   end
   
   def count
@@ -34,7 +14,9 @@ class Playlist < ActiveRecord::Base
   end
 
   def push song
-    self.songs.push song
+    #self.songs.push song
+    song.playlist = self
+    song.save
   end
 
   def shift
