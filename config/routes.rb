@@ -1,8 +1,9 @@
 Electune::Application.routes.draw do
 
   root :to => 'playlists#show', :id => '1'
-  resources :playlists
-  resources :songs, :only => [:create]
+  resources :playlists do
+  	resources :songs, :only => [:create]
+  end
   
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
   

@@ -1,11 +1,8 @@
 class SongsController < ApplicationController
   def create
-    playlist_to_assign = Playlist.find params["song"]["playlist"]
-    song_name = params["song"]["name"]
-    song = Song.new name: song_name, playlist: playlist_to_assign
-    song.save
-    redirect_to root_path, flash: { error:           song.errors.full_messages.join("\n")
-}
+  	playlist = Playlist.find params["playlist_id"]
+  	playlist.songs.create(params["song"])  	
+    redirect_to root_path
   end
   
     def upvote        
