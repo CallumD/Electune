@@ -1,6 +1,6 @@
-<h1>Playlist <%= @playlist.name %> (<%=@playlist.count%>)</h1>
+<h1><%=@playlist.name%> Playlist: (<%= pluralize @playlist.count, 'song' %>)</h1>
 <p id="error"><%= flash[:error] %></p>
-<table>
+<table class="table table-hover table-striped">
 <th>Name</th>
 <th>Votes</th>
 <th>Upvote</th>
@@ -15,4 +15,4 @@
 <% end %>
 </table>
 
-<%= render 'form', playlist: @playlist %>
+<%= render 'songs/form', playlist: @playlist %>

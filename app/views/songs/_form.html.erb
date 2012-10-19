@@ -1,0 +1,9 @@
+<%= form_for([@playlist, @song]) do |f| %>
+  <div class="field">
+    <h2><%= f.label :name, "Add song to playlist:" %></h2>
+    <%= f.text_field :name, placeholder: "song name" %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'add song', :class => 'btn'%>
+  </div>
+<% end %>
