@@ -22,5 +22,4 @@ ActiveRecord::Schema.define(:version => 20121009200055) do
     t.string  "playlist_id"
     t.string  "name"
   end
-
 end
