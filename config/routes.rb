@@ -7,7 +7,7 @@ Electune::Application.routes.draw do
   
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
   
-  match "/songs/vito/:id" => "songs#vito", as: "vito", via: :post
+  match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

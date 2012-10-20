@@ -13,9 +13,9 @@ describe Song, "#voting" do
     song.votes.should eq(2)
   end
 
-  it "should decreate the votes when vitoed" do
+  it "should decreate the votes when vetoed" do
    song.votes = 2
-   song.vito
+   song.veto
    song.votes.should eq(1)
   end
   
@@ -49,10 +49,10 @@ describe Song, "#voting" do
     song.votes.should eq(2)
   end
   
-  it "should be able to vito a song" do
+  it "should be able to veto a song" do
     song.votes.should eq(1)
     song.upvote 
-    song.vito
+    song.veto
     song.votes.should eq(1)
   end
 end

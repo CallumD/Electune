@@ -9,7 +9,8 @@ describe Playlist, "#songs" do
     playlist.count.should eq(0)
   end
 
-  it "should add to songs via playlist" do
+  it "should add to songs via 
+  playlist" do
     playlist.push(Song.new name: "test")
     playlist.count.should eq(1)
   end  

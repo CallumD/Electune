@@ -14,9 +14,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def push song
-    #self.songs.push song
-    song.playlist = self
-    song.save
+    self.songs.create song
   end
 
   def shift

@@ -17,7 +17,7 @@ class Song < ActiveRecord::Base
     save
   end
 
-  def vito
+  def veto
     self.votes -= 1
     checkremove    
     save

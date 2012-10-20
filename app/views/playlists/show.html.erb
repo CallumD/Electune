@@ -4,13 +4,13 @@
 <th>Name</th>
 <th>Votes</th>
 <th>Upvote</th>
-<th>Vito</th>
+<th>Veto</th>
 <% @playlist.songs.each  do |song| %>
 <tr>
   <td><%= song.name %></td>
   <td><%= song.votes %></td>
-  <td><%= link_to "upvote", upvote_path(song), method: :post %></td>
-  <td><%= link_to "vito", vito_path(song), method: :post %></td>
+  <td><%= link_to "upvote", upvote_path(song), method: :post, remote: true %></td>
+  <td><%= link_to "veto", veto_path(song), method: :post, remote: true %></td>
 </tr>
 <% end %>
 </table>

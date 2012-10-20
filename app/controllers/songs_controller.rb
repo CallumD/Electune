@@ -11,9 +11,9 @@ class SongsController < ApplicationController
       redirect_to root_path
     end
     
-    def vito        
+    def veto        
       song = Song.find params[:id]      
-      song.vito
+      song.veto
       redirect_to root_path
     end
 end
