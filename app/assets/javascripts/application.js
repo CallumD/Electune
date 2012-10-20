@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+    /* Convenience for forms or links that return HTML from a remote ajax call.
+    The returned markup will be inserted into the element id specified.
+     */
+    $('a[data-update-target]').live('ajax:success', function(evt, data) {
+        var target = $(this).data('update-target');
+        $('#' + target).html(data);
+    });
+});

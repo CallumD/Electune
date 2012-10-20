@@ -8,12 +8,16 @@ class SongsController < ApplicationController
     def upvote        
       song = Song.find params[:id]      
       song.upvote
-      redirect_to root_path
+      respond_to do |format|
+        format.json { render :json => song.votes }
+      end
     end
     
     def veto        
-      song = Song.find params[:id]      
-      song.veto
-      redirect_to root_path
+     song = Song.find params[:id]      
+     song.veto
+     respond_to do |format|
+        format.json { render :json => song.votes }
+      end
     end
 end
