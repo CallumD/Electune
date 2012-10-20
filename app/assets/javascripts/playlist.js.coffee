@@ -5,5 +5,8 @@
 $(document).ready ->
     $('a[data-update-target]')
     .live "ajax:success", (evt, data) ->
-        target = $(this).data('update-target');
-        $('#' + target).html(data);
+        if data.votes == 0
+         $('#song_row_' + data.id).remove();
+        else 
+         target = $(this).data('update-target');
+         $('#' + target).html(data.votes);

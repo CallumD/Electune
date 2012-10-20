@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   def create
   	playlist = Playlist.find params["playlist_id"]
-  	playlist.songs.create(params["song"])  	
+  	song = playlist.songs.create(params["song"])  	
     redirect_to root_path
   end
   
@@ -9,7 +9,7 @@ class SongsController < ApplicationController
       song = Song.find params[:id]      
       song.upvote
       respond_to do |format|
-        format.json { render :json => song.votes }
+        format.json { render :json => song }
       end
     end
     
@@ -17,7 +17,7 @@ class SongsController < ApplicationController
      song = Song.find params[:id]      
      song.veto
      respond_to do |format|
-        format.json { render :json => song.votes }
+        format.json { render :json => song }
       end
     end
 end
