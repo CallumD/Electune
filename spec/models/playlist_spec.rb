@@ -44,7 +44,7 @@ describe Playlist, "#songs" do
     song = Song.create name: "test"
     playlist.push(song)
     playlist.fetch(song).votes.should eq(1)
-    song.vito 
+    song.veto 
     playlist.include?(song).should eq(false)
   end
   
