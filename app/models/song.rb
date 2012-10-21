@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
-  attr_accessible :votes, :name, :playlist
+  attr_accessible :votes, :name
   
   validates_format_of :name, :with => /(\w)+/i
 
