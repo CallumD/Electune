@@ -2,11 +2,11 @@ Electune::Application.routes.draw do
 
   root :to => 'playlists#show', :id => '1'
   resources :playlists do
-  	resources :songs, :only => [:create]
+  	resources :songs
   end
-  
+
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
-  
+
   match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
 
   # The priority is based upon order of creation:

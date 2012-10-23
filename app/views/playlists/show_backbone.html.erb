@@ -1,0 +1,22 @@
+<h1><%=@playlist.name%> Playlist:</h1>
+<p id="error"><%= flash[:error] %></p>
+<table class="table table-striped">
+	<thead>
+		<th>Name</th>
+		<th>Votes</th>
+		<th>Upvote</th>
+		<th>Veto</th>
+	</thead>
+	<tbody id="playlist_table_body"></tbody>
+</table>
+<script type="text/javascript">
+$(function() {
+	var playlist = new Electune.Views.PlaylistsIndex({
+		el: $('#playlist_table_body'),
+		collection: new Electune.Collections.Songs(<%= raw(@playlist.songs.to_json) %>)
+	});
+	playlist.render();
+});
+</script>
+
+<%= render 'songs/form', playlist: @playlist %>
