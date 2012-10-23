@@ -8,7 +8,13 @@ class Electune.Views.SongRow extends Backbone.View
   }
 
   initialize: ->
-    @model.on('change', @render, @)
+    @model.on('change', @handleChange, @)
+
+  handleChange: ->
+    if @model.get('votes') > 0
+      @render()
+    else
+      @remove()
 
   render: ->
     @$el.html(@template(@model.toJSON()))

@@ -9,5 +9,5 @@ class Electune.Views.SongTableBody extends Backbone.View
     this
 
   addSong: (song) ->
-    if (song.get('votes') >= 0)
+    if (song.get('votes') > 0)
       @$el.append(new Electune.Views.SongRow({model: song}).render().el)
