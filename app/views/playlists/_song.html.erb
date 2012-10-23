@@ -1,6 +1,7 @@
-<tr id=<%="song_row_#{song.id}"%>>
+<% target = "song_row_#{song.id}" %>
+<tr id="<%= target %>">
   <td><%= song.name %></td>
-  <td><div class="votes" id=<%="song_cell_#{song.id}"%>><%= song.votes %></div></td>
-  <td><%= link_to "upvote", upvote_path(song), method: :post, remote: true, :'data-update-target' => "song_cell_#{song.id}" %></td>
-  <td><%= link_to "veto", veto_path(song), method: :post, remote: true, :'data-update-target' => "song_cell_#{song.id}" %></td>
+  <td><%= song.votes %></td>
+  <td><%= link_to "upvote", upvote_path(song, target: target), method: :post, remote: true %></td>
+  <td><%= link_to "veto", veto_path(song, target: target), method: :post, remote: true %></td>
 </tr>

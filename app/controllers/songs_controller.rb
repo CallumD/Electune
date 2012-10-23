@@ -1,8 +1,7 @@
 class SongsController < ApplicationController
   def create
   	playlist = Playlist.find params["playlist_id"]
-  	song = playlist.songs.create(params["song"])  	
-    redirect_to root_path
+  	@song = playlist.songs.create(params["song"])  	   
   end
   
   def upvote        
@@ -13,5 +12,6 @@ class SongsController < ApplicationController
   def veto        
 		@song = Song.find params[:id]      
 		@song.veto
-  end
+	end
 end
+
