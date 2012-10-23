@@ -11,7 +11,7 @@
 </table>
 <script type="text/javascript">
 $(function() {
-	var playlist = new Electune.Views.PlaylistsIndex({
+	var playlist = new Electune.Views.SongTableBody({
 		el: $('#playlist_table_body'),
 		collection: new Electune.Collections.Songs(<%= raw(@playlist.songs.to_json) %>)
 	});

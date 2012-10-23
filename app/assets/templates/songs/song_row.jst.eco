@@ -1,0 +1,4 @@
+<td><%= @name %></td>
+<td><%= @votes %></td>
+<td><a class="upvote" href="javascript:void(0);">Upvote</a></td>
+<td><a class="veto" href="javascript:void(0);">Veto</a></td>
