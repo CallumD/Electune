@@ -9,14 +9,28 @@
 	</thead>
 	<tbody id="playlist_table_body"></tbody>
 </table>
+
+<div>
+	Add song to playlist:
+	<input type="text" id="newsong" /> <input class="btn" type="button" value="Add Song" id="newsong_button" />
+</div>
 <script type="text/javascript">
 $(function() {
+	var songs = new Electune.Collections.Songs(<%= raw(@playlist.songs.to_json) %>);
 	var playlist = new Electune.Views.SongTableBody({
 		el: $('#playlist_table_body'),
-		collection: new Electune.Collections.Songs(<%= raw(@playlist.songs.to_json) %>)
+		collection: songs
 	});
 	playlist.render();
+
+	$('#newsong_button').click(function() {
+		var $input = $('#newsong');
+		songs.create({
+			playlist_id: <%= @playlist.id %>,
+			name: $input.val(),
+			votes: 0
+		})
+		$input.val('');
+	});
 });
 </script>
-
-<%= render 'songs/form', playlist: @playlist %>
