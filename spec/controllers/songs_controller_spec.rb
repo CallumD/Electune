@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SongsController do
 
-let (:song) { Song.create name: "test", votes: 2 }
+let (:song) { FactoryGirl.create(:song, votes: 2) }
 
   describe "upvote a song with Ajax" do  
     it "should increment votes count" do
