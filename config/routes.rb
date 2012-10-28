@@ -1,5 +1,7 @@
 Electune::Application.routes.draw do
 
+  resources :users
+
   root :to => 'playlists#show', :id => '1'
   resources :playlists do
   	resources :songs, :only => [:create]
