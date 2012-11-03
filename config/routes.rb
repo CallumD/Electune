@@ -1,15 +1,17 @@
 Electune::Application.routes.draw do
 
-  resources :users
-
   root :to => 'playlists#show', :id => '1'
+
+  resources :users
   resources :playlists do
   	resources :songs, :only => [:create]
   end
   
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
-  
   match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
