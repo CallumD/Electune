@@ -3,10 +3,13 @@ Electune::Application.routes.draw do
   root :to => 'playlists#show', :id => '1'
 
   resources :users
+  resources :sessions, only: [:create, :destroy]
   resources :playlists do
   	resources :songs, :only => [:create]
   end
-  
+
+
+
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
   match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
   match '/signup',  to: 'users#new'
