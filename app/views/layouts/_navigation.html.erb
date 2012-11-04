@@ -2,11 +2,11 @@
 <ul class="nav">
   <% if signed_in? %>
     <li>
-    <%= link_to('Logout', signout_path, :method=>'delete') %> 
+    <%= link_to('Sign Out', signout_path, :method=>'delete') %>
     </li>
   <% else %>
     <li>
-    <%= link_to('Login', signin_path)  %>  
+    <%= link_to('Sign in', signin_path)  %>
     </li>
   <% end %>
   <% if signed_in? %>
