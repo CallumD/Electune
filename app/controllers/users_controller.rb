@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :signed_in_user, only: [:destroy, :index, :edit, :update]
+  before_filter :correct_user, only: [:destroy, :edit, :update]
   # GET /users
   # GET /users.json
   def index
