@@ -7,11 +7,10 @@ describe "Authentication" do
 
   describe "authorization" do
 
-    describe "as non-admin user" do
+    describe "as user" do
       let(:user) { FactoryGirl.create(:user) }
-      let(:non_admin) { FactoryGirl.create(:user) }
 
-      before { sign_in_capy non_admin }
+      before { sign_in_capy user }
 
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
@@ -24,13 +23,13 @@ describe "Authentication" do
 
       describe "when attempting to visit a protected page" do
         before do
-          visit playlists_path
+          visit edit_user_path(user)
           sign_in_capy user
         end
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            page.should have_selector('title', text: 'Edit user')
+            page.should have_selector('title', text: 'Edit User')
           end
         end
       end
@@ -43,12 +42,12 @@ describe "Authentication" do
 
       describe "visiting Users#edit page" do
         before { visit edit_user_path(wrong_user) }
-        it { should_not have_selector('title', text: full_title('Edit user')) }
+        it { should_not have_selector('title', text: 'Edit user') }
       end
 
       describe "submitting a PUT request to the Users#update action" do
         before { put user_path(wrong_user) }
-        specify { response.should redirect_to(root_path) }
+        specify { response.should redirect_to(signin_path) }
       end
     end
 
@@ -66,7 +65,7 @@ describe "Authentication" do
         describe "after signing in" do
 
           it "should render the desired protected page" do
-            page.should have_selector('title', text: 'Edit user')
+            page.should have_selector('title', text: 'Edit User')
           end
 
           describe "when signing in again" do
@@ -100,15 +99,6 @@ describe "Authentication" do
           before { put user_path(user) }
           specify { response.should redirect_to(signin_path) }
         end
-        describe "visiting the following page" do
-          before { visit following_user_path(user) }
-          it { should have_selector('title', text: 'Sign in') }
-        end
-
-        describe "visiting the followers page" do
-          before { visit followers_user_path(user) }
-          it { should have_selector('title', text: 'Sign in') }
-        end
       end
     end
   end
@@ -127,7 +117,6 @@ describe "Authentication" do
       before { click_button "Sign in" }
 
       it { should have_selector('title', text: 'Sign in') }
-      it { should have_error_message('Invalid') }
       it { should_not have_link('Profile') }
       it { should_not have_link('Settings') }
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PlaylistsController do
 
-before {  sign_in FactoryGirl.create(:user) }
+  before {  sign_in FactoryGirl.create(:user) }
 
   describe "GET #show" do
     it "assigns the requested playlist to @playlist" do
