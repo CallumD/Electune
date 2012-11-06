@@ -1,29 +1,32 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
+  has_many :upvotements, foreign_key: "song_id", dependent: :destroy
+  has_many :upvoters, through: :upvotements, source: :upvoter
   attr_accessible :name
-  
+
   validates_format_of :name, :with => /(\w)+/i
 
   after_initialize :default_values
-  
+
   def default_values
    logger.info "Called after_initialize"
    self.votes ||= 1
   end
 
-  def upvote
+  def upvote by_user
+    upvotements.create!(upvoter_id: by_user.id)
     self.votes += 1
     save
   end
 
   def veto
     self.votes -= 1
-    checkremove    
+    checkremove
     save
   end
-  
-  private   
+
+  private
     def checkremove
       if self.votes == 0
         self.playlist.delete self
