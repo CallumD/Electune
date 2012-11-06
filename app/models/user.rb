@@ -2,7 +2,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
   attr_accessible :email, :password, :password_confirmation
-  
+
+  has_many :upvotements, foreign_key: "upvoter_id", dependent: :destroy
+  has_many :upvoted_songs, through: :upvotements, source: :song
+
   before_save { self.email.downcase! }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
