@@ -4,11 +4,11 @@ class Playlist < ActiveRecord::Base
   has_many :songs
   after_initialize :default_values
   validates :name, :uniqueness => { :case_sensitive => false }
-  
+
   def fetch song
     Song.find song
   end
-  
+
   def count
     self.songs.count
   end
@@ -21,13 +21,11 @@ class Playlist < ActiveRecord::Base
 
   def shift
     song = self.songs.shift
-    Song.delete(song)
     song
   end
-  
+
   def delete song
     self.songs.delete song
-    Song.delete song
     song
   end
 

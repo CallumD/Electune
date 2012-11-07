@@ -3,6 +3,8 @@ class Song < ActiveRecord::Base
   belongs_to :playlist
   has_many :upvotements, dependent: :destroy
   has_many :upvoters, through: :upvotements, source: :upvoter
+  has_many :vetoments, dependent: :destroy
+  has_many :vetoers, through: :vetoments, source: :vetoer
   attr_accessible :name
 
   validates_format_of :name, :with => /(\w)+/i
@@ -14,14 +16,15 @@ class Song < ActiveRecord::Base
    self.votes ||= 1
   end
 
-  def upvote by_user
-    upvotements.find_or_create_by_upvoter_id(by_user.id)
-    self.votes += 1
+  def upvote user_id
+    upvotements.find_or_create_by_upvoter_id(user_id)
+    self.votes += 1 unless self.votes <= 0
     save
   end
 
-  def veto
-    self.votes -= 1
+  def veto user_id
+    vetoments.find_or_create_by_vetoer_id(user_id)
+    self.votes -= 1 unless self.votes <= 0
     checkremove
     save
   end
@@ -29,7 +32,7 @@ class Song < ActiveRecord::Base
   private
     def checkremove
       if self.votes == 0
-        self.playlist.delete self
+        self.playlist.delete self unless self.playlist.nil?
       end
     end
 end

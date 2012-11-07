@@ -9,15 +9,27 @@ describe Song, "#voting" do
     song.votes.should eq(1)
   end
 
+  it "should only allow upvoting when it has at least one vote" do
+    song.votes = 0
+    song.upvote user.id
+    song.votes.should eq(0)
+  end
+
+  it "should only allow vetoing when it has at least one vote" do
+    song = FactoryGirl.create(:song)
+    song.veto user.id
+    song.votes.should eq(0)
+  end
+
   it "should increase the votes when upvoted" do
     song = FactoryGirl.create(:song)
-    song.upvote user
+    song.upvote user.id
     song.votes.should eq(2)
   end
 
   it "should decreate the votes when vetoed" do
    song.votes = 2
-   song.veto
+   song.veto user.id
    song.votes.should eq(1)
   end
 
@@ -39,7 +51,7 @@ describe Song, "#voting" do
 
   it "should persist an upvote" do
     song = FactoryGirl.create(:song, name: 'upvote')
-    song.upvote user
+    song.upvote user.id
     from_database = Song.find_by_name 'upvote'
     from_database.votes.should eq(2)
   end
@@ -47,15 +59,15 @@ describe Song, "#voting" do
   it "should be able to upvote a song" do
     song = FactoryGirl.create(:song)
     song.votes.should eq(1)
-    song.upvote user
+    song.upvote user.id
     song.votes.should eq(2)
   end
 
   it "should be able to veto a song" do
     song = FactoryGirl.create(:song)
     song.votes.should eq(1)
-    song.upvote user
-    song.veto
+    song.upvote user.id
+    song.veto user.id
     song.votes.should eq(1)
   end
 
@@ -64,29 +76,72 @@ describe Song, "#voting" do
 
   it "should register user when upvoted" do
    song = FactoryGirl.create(:song)
-   song.upvote user
+   song.upvote user.id
    song.upvoters.should include user
+  end
+
+  it "should register song when upvoted" do
+   song = FactoryGirl.create(:song)
+   song.upvote user.id
+   user.upvoted_songs.should include song
   end
 
   it "should have the same number of users as upvoters" do
    song = FactoryGirl.create(:song)
-   song.upvote user
+   song.upvote user.id
    song.upvoters.should have(1).User
   end
 
   it "should only allow single upvotement from user" do
    song = FactoryGirl.create(:song)
-   song.upvote user
+   song.upvote user.id
    song.upvotements.should have(1).Upvotement
-   song.upvote user
+   song.upvote user.id
    song.upvotements.should have(1).Upvotement
   end
 
   it "should only allow single upvote from user" do
    song = FactoryGirl.create(:song)
-   song.upvote user
+   song.upvote user.id
    song.votes.should eq(1)
-   song.upvote user
+   song.upvote user.id
    song.votes.should eq(1)
+  end
+
+  it { should respond_to(:vetoers) }
+  it { should respond_to(:vetoments) }
+
+  it "should register user when vetoed" do
+   song = FactoryGirl.create(:song)
+   song.veto user.id
+   song.vetoers.should include user
+  end
+
+  it "should register song when vetoed" do
+   song = FactoryGirl.create(:song)
+   song.veto user.id
+   user.vetoed_songs.should include song
+  end
+
+  it "should have the same number of users as vetoers" do
+   song = FactoryGirl.create(:song)
+   song.veto user.id
+   song.vetoers.should have(1).User
+  end
+
+  it "should only allow single veto from user" do
+   song = FactoryGirl.create(:song)
+   song.veto user.id
+   song.vetoments.should have(1).Upvotement
+   song.veto user.id
+   song.vetoments.should have(1).Upvotement
+  end
+
+  it "should only allow single veto from user" do
+   song = FactoryGirl.create(:song)
+   song.veto user.id
+   song.votes.should eq(0)
+   song.veto user.id
+   song.votes.should eq(0)
   end
 end

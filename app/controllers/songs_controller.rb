@@ -9,11 +9,11 @@ class SongsController < ApplicationController
 
   def upvote
     @song = Song.find params[:id]
-    @song.upvote User.find(session[:user_id])
+    @song.upvote session[:user_id]
   end
 
   def veto
 		@song = Song.find params[:id]
-		@song.veto
+		@song.veto session[:user_id]
 	end
 end

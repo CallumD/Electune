@@ -9,11 +9,11 @@ describe Playlist, "#songs" do
     playlist.count.should eq(0)
   end
 
-  it "should add to songs via 
+  it "should add to songs via
   playlist" do
     playlist.push(FactoryGirl.build(:song))
     playlist.count.should eq(1)
-  end  
+  end
 
   it "should remove song when played" do
     song = FactoryGirl.build(:song)
@@ -41,19 +41,29 @@ describe Playlist, "#songs" do
   end
 
   it "should remove song with 0 votes" do
+    user = FactoryGirl.create(:user)
     song = FactoryGirl.build(:song)
     playlist.push(song)
     playlist.fetch(song).votes.should eq(1)
-    song.veto 
+    song.veto user.id
     playlist.include?(song).should eq(false)
   end
-  
+
+  it "should not delete the song just the relationship" do
+    user = FactoryGirl.create(:user)
+    song = FactoryGirl.create(:song)
+    playlist.push(song)
+    song_id = song.id
+    song.veto user.id
+    Song.find(song_id).should eq(song)
+  end
+
   it "should not allow duplicate name" do
     FactoryGirl.create(:playlist)
     duplicate = FactoryGirl.build(:playlist)
     duplicate.should_not be_valid
   end
-  
+
   private
     def addThreeSongs
       playlist.push(FactoryGirl.build(:song, name: 'one'))

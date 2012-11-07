@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :upvotements, foreign_key: "upvoter_id", dependent: :destroy
   has_many :upvoted_songs, through: :upvotements, source: :song
+  has_many :vetoments, foreign_key: "vetoer_id", dependent: :destroy
+  has_many :vetoed_songs, through: :vetoments, source: :song
 
   before_save { self.email.downcase! }
 
