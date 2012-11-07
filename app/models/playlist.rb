@@ -21,6 +21,7 @@ class Playlist < ActiveRecord::Base
 
   def shift
     song = self.songs.shift
+    delete song
     song
   end
 
