@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe SongsController do
 
-let (:song) { FactoryGirl.create(:song, votes: 2) }
 let (:user) { FactoryGirl.create(:user) }
+let (:song) { FactoryGirl.create(:song) }
 
   before(:each) do
     sign_in user

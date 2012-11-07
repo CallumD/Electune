@@ -10,7 +10,7 @@ describe Song, "#voting" do
   end
 
   it "should only allow upvoting when it has at least one vote" do
-    song.votes = 0
+    song.veto user.id
     song.upvote user.id
     song.votes.should eq(0)
   end
@@ -28,7 +28,7 @@ describe Song, "#voting" do
   end
 
   it "should decreate the votes when vetoed" do
-   song.votes = 2
+   song.upvote FactoryGirl.create(:user).id
    song.veto user.id
    song.votes.should eq(1)
   end
