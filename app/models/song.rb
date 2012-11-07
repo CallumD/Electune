@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
 
   belongs_to :playlist
-  has_many :upvotements, foreign_key: "song_id", dependent: :destroy
+  has_many :upvotements, dependent: :destroy
   has_many :upvoters, through: :upvotements, source: :upvoter
   attr_accessible :name
 
@@ -15,7 +15,7 @@ class Song < ActiveRecord::Base
   end
 
   def upvote by_user
-    upvotements.create!(upvoter_id: by_user.id)
+    upvotements.find_or_create_by_upvoter_id(by_user.id)
     self.votes += 1
     save
   end

@@ -61,4 +61,32 @@ describe Song, "#voting" do
 
   it { should respond_to(:upvoters) }
   it { should respond_to(:upvotements) }
+
+  it "should register user when upvoted" do
+   song = FactoryGirl.create(:song)
+   song.upvote user
+   song.upvoters.should include user
+  end
+
+  it "should have the same number of users as upvoters" do
+   song = FactoryGirl.create(:song)
+   song.upvote user
+   song.upvoters.should have(1).User
+  end
+
+  it "should only allow single upvotement from user" do
+   song = FactoryGirl.create(:song)
+   song.upvote user
+   song.upvotements.should have(1).Upvotement
+   song.upvote user
+   song.upvotements.should have(1).Upvotement
+  end
+
+  it "should only allow single upvote from user" do
+   song = FactoryGirl.create(:song)
+   song.upvote user
+   song.votes.should eq(1)
+   song.upvote user
+   song.votes.should eq(1)
+  end
 end
