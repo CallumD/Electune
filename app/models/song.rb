@@ -5,7 +5,14 @@ class Song < ActiveRecord::Base
   has_many :upvoters, through: :upvotements, source: :upvoter
   has_many :vetoments, dependent: :destroy
   has_many :vetoers, through: :vetoments, source: :vetoer
-  attr_accessible :name
+  belongs_to :user
+  attr_accessible :name, :user_id
+
+  after_create :default_values
+
+  def default_values
+    self.upvote self.user.id
+  end
 
   validates_format_of :name, :with => /(\w)+/i
 
@@ -14,13 +21,12 @@ class Song < ActiveRecord::Base
   end
 
   def upvote user_id
-    upvotements.find_or_create_by_upvoter_id(user_id) unless self.votes <= 0
+    upvotements.find_or_create_by_upvoter_id(user_id)
   end
 
   def veto user_id
     vetoments.find_or_create_by_vetoer_id(user_id) unless self.votes <= 0
     checkremove
-    save
   end
 
   private

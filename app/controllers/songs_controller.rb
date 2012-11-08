@@ -4,8 +4,9 @@ class SongsController < ApplicationController
 
   def create
   	playlist = Playlist.find params["playlist_id"]
-  	@song = playlist.songs.create(params["song"])
-  	Upvotement.create(song: @song, upvoter: session[:user_id])
+  	@song = playlist.songs.build(params["song"])
+  	@song.user = User.find session[:user_id]
+  	@song.save
   end
 
   def upvote
