@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   has_many :vetoments, dependent: :destroy
   has_many :vetoers, through: :vetoments, source: :vetoer
   belongs_to :user
-  attr_accessible :name, :user_id
+  attr_accessible :name
 
   after_create :default_values
 
