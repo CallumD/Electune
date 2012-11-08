@@ -2,10 +2,10 @@ require_relative '../../app/models/song'
 
 describe Song, "#voting" do
 
-  let(:song) { FactoryGirl.build(:song) }
+  let(:song) { FactoryGirl.create(:song) }
   let(:user) { FactoryGirl.create(:user) }
 
-  it "should have one vote when initialised" do
+  it "should have one vote when created" do
     song.votes.should eq(1)
   end
 
@@ -16,13 +16,11 @@ describe Song, "#voting" do
   end
 
   it "should only allow vetoing when it has at least one vote" do
-    song = FactoryGirl.create(:song)
     song.veto user.id
     song.votes.should eq(0)
   end
 
   it "should increase the votes when upvoted" do
-    song = FactoryGirl.create(:song)
     song.upvote user.id
     song.votes.should eq(2)
   end
@@ -34,7 +32,6 @@ describe Song, "#voting" do
   end
 
   it "should allow duplicate name" do
-    FactoryGirl.create(:song)
     duplicate = FactoryGirl.build(:song)
     duplicate.should be_valid
   end
@@ -57,14 +54,12 @@ describe Song, "#voting" do
   end
 
   it "should be able to upvote a song" do
-    song = FactoryGirl.create(:song)
     song.votes.should eq(1)
     song.upvote user.id
     song.votes.should eq(2)
   end
 
   it "should be able to veto a song" do
-    song = FactoryGirl.create(:song)
     song.votes.should eq(1)
     song.upvote user.id
     song.veto user.id
@@ -81,19 +76,16 @@ describe Song, "#voting" do
   end
 
   it "should register song when upvoted" do
-   song = FactoryGirl.create(:song)
    song.upvote user.id
    user.upvoted_songs.should include song
   end
 
   it "should have the same number of users as upvoters" do
-   song = FactoryGirl.create(:song)
    song.upvote user.id
    song.upvoters.should have(1).User
   end
 
   it "should only allow single upvotement from user" do
-   song = FactoryGirl.create(:song)
    song.upvote user.id
    song.upvotements.should have(1).Upvotement
    song.upvote user.id
