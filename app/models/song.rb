@@ -16,6 +16,16 @@ class Song < ActiveRecord::Base
 
   validates_format_of :name, :with => /(\w)+/i
 
+  def already_upvoted_by_user? user_id
+    user = User.find user_id
+    upvoters.include? user
+  end
+
+  def already_vetoed_by_user? user_id
+    user = User.find user_id
+    vetoers.include? user
+  end
+
   def votes
    upvotements.count - vetoments.count
   end

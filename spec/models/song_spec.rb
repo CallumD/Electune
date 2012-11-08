@@ -136,4 +136,18 @@ describe Song, "#voting" do
    song.veto user.id
    song.votes.should eq(0)
   end
+
+  it { should respond_to(:already_vetoed_by_user?) }
+
+  it "should return false if not vetoed by user" do
+     song = FactoryGirl.create(:song)
+     non_vetoed_user = FactoryGirl.create(:user)
+     song.already_vetoed_by_user?(non_vetoed_user.id).should eq false
+  end
+
+  it "should return true if not upvoted by user" do
+     song = FactoryGirl.create(:song)
+     song.veto song.user.id
+     song.already_vetoed_by_user?(song.user.id).should eq true
+  end
 end
