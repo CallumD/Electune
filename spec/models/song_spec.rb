@@ -10,8 +10,8 @@ describe Song, "#voting" do
   end
 
   it "should only allow upvoting when it has at least one vote" do
-    song.veto user.id
-    song.upvote user.id
+    song.veto song.user.id
+    song.upvote song.user.id
     song.votes.should eq(0)
   end
 
@@ -81,22 +81,22 @@ describe Song, "#voting" do
   end
 
   it "should have the same number of users as upvoters" do
-   song.upvote user.id
+   song.upvote song.user.id
    song.upvoters.should have(1).User
   end
 
   it "should only allow single upvotement from user" do
-   song.upvote user.id
+   song.upvote song.user.id
    song.upvotements.should have(1).Upvotement
-   song.upvote user.id
+   song.upvote song.user.id
    song.upvotements.should have(1).Upvotement
   end
 
   it "should only allow single upvote from user" do
    song = FactoryGirl.create(:song)
-   song.upvote user.id
+   song.upvote song.user.id
    song.votes.should eq(1)
-   song.upvote user.id
+   song.upvote song.user.id
    song.votes.should eq(1)
   end
 
