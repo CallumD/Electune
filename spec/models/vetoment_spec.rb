@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Vetoment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:vetoer) }
+  it { should respond_to(:song) }
 end

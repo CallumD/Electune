@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Upvotement do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:upvoter) }
+  it { should respond_to(:song) }
 end
