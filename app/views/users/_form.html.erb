@@ -12,15 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
-    <%= f.label :password %><br />
+    <%= f.label :password %>
     <%= f.text_field :password %>
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.text_field :password_confirmation %>
   </div>
-  
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create User", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,6 +1,8 @@
+<% title 'User List' %>
+
 <h1>Listing users</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Email</th>
     <th></th>
@@ -12,8 +14,8 @@
   <tr>
     <td><%= user.email %></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) unless session[:user_id] != user.id %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } unless session[:user_id] != user.id %></td>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,6 @@
 <% title "#{@playlist.name} Playlist" %>
 <% target = "#{@playlist.name}_table" %>
+
 <h1><%=@playlist.name%> Playlist:</h1>
 <p id="error"><%= flash[:error] %></p>
 <table id="<%= target %>" class="table table-striped">
@@ -7,7 +8,7 @@
 <th>Votes</th>
 <th>Upvote</th>
 <th>Veto</th>
-<%= render partial: "song", :collection => @playlist.songs %>
+<%= render partial: "song", collection: @playlist.songs %>
 </table>
 
 <%= render 'songs/form', playlist: @playlist, target: target %>
