@@ -1,12 +1,9 @@
 class PlaylistsController < ApplicationController
-  before_filter :signed_in_user#, only: [:create, :destroy]
+  before_filter :signed_in_user
 
-  # GET /playlist
-  # GET /playlist.json
-  def index 
-  
+  def index
   end
-  
+
   def show
     @playlist = Playlist.find params[:id]
     @song = Song.new
