@@ -15,7 +15,7 @@ class SongsController < ApplicationController
   end
 
   def veto
-		@song = Song.find params[:id]
-		@song.veto session[:user_id]
-	end
+    @song = Song.find params[:id]
+    @song.veto session[:user_id]
+  end
 end
