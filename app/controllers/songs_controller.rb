@@ -3,10 +3,10 @@ class SongsController < ApplicationController
   before_filter :signed_in_user
 
   def create
-  	playlist = Playlist.find params["playlist_id"]
-  	@song = playlist.songs.build(params["song"])
-  	@song.user = User.find session[:user_id]
-  	@song.save
+     playlist = Playlist.find params["playlist_id"]
+     @song = playlist.songs.build(params["song"])
+     @song.user = User.find session[:user_id]
+     @song.save
   end
 
   def upvote
