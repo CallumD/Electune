@@ -5,14 +5,12 @@ require 'json'
 
   def self.perform_search search_term
     service_result = JSON.parse(open("http://ws.spotify.com/search/1/track.json?q=#{search_term}").read)
-    tracks = []
-    service_result["tracks"].each do |service_track|
+    tracks = service_result["tracks"].map do |service_track|
       track = build_track_from_track_data service_track
       track.album = build_album_from_track_data service_track
       track.artists = build_artists_from_track_data service_track
-      tracks << track
+      track
     end
-    tracks
   end
 
   private
@@ -34,13 +32,11 @@ require 'json'
 
     def self.build_artists_from_track_data data
       artists = data["artists"]
-      track_artists = []
-        artists.each do |artist|
+      track_artists = artists.map do |artist|
           track_artist = Artist.new
           track_artist.name = artist["name"]
           track_artist.spotify_link = artist["href"]
-          track_artists << track_artist
+          track_artist
       end
-      track_artists
     end
 end
