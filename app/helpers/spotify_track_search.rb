@@ -28,6 +28,7 @@ require 'json'
       album.name = album_data["name"]
       album.release_date = album_data["released"]
       album.spotify_link = album_data["href"]
+      album
     end
 
     def self.build_artists_from_track_data data
