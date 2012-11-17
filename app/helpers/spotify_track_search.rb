@@ -1,4 +1,4 @@
-class SpotifyTrackSearch
+module SpotifyTrackSearch
 
 require 'open-uri'
 require 'json'
