@@ -1,6 +1,10 @@
+require_relative '../../app/helpers/spotify_track_search'
+
 describe SpotifyTrackSearch, "description" do
   it "test" do
-    desc_mock = double("desc order mock")
-    desc_mock.should_receive(:desc).with(:created_at).and_return(subjects)
+    spotify_search = double("spotify search")
+    spotify_search.stub(:get_service_responce) { "test" }
+    SpotifyTrackSearch.stub(:get_service_responce) { spotify_search }
+    puts SpotifyTrackSearch.perform_search "test"
   end
 end
