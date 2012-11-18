@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'debugger'
 
 group :test do gem 'capybara', '1.1.2' end
 
