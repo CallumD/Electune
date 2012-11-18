@@ -8,6 +8,10 @@ describe SpotifyTrackSearch, "description" do
 
   let(:result) { SpotifyTrackSearch.perform_search "this_is_something_that_does_not_matter" }
 
+  it "should not throw error when passed spaces in query" do
+    lambda { SpotifyTrackSearch.perform_search("this has spaces")}.should_not raise_error
+  end
+
   it "should return an array" do
     result.should be_a_kind_of Array
   end

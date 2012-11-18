@@ -8,8 +8,7 @@ Electune::Application.routes.draw do
   	resources :songs, :only => [:create]
   end
 
-
-
+  match "/search" => "songs#index", as: "search", via: :post
   match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
   match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
   match '/signup',  to: 'users#new'

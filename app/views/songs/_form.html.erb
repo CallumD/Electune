@@ -1,10 +1,22 @@
-<%= form_for([@playlist, @song], remote: true) do |f| %>
-<%= hidden_field_tag 'target', target %>
+<a href="#addSongModal" role="button" class="btn btn-primary" data-toggle="modal">Add song</a>
+
+<div id="addSongModal" class="modal hide fade">
+  <div class="modal-header">
+  <h3>Search spotify</h3>
+  </div>
+  <div class="modal-body">
+  <%= form_tag(search_path, remote: true, id: 'search_form') do |f| %>
   <div class="field">
-    <h2><%= f.label :name, "Add song to playlist:" %></h2>
-    <%= f.text_field :name, placeholder: "song name" %>
+  <h2><%= label_tag :search, "Add song to playlist:" %></h2>
+  <%= text_field_tag :search, nil, placeholder: "song name" %>
+  <%= submit_tag 'search', :class => 'btn search_button', onclick: '$(".search_button").addClass("disabled");' %>
   </div>
-  <div class="actions">
-    <%= f.submit 'add song', :class => 'btn' %>
+  <% end %>
+  <div id="results_table">
   </div>
-<% end %> 
+  </div>
+  <div class="modal-footer">
+  <a data-dismiss="modal" class="btn">Close</a>
+  <a class="btn btn-primary disabled add_song_button">Add song</a>
+  </div>
+</div>

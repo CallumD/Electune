@@ -38,6 +38,6 @@ RELEASED='released'
     end
 
     def self.get_service_response search_term
-      JSON.parse(open(SEARCH_URL + search_term).read)
+      JSON.parse(open(SEARCH_URL + %q{search_term}).read)
     end
 end
