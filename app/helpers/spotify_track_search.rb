@@ -23,8 +23,7 @@ RELEASED='released'
 
   private
     def self.build_track_from_hash data
-      track = Track.new(name: data[NAME], length: Time.at(data[LENGTH]).utc.strftime(TIME_FORMAT),
-      spotify_link: data[HREF])
+      track = Track.new(name: data[NAME], length: Time.at(data[LENGTH]).utc.strftime(TIME_FORMAT), spotify_link: data[HREF])
       track.album = Album.new(name: data[ALBUM][NAME], release_date: data[ALBUM][RELEASED],
       spotify_link: data[ALBUM][HREF])
       track.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
