@@ -37,6 +37,7 @@ RELEASED='released'
     end
 
     def self.get_service_response search_term
-      JSON.parse(open(SEARCH_URL + %q{search_term}).read)
+      Rails.logger.info('Running search: ' + SEARCH_URL + %Q{'#{search_term}'})
+      JSON.parse(open(SEARCH_URL + %Q{'#{search_term}'}).read)
     end
 end

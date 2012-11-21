@@ -1,0 +1,6 @@
+<tr>
+  <td><%= truncate(track.name , :length => 40, :omission => '...') %></td>
+  <td><%= track.length %></td>
+  <td><a href="<%= track.spotify_link %>">play song</a></td>
+  <td><%= track.album.name %></td>
+</tr>

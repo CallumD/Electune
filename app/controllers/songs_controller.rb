@@ -3,7 +3,7 @@ class SongsController < ApplicationController
   before_filter :signed_in_user
 
   def index
-    @songs = SpotifyTrackSearch.perform_search params[:search] unless params[:search].nil?
+    @songs = SpotifyTrackSearch.perform_search(params[:search]).slice(0,20) unless params[:search].nil?
   end
 
   def create
