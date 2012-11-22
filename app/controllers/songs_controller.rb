@@ -8,7 +8,7 @@ class SongsController < ApplicationController
 
   def create
      playlist = Playlist.find params["playlist_id"]
-     @song = playlist.songs.build(params["song"])
+     @song = playlist.songs.build(name: params["name"])
      @song.user = User.find session[:user_id]
      @song.save
   end

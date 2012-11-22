@@ -12,11 +12,13 @@
   <%= submit_tag 'search', :class => 'btn search_button', onclick: '$(".search_button").addClass("disabled");' %>
   </div>
   <% end %>
+  <%= form_for([@playlist, @song], remote: true) do |f| %>
+  <%= hidden_field_tag 'target', target %>
   <div id="results_table">
-  </div>
   </div>
   <div class="modal-footer">
   <a data-dismiss="modal" class="btn">Close</a>
-  <a class="btn btn-primary disabled add_song_button">Add song</a>
+  <%= submit_tag 'add song', :class => 'btn btn-primary' %>
   </div>
+  <% end %>
 </div>

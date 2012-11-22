@@ -1,4 +1,5 @@
 <tr>
+  <td><%= radio_button_tag "name", track.name %></td>
   <td><%= truncate(track.name , :length => 40, :omission => '...') %></td>
   <td><%= track.length %></td>
   <td><a href="<%= track.spotify_link %>">play song</a></td>
