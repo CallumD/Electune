@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107192716) do
+ActiveRecord::Schema.define(:version => 20121129203724) do
 
   create_table "playlists", :force => true do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121107192716) do
     t.string  "playlist_id"
     t.string  "name"
     t.integer "user_id"
+    t.string  "link"
   end
 
   create_table "upvotements", :force => true do |t|

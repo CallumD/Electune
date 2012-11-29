@@ -3,12 +3,13 @@ class SongsController < ApplicationController
   before_filter :signed_in_user
 
   def index
+    @playlist = Playlist.find(params[:playlist_id])
     @songs = SpotifyTrackSearch.perform_search(params[:search]).slice(0,20) unless params[:search].nil?
   end
 
   def create
      playlist = Playlist.find params["playlist_id"]
-     @song = playlist.songs.build(name: params["name"])
+     @song = playlist.songs.build(link: params["link"], name: params["name"])
      @song.user = User.find session[:user_id]
      @song.save
   end
