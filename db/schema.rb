@@ -11,24 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129203724) do
+ActiveRecord::Schema.define(:version => 20121130230008) do
+
+  create_table "playlist_items", :force => true do |t|
+    t.integer "votes"
+    t.string  "playlist_id"
+    t.string  "name"
+    t.integer "user_id"
+  end
 
   create_table "playlists", :force => true do |t|
     t.string "name"
   end
 
-  create_table "songs", :force => true do |t|
-    t.string  "playlist_id"
-    t.string  "name"
-    t.integer "user_id"
-    t.string  "link"
-  end
-
   create_table "upvotements", :force => true do |t|
-    t.integer  "song_id"
     t.integer  "upvoter_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "playlist_item_id"
   end
 
   create_table "users", :force => true do |t|
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(:version => 20121129203724) do
   end
 
   create_table "vetoments", :force => true do |t|
-    t.integer  "song_id"
     t.integer  "vetoer_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "playlist_item_id"
   end
 
 end

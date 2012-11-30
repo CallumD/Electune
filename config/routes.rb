@@ -5,12 +5,12 @@ Electune::Application.routes.draw do
   resources :users
   resources :sessions, only: [:create, :destroy]
   resources :playlists do
-  	resources :songs, :only => [:create]
+  	resources :playlist_items, :only => [:create]
   end
 
-  match "/search" => "songs#index", as: "search", via: :post
-  match "/songs/upvote/:id" => "songs#upvote", as: "upvote", via: :post
-  match "/songs/veto/:id" => "songs#veto", as: "veto", via: :post
+  match "/search" => "playlist_items#index", as: "search", via: :post
+  match "/playlist_items/upvote/:id" => "playlist_items#upvote", as: "upvote", via: :post
+  match "/playlist_items/veto/:id" => "playlist_items#veto", as: "veto", via: :post
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

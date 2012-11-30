@@ -1,41 +1,41 @@
 class Playlist < ActiveRecord::Base
 
   attr_accessible :name
-  has_many :songs
+  has_many :playlist_items
   after_initialize :default_values
   validates :name, :uniqueness => { :case_sensitive => false }
 
-  def fetch song
-    Song.find song
+  def fetch playlist_item
+    PlaylistItem.find playlist_item
   end
 
   def count
-    self.songs.count
+    self.playlist_items.count
   end
 
-  def push song
-    song.playlist = self
-    song.save
-    song
+  def push playlist_item
+    playlist_item.playlist = self
+    playlist_item.save
+    playlist_item
   end
 
   def shift
-    song = self.songs.shift
-    delete song
-    song
+    playlist_item = self.playlist_items.shift
+    delete playlist_item
+    playlist_item
   end
 
-  def delete song
-    self.songs.delete song
-    song
+  def delete playlist_item
+    self.playlist_items.delete playlist_item
+    playlist_item
   end
 
-  def include? song
-    self.songs.include? song
+  def include? playlist_item
+    self.playlist_items.include? playlist_item
   end
 
   private
     def default_values
-      self.songs ||= Array.new
+      self.playlist_items ||= Array.new
     end
 end

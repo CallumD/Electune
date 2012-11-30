@@ -1,4 +1,4 @@
-class Song < ActiveRecord::Base
+class PlaylistItem < ActiveRecord::Base
 
   belongs_to :playlist
   has_many :upvotements, dependent: :destroy

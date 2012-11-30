@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :vetoment do
-    song_id ""
+    playlist_item_id ""
     vetoer_id 1
   end
 end

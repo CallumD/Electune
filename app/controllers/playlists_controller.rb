@@ -6,7 +6,7 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find params[:id]
-    @song = Song.new
+    @playlist_item = PlaylistItem.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlist }

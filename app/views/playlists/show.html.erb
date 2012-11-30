@@ -8,7 +8,7 @@
 <th>Votes</th>
 <th>Upvote</th>
 <th>Veto</th>
-<%= render partial: "song", collection: @playlist.songs %>
+<%= render partial: "playlist_item", collection: @playlist.playlist_items %>
 </table>
 
-<%= render 'songs/form', playlist: @playlist, target: target %>
+<%= render 'playlist_items/form', playlist: @playlist, target: target %>

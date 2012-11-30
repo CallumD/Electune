@@ -8,40 +8,40 @@ describe "Upvoting" do
     let(:user) { FactoryGirl.create(:user) }
     let(:playlist) { FactoryGirl.create(:playlist) }
 
-    describe "when created a song" do
+    describe "when created a playlist_item" do
       before do
-        playlist.push FactoryGirl.create(:song, user: user)
+        playlist.push FactoryGirl.create(:playlist_item, user: user)
         visit playlist_path(playlist)
         sign_in_capy user
       end
 
-      describe "after creating a song" do
+      describe "after creating a playlist_item" do
         it "it should not show upote link" do
           page.should_not have_selector('a', text: 'upvote')
         end
       end
     end
 
-    describe "when song created by someone else" do
+    describe "when playlist_item created by someone else" do
       before do
-        playlist.push FactoryGirl.create(:song)
+        playlist.push FactoryGirl.create(:playlist_item)
         visit playlist_path(playlist)
         sign_in_capy user
       end
 
-      describe "after creating a song" do
+      describe "after creating a playlist_item" do
         it "it should show upote link" do
           page.should have_selector('a', text: 'upvote')
         end
       end
     end
 
-    describe "when vetoing a song" do
+    describe "when vetoing a playlist_item" do
       before do
-        song = FactoryGirl.create(:song)
-        song.upvote user.id
-        song.veto user.id
-        playlist.push song
+        playlist_item = FactoryGirl.create(:playlist_item)
+        playlist_item.upvote user.id
+        playlist_item.veto user.id
+        playlist.push playlist_item
         visit playlist_path(playlist)
         sign_in_capy user
 
@@ -54,9 +54,9 @@ describe "Upvoting" do
       end
     end
 
-    describe "when vetoing a song" do
+    describe "when vetoing a playlist_item" do
       before do
-        playlist.push FactoryGirl.create(:song)
+        playlist.push FactoryGirl.create(:playlist_item)
         visit playlist_path(playlist)
         sign_in_capy user
       end
