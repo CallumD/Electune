@@ -8,9 +8,6 @@ group :test do gem 'capybara', '1.1.2' end
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,10 +37,14 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem 'spork'
   gem 'guard'
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'sqlite3'
 end
