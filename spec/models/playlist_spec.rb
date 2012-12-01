@@ -23,21 +23,27 @@ describe Playlist, "#playlist_items" do
   end
 
   it "should preserve the order in which the playlist_items are added" do
-    addThreePlaylistItems
-    playlist_item_one = PlaylistItem.find_by_name 'one'
-    playlist_item_two = PlaylistItem.find_by_name 'two'
-    playlist_item_three = PlaylistItem.find_by_name 'three'
-    playlist.shift.should eq(playlist_item_one)
-    playlist.shift.should eq(playlist_item_two)
-    playlist.shift.should eq(playlist_item_three)
+    one = FactoryGirl.build(:playlist_item)
+    two = FactoryGirl.build(:playlist_item)
+    three = FactoryGirl.build(:playlist_item)
+    playlist.push(one)
+    playlist.push(two)
+    playlist.push(three)
+    playlist.shift.should eq(one)
+    playlist.shift.should eq(two)
+    playlist.shift.should eq(three)
   end
 
   it "should be possible to remove a playlist_item" do
-    addThreePlaylistItems
-    playlist_item_to_remove = PlaylistItem.find_by_name 'two'
+    one = FactoryGirl.build(:playlist_item)
+    two = FactoryGirl.build(:playlist_item)
+    playlist_item_to_remove = FactoryGirl.build(:playlist_item)
+    playlist.push(one)
+    playlist.push(two)
+    playlist.push(playlist_item_to_remove)
     playlist.delete(playlist_item_to_remove).should eq(playlist_item_to_remove)
     playlist.count.should eq(2)
-    playlist.include?('two').should eq(false)
+    playlist.include?(playlist_item_to_remove).should eq(false)
   end
 
   it "should remove playlist_item with 0 votes" do
@@ -66,8 +72,8 @@ describe Playlist, "#playlist_items" do
 
   private
     def addThreePlaylistItems
-      playlist.push(FactoryGirl.build(:playlist_item, name: 'one'))
-      playlist.push(FactoryGirl.build(:playlist_item, name: 'two'))
-      playlist.push(FactoryGirl.build(:playlist_item, name: 'three'))
+      playlist.push(FactoryGirl.build(:playlist_item))
+      playlist.push(FactoryGirl.build(:playlist_item))
+      playlist.push(FactoryGirl.build(:playlist_item))
     end
 end

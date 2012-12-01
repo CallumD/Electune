@@ -5,16 +5,14 @@ class PlaylistItem < ActiveRecord::Base
   has_many :upvoters, through: :upvotements, source: :upvoter
   has_many :vetoments, dependent: :destroy
   has_many :vetoers, through: :vetoments, source: :vetoer
+  belongs_to :song
   belongs_to :user
-  attr_accessible :name, :link
 
   after_create :default_values
 
   def default_values
     self.upvote self.user.id
   end
-
-  validates_format_of :name, :with => /(\w)+/i
 
   def already_upvoted_by_user? user_id
     user = User.find user_id

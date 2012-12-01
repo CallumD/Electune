@@ -3,7 +3,7 @@ require_relative '../../app/helpers/spotify_song_search'
 describe SpotifySongSearch, "description" do
 
   before(:each) do
-    SpotifySongSearch.stub(:get_service_response).and_return({'tracks' => [{'name'=> 'name', 'length' => 3600, 'href' => 'test.link', 'album' => {'name' => 'album_name', 'released' => 'today', 'href' => 'album.link'}, 'artists' => [{'name' => 'artist_name', 'href' => 'artist.link'}]}]})
+    SpotifySongSearch.stub(:get_service_response).and_return({'tracks' => [{'name'=> 'name', 'length' => 3600, 'href' => 'test.link', 'album' => {'name' => 'album_name', 'released' => "2012-12-01 09:04:35", 'href' => 'album.link'}, 'artists' => [{'name' => 'artist_name', 'href' => 'artist.link'}]}]})
   end
 
   let(:result) { SpotifySongSearch.perform_search "this_is_something_that_does_not_matter" }
@@ -46,7 +46,7 @@ describe SpotifySongSearch, "description" do
     end
 
     it "should have a released date" do
-      result.first.album.release_date.should eq 'today'
+      result.first.album.release_date.should eq "2012-12-01 09:04:35"
     end
 
     it "should have a spotify link" do

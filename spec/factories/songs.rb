@@ -1,10 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :song do
-    name "MyString"
-    length "MyString"
-    spotify_link "MyString"
-    album_id 1
+    name "song name"
+    length "01:00"
+    sequence(:spotify_link) {|n| "spotify:link#{n}" }
+    album
   end
 end

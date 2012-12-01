@@ -31,25 +31,10 @@ describe PlaylistItem, "#voting" do
    playlist_item.votes.should eq(1)
   end
 
-  it "should allow duplicate name" do
-    duplicate = FactoryGirl.build(:playlist_item)
-    duplicate.should be_valid
-  end
-
-  it "should not allow empty name" do
-    playlist_item = FactoryGirl.build(:playlist_item, name: '')
-    playlist_item.should_not be_valid
-  end
-
-  it "should not allow name to be blanks" do
-    playlist_item = FactoryGirl.build(:playlist_item, name: '      ')
-    playlist_item.should_not be_valid
-  end
-
   it "should persist an upvote" do
-    playlist_item = FactoryGirl.create(:playlist_item, name: 'upvote')
+    playlist_item = FactoryGirl.create(:playlist_item)
     playlist_item.upvote user.id
-    from_database = PlaylistItem.find_by_name 'upvote'
+    from_database = PlaylistItem.find playlist_item.id
     from_database.votes.should eq(2)
   end
 
