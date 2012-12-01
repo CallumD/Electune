@@ -1,6 +1,3 @@
-class Artist
-  require 'hash_initializer'
-  include HashInitializer
-
-  attr_accessor :name, :spotify_link
+class Artist < ActiveRecord::Base
+  attr_accessible :name, :spotify_link
 end

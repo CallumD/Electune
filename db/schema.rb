@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130230008) do
+ActiveRecord::Schema.define(:version => 20121201091209) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.datetime "release_date"
+    t.string   "spotify_link"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "albums", ["spotify_link"], :name => "index_albums_on_spotify_link", :unique => true
+
+  create_table "artists", :force => true do |t|
+    t.string   "name"
+    t.string   "spotify_link"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "artists", ["spotify_link"], :name => "index_artists_on_spotify_link", :unique => true
+
+  create_table "performers", :force => true do |t|
+    t.integer  "song_id"
+    t.integer  "artist_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "performers", ["artist_id"], :name => "index_performers_on_artist_id"
+  add_index "performers", ["song_id"], :name => "index_performers_on_song_id"
 
   create_table "playlist_items", :force => true do |t|
     t.integer "votes"
@@ -23,6 +52,17 @@ ActiveRecord::Schema.define(:version => 20121130230008) do
   create_table "playlists", :force => true do |t|
     t.string "name"
   end
+
+  create_table "songs", :force => true do |t|
+    t.string   "name"
+    t.string   "length"
+    t.string   "spotify_link"
+    t.integer  "album_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "songs", ["spotify_link"], :name => "index_songs_on_spotify_link", :unique => true
 
   create_table "upvotements", :force => true do |t|
     t.integer  "upvoter_id"
