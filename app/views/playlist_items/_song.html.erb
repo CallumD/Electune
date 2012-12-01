@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to "add song", playlist_playlist_items_path(playlist_id: @playlist,target: "#{@playlist.name}_table", name: song.name, link: song.spotify_link), method: 'post', remote: true %></td>
+  <td><%= truncate(song.name , :length => 40, :omission => '...') %></td>
+  <td><%= song.length %></td>
+  <td><a href="<%= song.spotify_link %>">play song</a></td>
+  <td><%= song.album.name %></td>
+</tr>

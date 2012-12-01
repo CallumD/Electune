@@ -1,8 +1,8 @@
-module SpotifyTrackSearch
+module SpotifySongSearch
 
 require 'open-uri'
 require 'json'
-require_relative '../../app/models/track'
+require_relative '../../app/models/song'
 require_relative '../../app/models/album'
 require_relative '../../app/models/artist'
 
@@ -18,16 +18,16 @@ RELEASED='released'
 
   def self.perform_search search_term
     service_result = get_service_response search_term
-    service_result[TRACKS].map { |service_track| build_track_from_hash service_track }
+    service_result[TRACKS].map { |service_song| build_song_from_hash service_song }
   end
 
   private
-    def self.build_track_from_hash data
-      track = Track.new(name: data[NAME], length: Time.at(data[LENGTH]).utc.strftime(TIME_FORMAT), spotify_link: data[HREF])
-      track.album = Album.new(name: data[ALBUM][NAME], release_date: data[ALBUM][RELEASED],
+    def self.build_song_from_hash data
+      song = Song.new(name: data[NAME], length: Time.at(data[LENGTH]).utc.strftime(TIME_FORMAT), spotify_link: data[HREF])
+      song.album = Album.new(name: data[ALBUM][NAME], release_date: data[ALBUM][RELEASED],
       spotify_link: data[ALBUM][HREF])
-      track.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
-      track
+      song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
+      song
     end
 
 

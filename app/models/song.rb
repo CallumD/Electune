@@ -1,4 +1,4 @@
-class Track
+class Song
   require 'hash_initializer'
   include HashInitializer
 

@@ -4,7 +4,7 @@ class PlaylistItemsController < ApplicationController
 
   def index
     @playlist = Playlist.find(params[:playlist_id])
-    @playlist_items = SpotifyTrackSearch.perform_search(params[:search]).slice(0,20) unless params[:search].nil?
+    @playlist_items = SpotifySongSearch.perform_search(params[:search]).slice(0,20) unless params[:search].nil?
   end
 
   def create

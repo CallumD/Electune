@@ -1,15 +1,15 @@
-require_relative '../../app/helpers/spotify_track_search'
+require_relative '../../app/helpers/spotify_song_search'
 
-describe SpotifyTrackSearch, "description" do
+describe SpotifySongSearch, "description" do
 
   before(:each) do
-    SpotifyTrackSearch.stub(:get_service_response).and_return({'tracks' => [{'name'=> 'name', 'length' => 3600, 'href' => 'test.link', 'album' => {'name' => 'album_name', 'released' => 'today', 'href' => 'album.link'}, 'artists' => [{'name' => 'artist_name', 'href' => 'artist.link'}]}]})
+    SpotifySongSearch.stub(:get_service_response).and_return({'tracks' => [{'name'=> 'name', 'length' => 3600, 'href' => 'test.link', 'album' => {'name' => 'album_name', 'released' => 'today', 'href' => 'album.link'}, 'artists' => [{'name' => 'artist_name', 'href' => 'artist.link'}]}]})
   end
 
-  let(:result) { SpotifyTrackSearch.perform_search "this_is_something_that_does_not_matter" }
+  let(:result) { SpotifySongSearch.perform_search "this_is_something_that_does_not_matter" }
 
   it "should not throw error when passed spaces in query" do
-    lambda { SpotifyTrackSearch.perform_search("this has spaces")}.should_not raise_error
+    lambda { SpotifySongSearch.perform_search("this has spaces")}.should_not raise_error
   end
 
   it "should return an array" do
@@ -20,11 +20,11 @@ describe SpotifyTrackSearch, "description" do
     result.size.should eq(1)
   end
 
-  it "should contain a track" do
-    result.first.should be_a_kind_of Track
+  it "should contain a song" do
+    result.first.should be_a_kind_of Song
   end
 
-  it "should have a track name" do
+  it "should have a song name" do
     result.first.name.should eq 'name'
   end
 
@@ -36,7 +36,7 @@ describe SpotifyTrackSearch, "description" do
     result.first.spotify_link.should eq 'test.link'
   end
 
-  describe "the tracks album" do
+  describe "the songs album" do
     it "should have an album" do
       result.first.album.should be_a_kind_of Album
     end
@@ -54,7 +54,7 @@ describe SpotifyTrackSearch, "description" do
     end
   end
 
-  describe "a track tracks artists" do
+  describe "a song songs artists" do
     it "should be an array" do
       result.first.artists.should be_a_kind_of Array
     end
