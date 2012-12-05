@@ -6,4 +6,5 @@ class Song < ActiveRecord::Base
   attr_accessible :length, :name, :spotify_link
 
   validates_format_of :name, :with => /(\w)+/i
+  validates_uniqueness_of :spotify_link
 end
