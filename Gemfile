@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'daemons'
 gem 'rails', '3.2.8'
 gem 'debugger'
 gem 'coffee-rails', '~> 3.2.1'
