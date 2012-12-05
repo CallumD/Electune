@@ -1,4 +1,5 @@
 require ENV["RAILS_ENV_PATH"]
+require 'current_status'
 
 loop {
   Playlist.all.each do |playlist|
