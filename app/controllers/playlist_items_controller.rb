@@ -1,5 +1,7 @@
 class PlaylistItemsController < ApplicationController
 
+  require File.expand_path('../../../lib/playlist_stack_job', __FILE__)
+
   before_filter :signed_in_user
 
   def index
@@ -13,6 +15,11 @@ class PlaylistItemsController < ApplicationController
      @playlist_item.song = Song.find(params[:id])
      @playlist_item.user = User.find session[:user_id]
      @playlist_item.save
+
+    if playlist.count == 1
+      playlist.start_time = Time.now
+      Delayed::Job.enqueue PlaylistStackJob.new(playlist), Time.now + @playlist_item.song.length
+    end
   end
 
   def upvote

@@ -22,6 +22,11 @@ describe Playlist, "#playlist_items" do
     playlist.count.should eq(0)
   end
 
+  it "should have a start_time" do
+    playlist = FactoryGirl.build(:playlist)
+    playlist.should respond_to :start_time
+  end
+
   it "should preserve the order in which the playlist_items are added" do
     one = FactoryGirl.build(:playlist_item)
     two = FactoryGirl.build(:playlist_item)

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'daemons'
+gem 'delayed_job_active_record'
 gem 'rails', '3.2.8'
 gem 'debugger'
 gem 'coffee-rails', '~> 3.2.1'
@@ -18,8 +18,8 @@ group :production do
   gem 'pg'
 end
 
-group :test do 
-  gem 'capybara', '1.1.2' 
+group :test do
+  gem 'capybara', '1.1.2'
 end
 
 group :development, :test do
