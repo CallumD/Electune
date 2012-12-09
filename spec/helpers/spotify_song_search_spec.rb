@@ -28,8 +28,8 @@ describe SpotifySongSearch, "description" do
     result.first.name.should eq 'name'
   end
 
-  it "should have a formatted time" do
-    result.first.length.should match /\d{2}:\d{2}/
+  it "should be a fixnum" do
+    result.first.length.should be_a_kind_of Fixnum
   end
 
   it "should have a spotify link" do

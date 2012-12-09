@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209111449) do
+ActiveRecord::Schema.define(:version => 20121209140112) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(:version => 20121209111449) do
 
   create_table "songs", :force => true do |t|
     t.string   "name"
-    t.string   "length"
+    t.integer  "length",       :limit => 255
     t.string   "spotify_link"
     t.integer  "album_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "songs", ["spotify_link"], :name => "index_songs_on_spotify_link", :unique => true

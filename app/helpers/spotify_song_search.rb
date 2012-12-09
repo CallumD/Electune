@@ -10,7 +10,6 @@ SEARCH_URL='http://ws.spotify.com/search/1/track.json?q='
 TRACKS='tracks'
 NAME='name'
 LENGTH='length'
-TIME_FORMAT='%m:%S'
 ALBUM='album'
 HREF='href'
 ARTISTS='artists'
@@ -26,7 +25,7 @@ RELEASED='released'
 
   private
     def self.build_song_from_hash data
-      song = Song.find_or_create_by_spotify_link(name: data[NAME], length: Time.at(data[LENGTH]).utc.strftime(TIME_FORMAT), spotify_link: data[HREF])
+      song = Song.find_or_create_by_spotify_link(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
       song.album = Album.find_or_create_by_spotify_link(name: data[ALBUM][NAME], release_date: data[ALBUM][RELEASED],
       spotify_link: data[ALBUM][HREF])
       song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }

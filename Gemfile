@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "daemons"
 gem 'delayed_job_active_record'
 gem 'rails', '3.2.8'
 gem 'debugger'
