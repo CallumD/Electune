@@ -1,5 +1,5 @@
 {
   "playlist": "<%= @playlist.name %>",
   "song_link": "<%= @playlist.playlist_items.first.song.spotify_link unless @playlist.playlist_items.first.nil?  %>",
-  "current_time": "01:00"
+  "current_time": "<%= Time.at(Time.now - @playlist.start_time).utc.strftime('%m:%S') unless @playlist.playlist_items.first.nil?  %>"
 }
