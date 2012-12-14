@@ -8,17 +8,9 @@ class PlaylistItemsController < ApplicationController
   end
 
   def create
-     playlist = Playlist.find params["playlist_id"]
-     @playlist_item = playlist.playlist_items.build()
-     @playlist_item.song = Song.find(params[:id])
-     @playlist_item.user = User.find session[:user_id]
-     @playlist_item.save
-
-    if playlist.playlist_items.count == 1
-      playlist.start_time = Time.now
-      Delayed::Job.enqueue PlaylistStackJob.new(playlist), run_at: Time.now + (@playlist_item.song.length-3).seconds
-      playlist.save
-    end
+    @playlist = Playlist.find params["playlist_id"]
+    @playlist_item = @playlist.playlist_items.create(song: Song.find(params[:id]), user: User.find(session[:user_id]))
+    @playlist.update_attributes(start_time: Time.now) if @playlist.playlist_items.count == 1
   end
 
   def upvote

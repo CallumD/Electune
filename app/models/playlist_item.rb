@@ -8,6 +8,9 @@ class PlaylistItem < ActiveRecord::Base
   belongs_to :song
   belongs_to :user
 
+
+  attr_accessible :song, :user
+
   after_create :default_values
 
   def default_values
