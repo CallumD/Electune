@@ -16,7 +16,7 @@ class PlaylistItemsController < ApplicationController
 
     if playlist.playlist_items.count == 1
       playlist.start_time = Time.now
-      Delayed::Job.enqueue PlaylistStackJob.new(playlist), run_at: Time.now + @playlist_item.song.length.seconds
+      Delayed::Job.enqueue PlaylistStackJob.new(playlist), run_at: Time.now + (@playlist_item.song.length-3).seconds
       playlist.save
     end
   end

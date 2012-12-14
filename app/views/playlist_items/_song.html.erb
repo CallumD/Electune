@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to "add song", playlist_playlist_items_path(playlist_id: @playlist,target: "#{@playlist.name}_table", id: song.id), method: 'post', remote: true %></td>
   <td><%= truncate(song.name , :length => 40, :omission => '...') %></td>
-  <td><%= Time.at(song.length).utc.strftime('%m:%S') %></td>
+  <td><%= seconds_to_mins song.length %></td>
   <td><a href="<%= song.spotify_link %>">play song</a></td>
   <td><%= song.album.name %></td>
 </tr>
