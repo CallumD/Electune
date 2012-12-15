@@ -5,10 +5,10 @@ Electune::Application.routes.draw do
   resources :users
   resources :sessions, only: [:create, :destroy]
   resources :playlists do
+    get 'current', on: :member
   	resources :playlist_items, :only => [:create]
   end
 
-  match "/current/:playlist_id" => "playlists#current"
   match "/search" => "playlist_items#index", as: "search", via: :post
   match "/playlist_items/upvote/:id" => "playlist_items#upvote", as: "upvote", via: :post
   match "/playlist_items/veto/:id" => "playlist_items#veto", as: "veto", via: :post

@@ -1,6 +1,6 @@
 class Playlist < ActiveRecord::Base
 
-  attr_accessible :name
+  attr_accessible :name, :start_time
   has_many :playlist_items
   after_initialize :default_values
   validates :name, :uniqueness => { :case_sensitive => false }

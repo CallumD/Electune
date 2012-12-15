@@ -9,7 +9,12 @@ class PlaylistsController < ApplicationController
   end
 
   def current
-    @playlist = Playlist.find params[:playlist_id]
+    @playlist = Playlist.find params[:id]
+    if Time.now > playlist.start_time + playlist.playlist_items.first.song.length
+     #playlist.start_time = playlist.start_time + playlist.playlist_items.first.song.length
+     #playlist.pop
+    end
+     #time = Time.now - playlist.start_time (in a nice format)
   end
 
   def show
