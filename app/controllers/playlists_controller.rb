@@ -17,7 +17,8 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find params[:id]
     @playlist_item = PlaylistItem.new
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
+      format.js
       format.json { render json: @playlist }
     end
   end

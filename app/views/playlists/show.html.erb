@@ -1,14 +1,34 @@
 <% title "#{@playlist.name} Playlist" %>
 <% target = "#{@playlist.name}_table" %>
 
+<script type="text/javascript">
+$(function(){
+  doPoll();
+});
+
+function doPoll(){
+  $.ajax({
+      url : "#{@playlist.id}.js",
+      type : "GET",
+      success: function(json){
+          setTimeout(doPoll,5000);
+      }
+  });
+}
+</script>
+
 <h1><%=@playlist.name%> Playlist:</h1>
 <p id="error"><%= flash[:error] %></p>
 <table id="<%= target %>" class="table table-striped">
+<thead>
 <th>Name</th>
 <th>Votes</th>
 <th>Upvote</th>
 <th>Veto</th>
-<%= render partial: "playlist_item", collection: @playlist.playlist_items %>
+</thead>
+<tbody>
+  <%= render partial: "playlist_item", collection: @playlist.playlist_items %>
+</tbody>
 </table>
 
 <%= render 'playlist_items/form', playlist: @playlist, target: target %>
