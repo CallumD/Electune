@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "1.9.3"
 
 gem "daemons"
 gem 'delayed_job_active_record'
