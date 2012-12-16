@@ -1,4 +1,4 @@
 require 'rubygems'
 require 'daemons'
 
-Daemons.run('auto_shift_playlist.rb')
+Daemons.run(File.expand_path('../auto_shift_playlist.rb', __FILE__))
