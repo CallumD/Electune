@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def seconds_to_mins seconds
     mm, ss = seconds.to_f.divmod(60)
-    "#{mm.round}:#{'%02d' % ss.round}"
+    "#{mm.floor}:#{'%02d' % ss.floor}"
   end
 
   helper_method :seconds_to_mins
