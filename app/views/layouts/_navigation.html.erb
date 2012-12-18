@@ -11,7 +11,10 @@
   <% end %>
   <% if signed_in? %>
     <li>
-    <!-- link_to('Edit account', edit_user_registration_path) %> -->
+      <div class="navtext">Signed in as:</div>
+    </li>
+    <li>
+      <%= gravatar_for(current_user) %>
     </li>
   <% else %>
     <li>
