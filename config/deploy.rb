@@ -5,6 +5,8 @@ DATABASE_CONFIG = '/home/callum/database.yml'
 
 default_run_options[:pty] = true
 
+set :bundle_flags,    "--deployment --quiet"
+set :bundle_cmd,      "bundle" # e.g. "/opt/ruby/bin/bundle"
 set :application, "Electune"
 set :repository,  "git@github.com:CallumD/Electune.git"
 set :user, "callum"
