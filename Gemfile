@@ -18,10 +18,16 @@ end
 
 group :production do
   gem 'pg'
+  gem 'passenger'
 end
 
 group :test do
   gem 'capybara', '1.1.2'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'cape'
 end
 
 group :development, :test do
