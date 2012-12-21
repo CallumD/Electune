@@ -14,3 +14,6 @@
 /log/*.log
 /tmp
 .bundle\n
+
+#Ignore any generated assets or gems
+vendor/*

@@ -28,8 +28,8 @@ describe SpotifySongSearch, "description" do
     result.first.name.should eq 'name'
   end
 
-  it "should be a fixnum" do
-    result.first.length.should be_a_kind_of Fixnum
+  it "should be a big decimal" do
+    result.first.length.should be_a_kind_of BigDecimal
   end
 
   it "should have a spotify link" do

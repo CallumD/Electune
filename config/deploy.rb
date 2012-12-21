@@ -23,16 +23,17 @@ def remote_file_exists?(full_path)
 end
 
 namespace :deploy do
-
   Cape do
     # Create Capistrano recipes for all Rake tasks.
     mirror_rake_tasks
   end
 
   before 'deploy:update_code', 'deploy:check_config'
-  after 'deploy:update_code', 'deploy:assets:precompile'
-  before 'deploy:assets:precompile', 'deploy:create_config'
+  #after 'deploy:check_config', 'deploy:auto_shift:stop'
+  after 'deploy:update_code', 'deploy:create_config'
   after 'deploy:create_config', 'deploy:migrate'
+  after 'deploy:migrate','deploy:assets:precompile'
+  #after 'assets:precompile', 'deploy:auto_shift:start'
 
   task :start, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
