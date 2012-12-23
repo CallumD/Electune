@@ -5,6 +5,11 @@ DATABASE_CONFIG = '/home/callum/database.yml'
 
 default_run_options[:pty] = true
 
+set :default_environment, {
+  'RBENV_ROOT' => "/home/callum/.rbenv",
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
+
 set :bundle_flags,    "--deployment --quiet"
 set :bundle_cmd,      "bundle" # e.g. "/opt/ruby/bin/bundle"
 set :application, "Electune"
@@ -28,12 +33,24 @@ namespace :deploy do
     mirror_rake_tasks
   end
 
+  before 'deploy:stop_daemon', 'deploy:maintenance_page'
+  before 'deploy:check_config', 'deploy:stop_daemon'
   before 'deploy:update_code', 'deploy:check_config'
-  #after 'deploy:check_config', 'deploy:auto_shift:stop'
   after 'deploy:update_code', 'deploy:create_config'
   after 'deploy:create_config', 'deploy:migrate'
-  after 'deploy:migrate','deploy:assets:precompile'
-  #after 'assets:precompile', 'deploy:auto_shift:start'
+  after 'deploy:migrate', 'deploy:start_daemon'
+
+  task :start_daemon, :roles => :app do
+    run "ruby /home/callum/Electune/current/lib/daemons/auto_shift_playlist_control.rb start"
+  end
+
+  task :stop_daemon, :roles => :app do
+    run "ruby /home/callum/Electune/current/lib/daemons/auto_shift_playlist_control.rb stop"
+  end
+
+  task :maintenance_page, :roles => :app do
+    run "ln -s /var/maintenance/maintenance.html /home/callum/Electune/current/public/"
+  end
 
   task :start, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
