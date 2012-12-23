@@ -38,14 +38,14 @@ namespace :deploy do
   before 'deploy:update_code', 'deploy:check_config'
   after 'deploy:update_code', 'deploy:create_config'
   after 'deploy:create_config', 'deploy:migrate'
-  after 'deploy:migrate', 'deploy:start_daemon'
+  after 'deploy:start', 'deploy:start_daemon'
 
   task :start_daemon, :roles => :app do
-    run "ruby /home/callum/Electune/current/lib/daemons/auto_shift_playlist_control.rb start"
+    run "rake -f #{current_path}/Rakefile auto_shift:start RAILS_ENV=production"
   end
 
   task :stop_daemon, :roles => :app do
-    run "ruby /home/callum/Electune/current/lib/daemons/auto_shift_playlist_control.rb stop"
+    run "rake -f #{current_path}/Rakefile auto_shift:stop RAILS_ENV=production"
   end
 
   task :maintenance_page, :roles => :app do
