@@ -5,6 +5,6 @@ module PlaylistHelper
   end
 
   def render_veto playlist_item, target
-    link_to "veto", veto_path(playlist_item, target: target), method: :post, remote: true unless playlist_item.already_vetoed_by_user? session[:user_id]
+    link_to "veto", veto_path(playlist_item, target: target), method: :post, remote: true unless playlist_item.already_vetoed_by_user? session[:user_id] or playlist_item == playlist_item.playlist.playlist_items.first
   end
 end

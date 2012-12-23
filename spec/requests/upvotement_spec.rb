@@ -57,12 +57,13 @@ describe "Upvoting" do
     describe "when vetoing a playlist_item" do
       before do
         playlist.push FactoryGirl.create(:playlist_item)
+        playlist.push FactoryGirl.create(:playlist_item)
         visit playlist_path(playlist)
         sign_in_capy user
       end
 
       describe "after bringing up the playlist" do
-        it "it should show the upvote link" do
+        it "it should show the veto link" do
           page.should have_selector('a', text: 'veto')
         end
       end
