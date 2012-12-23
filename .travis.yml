@@ -1,1 +1,1 @@
-before_install: "rake db:migrate"
+before_install: "bundle exec rake db:migrate"
