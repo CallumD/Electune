@@ -1,1 +1,4 @@
+{<img src="https://travis-ci.org/CallumD/Electune.png" />}[https://travis-ci.org/CallumD/Electune]
+
+
 Client for this application is: https://github.com/kvsm/electune_spotify_client
