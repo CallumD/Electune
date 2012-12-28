@@ -10,8 +10,12 @@ Electune::Application.routes.draw do
   end
 
   match "/search" => "playlist_items#index", as: "search", via: :post
+  match "/artist_lookup" => "playlist_items#artist_lookup", as: "artist_lookup", via: :get
+  match "/album_lookup" => "playlist_items#album_lookup", as: "album_lookup", via: :get
+
   match "/playlist_items/upvote/:id" => "playlist_items#upvote", as: "upvote", via: :post
   match "/playlist_items/veto/:id" => "playlist_items#veto", as: "veto", via: :post
+
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

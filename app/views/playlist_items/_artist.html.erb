@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to "lookup", artist_lookup_path(playlist_id: @playlist.id, spotify_link: artist.spotify_link), remote: true  %></td>
+  <td><%= truncate(artist.name , :length => 40, :omission => '...') %></td>
+  <td><a href="<%= artist.spotify_link %>">artist link</a></td>
+</tr>

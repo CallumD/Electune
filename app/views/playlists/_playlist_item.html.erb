@@ -1,6 +1,8 @@
 <% target = "playlist_item_row_#{playlist_item.id}" %>
 <tr id="<%= target %>">
   <td><%= playlist_item.song.name %></td>
+  <td><%= playlist_item.song.album.name %></td>
+  <td><%= playlist_item.song.artists.first.name %></td>
   <td><%= playlist_item.votes %></td>
   <td><%= render_upvote playlist_item, target %></td>
   <td><%= render_veto playlist_item, target %></td>

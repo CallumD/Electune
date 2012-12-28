@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :performer do
-    song_id 1
-    artist_id 1
+    song
+    artist
   end
 end

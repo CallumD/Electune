@@ -8,8 +8,12 @@
   <%= form_tag(search_path, remote: true, id: 'search_form') do |f| %>
   <%= hidden_field_tag "playlist_id", @playlist.id %>
   <div class="input-append">
-  <h2><%= label_tag :search, "Add song to playlist:" %></h2>
+  <%= label_tag :search, "Add song to playlist:" %>
   <%= text_field_tag :search, nil, placeholder: "song name" %>
+  </div>
+  <div class="input-append">
+  <%= label_tag :artist, "or by artist:" %>
+  <%= text_field_tag :artist, nil, placeholder: "artist name" %>
   <%= submit_tag 'search', :class => 'btn search_button', onclick: '$(".search_button").addClass("disabled");' %>
   </div>
   <% end %>
