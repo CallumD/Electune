@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214202315) do
+ActiveRecord::Schema.define(:version => 20121228132625) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -32,22 +32,6 @@ ActiveRecord::Schema.define(:version => 20121214202315) do
 
   add_index "artists", ["spotify_link"], :name => "index_artists_on_spotify_link", :unique => true
 
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
   create_table "performers", :force => true do |t|
     t.integer  "song_id"
     t.integer  "artist_id"
@@ -60,9 +44,9 @@ ActiveRecord::Schema.define(:version => 20121214202315) do
 
   create_table "playlist_items", :force => true do |t|
     t.integer "votes"
-    t.integer "playlist_id"
     t.integer "user_id"
     t.integer "song_id"
+    t.integer "playlist_id"
   end
 
   create_table "playlists", :force => true do |t|

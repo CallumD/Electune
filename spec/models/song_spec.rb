@@ -16,4 +16,9 @@ describe Song do
     song = FactoryGirl.build(:song, name: '      ')
     song.should_not be_valid
   end
+
+  it "should allow names bigger than 255 characters" do
+    song = FactoryGirl.create(:song, name: (0...400).inject(''){|start| start << 'a' })
+    song.should be_valid
+  end
 end
