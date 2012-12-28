@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem "daemons"
 gem 'delayed_job_active_record'
 gem 'rails', '3.2.8'
-gem 'debugger'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -28,6 +27,7 @@ end
 group :development do
   gem 'capistrano'
   gem 'cape'
+  gem 'debugger'
 end
 
 group :development, :test do
