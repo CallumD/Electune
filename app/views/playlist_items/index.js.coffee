@@ -6,3 +6,6 @@ $(".add_song_button").removeClass('disabled');
 $("#results_table").append("<%= escape_javascript(render partial: 'song_table') %>");
 $("#song_table").append("<%= escape_javascript(render partial: 'song', collection: @playlist_items) %>");
 <% end %>
+$(".loadonclick").click ->
+    $(".loading").show();
+$(".loading").hide();

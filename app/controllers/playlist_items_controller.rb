@@ -5,21 +5,21 @@ class PlaylistItemsController < ApplicationController
   def index
     @playlist = Playlist.find(params[:playlist_id])
     if params[:search].present?
-      @playlist_items = SpotifySongSearch.perform_search(params[:search]).slice(0,20)
+      @playlist_items = SpotifySongSearch.perform_search(params[:search])
     elsif params[:artist].present?
-      @artists = SpotifySongSearch.perform_search_by_artist(params[:artist]).slice(0,20)
+      @artists = SpotifySongSearch.perform_search_by_artist(params[:artist])
       render :action => "artist"
     end
   end
 
   def artist_lookup
     @playlist = Playlist.find(params[:playlist_id])
-    @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link]).slice(0,20)
+    @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link])
   end
 
   def album_lookup
     @playlist = Playlist.find(params[:playlist_id])
-    @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link]).slice(0,20)
+    @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link])
     render :action => "index"
   end
 

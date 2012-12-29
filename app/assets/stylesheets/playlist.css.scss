@@ -4,3 +4,11 @@
 .gravatar {
   width: 35px;
 }
+
+.loading {
+  display: none;
+  left: 40%;
+  top: 40%;
+  position: absolute;
+  z-index: 10000;
+} 

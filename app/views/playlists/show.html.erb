@@ -19,6 +19,7 @@ function doPoll(){
 
 <h1><%=@playlist.name%> Playlist:</h1>
 <p id="error"><%= flash[:error] %></p>
+<%= image_tag "spinner.gif", class: "loading" %>
 <table id="<%= target %>" class="table table-striped">
 <thead>
 <th>Name</th>

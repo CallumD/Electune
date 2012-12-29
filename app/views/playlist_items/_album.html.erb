@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to "lookup", album_lookup_path(playlist_id: @playlist.id, spotify_link: album.spotify_link), remote: true  %></td>
+  <td><%= link_to "lookup", album_lookup_path(playlist_id: @playlist.id, spotify_link: album.spotify_link), remote: true, class: "btn btn-primary loadonclick"  %></td>
   <td><%= truncate(album.name , :length => 40, :omission => '...') %></td>
-  <td><a href="<%= album.spotify_link %>">album link</a></td>
+  <td><%= link_to "album", album.spotify_link, class: "btn" %></td>
 </tr>
