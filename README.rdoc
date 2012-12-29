@@ -11,7 +11,7 @@ The project however is open source and if you feel there is something missing th
 ==CI Builds
 Current status: {<img src="https://travis-ci.org/CallumD/Electune.png" />}[https://travis-ci.org/CallumD/Electune]
 
-This project is currently being built under 1.9.2 and 1.9.3 compatibility on the excellent {travis.}[https://travis-ci.org/]
+This project is currently being built under 1.9.2 and 1.9.3 compatibility on the excellent {travis.}[https://travis-ci.org/CallumD/Electune]
 
 ==Controller application
 Head over to http://electune.dyndns.org/ create an account and start adding songs to the playlist. You need the client application in order to follow along.
