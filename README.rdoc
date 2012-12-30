@@ -21,9 +21,11 @@ Client for this application is: https://github.com/kvsm/electune_spotify_client
 
 This is written as a spotify application. At the moment this requires a developer account within spotify. You can then set up the client using:
 
- git clone https://github.com/kvsm/electune_spotify_client ~/Spotify
+ git clone https://github.com/kvsm/electune_spotify_client ~/Spotify/electune
 
-Then open you spotify client and in the search enter:
+This path is required as the github project name is not the same as the spotify application name to prevent confusion between the client and server applications.
+
+Then open your spotify client and in the search enter:
 
  spotify:app:electune
 
