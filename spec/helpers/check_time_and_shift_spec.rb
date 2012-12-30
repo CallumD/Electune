@@ -1,4 +1,4 @@
-require_relative '../../app/helpers/check_time_and_shift'
+require 'spec_helper'
 
 describe CheckTimeAndShift, "checks the play time and shifts the song if required" do
   before(:each) do

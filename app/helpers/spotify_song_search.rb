@@ -37,6 +37,9 @@ RELEASED='released'
   private
     def self.build_songs_from_results service_result
       Song.transaction do
+        service_result[TRACKS].reject! do |track|
+          true unless track['album']['availability']['territories'].include? "GB"
+        end
         @songs = service_result[TRACKS].map { |service_song| build_song_from_hash service_song }
 		  end
 		  @songs
@@ -44,7 +47,8 @@ RELEASED='released'
 
     def self.build_songs_from_lookup service_result
       Song.transaction do
-        @songs = service_result[ALBUM][TRACKS].map { |service_song| build_song_only_from_hash service_song, service_result[ALBUM] }
+        @songs = []
+        @songs = service_result[ALBUM][TRACKS].map { |service_song| build_song_only_from_hash service_song, service_result[ALBUM] } if service_result[ALBUM]['availability']['territories'].include? "GB"
 		  end
 		  @songs
     end
@@ -58,6 +62,9 @@ RELEASED='released'
 
     def self.build_albums_from_lookup service_result
       Album.transaction do
+      service_result[ARTIST][ALBUMS].reject! do |album|
+          true unless album[ALBUM]['availability']['territories'].include? "GB"
+        end
         @albums = service_result[ARTIST][ALBUMS].map { |service_album| build_album_from_hash service_album[ALBUM] }
 		  end
 		  @albums
