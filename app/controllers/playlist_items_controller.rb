@@ -5,22 +5,38 @@ class PlaylistItemsController < ApplicationController
   def index
     @playlist = Playlist.find(params[:playlist_id])
     if params[:search].present?
-      @playlist_items = SpotifySongSearch.perform_search(params[:search])
+      begin
+        @playlist_items = SpotifySongSearch.perform_search(params[:search])
+      rescue OpenURI::HTTPError => e
+        render :action => "service_error"
+      end
     elsif params[:artist].present?
-      @artists = SpotifySongSearch.perform_search_by_artist(params[:artist])
-      render :action => "artist"
+      begin
+        @artists = SpotifySongSearch.perform_search_by_artist(params[:artist])
+        render :action => "artist"
+      rescue OpenURI::HTTPError => e
+        render :action => "service_error"
+      end
     end
   end
 
   def artist_lookup
     @playlist = Playlist.find(params[:playlist_id])
-    @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link])
+    begin
+      @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link])
+    rescue OpenURI::HTTPError => e
+        render :action => "service_error"
+    end
   end
 
   def album_lookup
     @playlist = Playlist.find(params[:playlist_id])
-    @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link])
-    render :action => "index"
+    begin
+      @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link])
+      render :action => "index"
+    rescue OpenURI::HTTPError => e
+        render :action => "service_error"
+    end
   end
 
   def create
