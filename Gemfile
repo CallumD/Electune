@@ -28,7 +28,6 @@ end
 
 group :development do
   gem 'capistrano'
-  gem 'cape'
   gem 'debugger'
 end
 

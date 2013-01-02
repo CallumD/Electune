@@ -1,5 +1,4 @@
 require 'bundler/capistrano'
-require 'cape'
 
 DATABASE_CONFIG = '/home/callum/database.yml'
 
@@ -28,15 +27,10 @@ def remote_file_exists?(full_path)
 end
 
 namespace :deploy do
-  Cape do
-    # Create Capistrano recipes for all Rake tasks.
-    mirror_rake_tasks
-  end
-
   before 'deploy:stop_daemon', 'deploy:maintenance_page'
   before 'deploy:check_config', 'deploy:stop_daemon'
   before 'deploy:update_code', 'deploy:check_config'
-  after 'deploy:update_code', 'deploy:create_config'
+  before 'deploy:assets:precompile', 'deploy:create_config'
   after 'deploy:create_config', 'deploy:migrate'
   after 'deploy:start', 'deploy:start_daemon'
 

@@ -34,7 +34,6 @@ GEM
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     builder (3.0.4)
-    cape (1.6.0)
     capistrano (2.13.5)
       highline
       net-scp (>= 1.0.0)
@@ -208,7 +207,6 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
-  cape
   capistrano
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
