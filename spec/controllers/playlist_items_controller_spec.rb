@@ -37,7 +37,7 @@ let (:playlist_item) { FactoryGirl.create(:playlist_item) }
 
   describe "when spotify service call throws an error" do
     before(:each) do
-      SpotifySongSearch.stub(:get_service_response).and_raise(OpenURI::HTTPError.new nil, nil)
+      SpotifySongSearch.stub(:open).and_raise(OpenURI::HTTPError.new nil, nil)
     end
     describe "index search by track name" do
       it "should have a flash mentioning there hase been an error" do

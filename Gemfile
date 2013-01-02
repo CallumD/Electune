@@ -7,6 +7,8 @@ gem 'coffee-rails', '~> 3.2.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bootstrap-sass'
+gem "humane-rails"
+gem 'libv8', '~> 3.11.8'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

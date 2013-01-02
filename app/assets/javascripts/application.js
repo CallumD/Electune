@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require humane
+
+humane.baseCls = 'original';
+var notify = humane.create({ });
+notify.error = notify.spawn({addnCls: 'humane-original-error'});
+notify.info = notify.spawn({addnCls: 'humane-original-info'});
+notify.success = notify.spawn({addnCls: 'humane-original-success'});
