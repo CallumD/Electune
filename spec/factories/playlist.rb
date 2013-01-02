@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :playlist do
-    name "test"
+    sequence(:name) {|n| "name#{n}" }
     start_time Time.now
   end
 end

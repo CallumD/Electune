@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
 
   def current
     @playlist = Playlist.find params[:id]
-    @current_time = @playlist.playlist_items.empty? ? 0 : seconds_to_mins(CheckTimeAndShift.tick_on_playlist(params[:id]))
+    @current_time = @playlist.playlist_items.empty? ? 0 : seconds_to_mins(@playlist.tick)
   end
 
   def show

@@ -34,6 +34,14 @@ class Playlist < ActiveRecord::Base
     self.playlist_items.include? playlist_item
   end
 
+  def tick
+    if Time.now > start_time + playlist_items.first.song.length.to_f
+     update_attributes(start_time: (start_time + playlist_items.first.song.length))
+     shift
+    end
+    Time.now - start_time
+  end
+
   private
     def default_values
       self.playlist_items ||= Array.new
