@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem "daemons"
 gem 'delayed_job_active_record'
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
