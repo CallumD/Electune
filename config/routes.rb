@@ -6,7 +6,7 @@ Electune::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :playlists do
     get 'current', on: :member
-  	resources :playlist_items, :only => [:create]
+    resources :playlist_items, :only => [:create]
   end
 
   match "/search" => "playlist_items#index", as: "search", via: :post
