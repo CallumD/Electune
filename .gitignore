@@ -17,3 +17,5 @@
 
 #Ignore any generated assets or gems
 vendor/*
+
+*.swp

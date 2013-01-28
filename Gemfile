@@ -8,7 +8,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bootstrap-sass'
 gem "humane-rails"
-gem 'libv8', '3.11.8.3'
+gem 'libv8', '~> 3.11.8'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -22,7 +22,7 @@ group :production do
 end
 
 group :test do
-  gem 'capybara', '1.1.2'
+  gem 'capybara', '~> 1.1.2'
   gem 'launchy'
   gem 'mysql2'
 end
