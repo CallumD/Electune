@@ -30,11 +30,14 @@ end
 group :development do
   gem 'capistrano'
   gem 'debugger'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 group :development, :test do
   gem 'spork'
   gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
   gem 'sqlite3'
