@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :artist do
-    name "MyString"
+    sequence(:name) {|n| "MyString#{n}" }
     sequence(:spotify_link) {|n| "spotify:link#{n}" }
   end
 end

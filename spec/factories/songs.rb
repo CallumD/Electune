@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :song do
-    name "song name"
+    sequence(:name) {|n| "song name#{n}" }
     length 60
     sequence(:spotify_link) {|n| "spotify:link#{n}" }
     album
