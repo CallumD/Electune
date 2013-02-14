@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def sign_in(user)
-    session[:user_id] = user.id
+    session[:user_id] = user._id
     self.current_user = user
   end
 
@@ -14,7 +14,7 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user = session[:user_id] ? User.find(session[:user_id]) : nil
   end
 
   def current_user?(user)

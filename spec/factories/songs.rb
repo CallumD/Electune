@@ -4,6 +4,6 @@ FactoryGirl.define do
     length 60
     sequence(:spotify_link) {|n| "spotify:link#{n}" }
     album
-    after(:create) { |song| FactoryGirl.create(:performer, song_id: song.id) }
+    after(:create) { |song| FactoryGirl.create(:performer, song_id: song._id) }
   end
 end

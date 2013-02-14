@@ -4,7 +4,7 @@
   </div>
   <div class="modal-body">
   <%= form_tag(search_path, remote: true, id: 'search_form', class: 'form-inline') do |f| %>
-  <%= hidden_field_tag "playlist_id", @playlist.id %>
+  <%= hidden_field_tag "playlist_id", @playlist._id %>
   <%= label_tag :search, "By name:" %>
   <%= text_field_tag :search, nil, placeholder: "song name" %>
   <%= label_tag :artist, "or by artist:" %>

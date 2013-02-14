@@ -1,4 +1,6 @@
-class Upvotement < ActiveRecord::Base
+class Upvotement
+  include Mongoid::Document
+  
   attr_accessible :playlist_item_id, :upvoter_id
 
   belongs_to :playlist_item

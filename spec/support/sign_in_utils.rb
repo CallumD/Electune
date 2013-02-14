@@ -7,7 +7,7 @@ def valid_signin(user)
 end
 
 def sign_in(user)
-  session[:user_id] = user.id
+  session[:user_id] = user._id
 end
 
 def sign_in_capy(user)

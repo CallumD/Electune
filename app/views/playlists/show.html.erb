@@ -8,7 +8,7 @@ $(function(){
 
 function doPoll(){
   $.ajax({
-      url : "/playlists/<%=@playlist.id%>.js",
+      url : "/playlists/<%=@playlist._id%>.js",
       type : "GET",
       success: function(json){
           setTimeout(doPoll,5000);

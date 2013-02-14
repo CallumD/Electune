@@ -56,7 +56,7 @@ describe Playlist, "#playlist_items" do
     playlist_item = FactoryGirl.build(:playlist_item)
     playlist.push(playlist_item)
     playlist.fetch(playlist_item).votes.should eq(1)
-    playlist_item.veto user.id
+    playlist_item.veto user._id
     playlist.include?(playlist_item).should eq(false)
   end
 
@@ -64,8 +64,8 @@ describe Playlist, "#playlist_items" do
     user = FactoryGirl.create(:user)
     playlist_item = FactoryGirl.create(:playlist_item)
     playlist.push(playlist_item)
-    playlist_item_id = playlist_item.id
-    playlist_item.veto user.id
+    playlist_item_id = playlist_item._id
+    playlist_item.veto user._id
     PlaylistItem.find(playlist_item_id).should eq(playlist_item)
   end
 

@@ -36,7 +36,7 @@ describe UsersController do
   # UsersController. Be sure to keep this updated too.
   def valid_session(user) user
     {
-      user_id: user.id
+      user_id: user._id
     }
   end
 

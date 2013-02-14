@@ -36,6 +36,8 @@ group :development do
 end
 
 group :development, :test do
+  gem "database_cleaner"
+  gem 'mongoid', "~> 3.0.0"
   gem 'capybara', '1.1.2'
   gem 'spork'
   gem 'guard'

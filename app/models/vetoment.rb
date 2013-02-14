@@ -1,4 +1,5 @@
-class Vetoment < ActiveRecord::Base
+class Vetoment
+  include Mongoid::Document
   attr_accessible :playlist_item_id, :vetoer_id
 
   belongs_to :playlist_item

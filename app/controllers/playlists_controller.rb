@@ -9,12 +9,12 @@ class PlaylistsController < ApplicationController
   end
 
   def current
-    @playlist = Playlist.find params[:id]
+    @playlist = Playlist.find(params[:id])
     @current_time = @playlist.playlist_items.empty? ? 0 : seconds_to_mins(@playlist.tick)
   end
 
   def show
-    @playlist = Playlist.find params[:id]
+    @playlist = params[:id].present? ? Playlist.find(params[:id]) : Playlist.all.first
     @playlist_item = PlaylistItem.new
     respond_to do |format|
       format.html

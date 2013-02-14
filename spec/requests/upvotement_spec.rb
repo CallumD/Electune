@@ -39,8 +39,8 @@ describe "Upvoting" do
     describe "when vetoing a playlist_item" do
       before do
         playlist_item = FactoryGirl.create(:playlist_item)
-        playlist_item.upvote user.id
-        playlist_item.veto user.id
+        playlist_item.upvote user._id
+        playlist_item.veto user._id
         playlist.push playlist_item
         visit playlist_path(playlist)
         sign_in_capy user

@@ -1,12 +1,15 @@
-class User < ActiveRecord::Base
+class User
+  include Mongoid::Document
+  include ActiveModel::SecurePassword 
+
+  field :email, type: String
+  field :password_digest, type: String
 
   has_secure_password
   attr_accessible :email, :password, :password_confirmation
 
-  has_many :upvotements, foreign_key: "upvoter_id", dependent: :destroy
-  has_many :upvoted_playlist_items, through: :upvotements, source: :playlist_item
-  has_many :vetoments, foreign_key: "vetoer_id", dependent: :destroy
-  has_many :vetoed_playlist_items, through: :vetoments, source: :playlist_item
+  has_many :upvotements
+  has_many :vetoments
 
   before_save { self.email.downcase! }
 
@@ -16,5 +19,16 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  
+  def vetoed_playlist_items
+    Vetoment.where(vetoer_id: self._id).map(&:playlist_item)
+  end
 
+  def upvoted_playlist_items
+    Upvotement.where(upvoter_id: self._id).map(&:playlist_item)
+  end
+
+  def self.find_by_email(email)
+    where(:email => email).first
+  end
 end

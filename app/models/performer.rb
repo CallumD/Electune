@@ -1,5 +1,5 @@
-class Performer < ActiveRecord::Base
-  attr_accessible :artist_id, :song_id
+class Performer
+  include Mongoid::Document
   belongs_to :artist
   belongs_to :song
 end

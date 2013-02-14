@@ -1,5 +1,7 @@
-class Playlist < ActiveRecord::Base
-
+class Playlist
+  include Mongoid::Document
+  field :name, type: String
+  field :start_time, type: Time
   attr_accessible :name, :start_time
   has_many :playlist_items
   after_initialize :default_values
@@ -26,6 +28,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def delete playlist_item
+    playlist_item.update_attribute(:playlist_id, nil)
     self.playlist_items.delete playlist_item
     playlist_item
   end

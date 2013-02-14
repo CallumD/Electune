@@ -12,12 +12,12 @@ let (:playlist_item) { FactoryGirl.create(:playlist_item) }
   describe "upvote a playlist_item with Ajax" do
     it "should increment votes count" do
       expect do
-        xhr :post, :upvote, {id: playlist_item.id}
-      end.to change{ PlaylistItem.find(playlist_item.id).votes }.by(1)
+        xhr :post, :upvote, {id: playlist_item._id}
+      end.to change{ PlaylistItem.find(playlist_item._id).votes }.by(1)
     end
 
     it "should respond with success" do
-      xhr :post, :upvote, {id: playlist_item.id}
+      xhr :post, :upvote, {id: playlist_item._id}
       response.should be_success
     end
   end
@@ -25,12 +25,12 @@ let (:playlist_item) { FactoryGirl.create(:playlist_item) }
   describe "veto a playlist_item with Ajax" do
     it "should decrement votes count" do
       expect do
-        xhr :post, :veto, {id: playlist_item.id}
-      end.to change{ PlaylistItem.find(playlist_item.id).votes }.by(-1)
+        xhr :post, :veto, {id: playlist_item._id}
+      end.to change{ PlaylistItem.find(playlist_item._id).votes }.by(-1)
     end
 
     it "should respond with success" do
-      xhr :post, :veto, {id: playlist_item.id}
+      xhr :post, :veto, {id: playlist_item._id}
       response.should be_success
     end
   end
