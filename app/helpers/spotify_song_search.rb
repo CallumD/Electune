@@ -63,7 +63,8 @@ RELEASED='released'
     end
 
     def self.build_song_only_from_hash data, album_data
-      song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+      song = Song.find_or_create_by(spotify_link: data[HREF])
+      song.update_attributes!(name: data[NAME], length: data[LENGTH])
       song.album = build_album_from_hash album_data
       song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
       song.save
@@ -71,7 +72,8 @@ RELEASED='released'
     end
 
     def self.build_song_from_hash data
-      song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+      song = Song.find_or_create_by(spotify_link: data[HREF])
+      song.update_attributes!(name: data[NAME], length: data[LENGTH])
       song.album = build_album_from_hash data[ALBUM]
       song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
       song.save
@@ -79,12 +81,16 @@ RELEASED='released'
     end
 
     def self.build_album_from_hash album
-      Album.find_or_create_by(name: album[NAME], release_date: album[RELEASED], spotify_link: album[HREF])
+      debugger
+      album = Album.find_or_create_by(spotify_link: album[HREF])
+      album.update_attributes!(name: album[NAME], release_date: album[RELEASED])
+      album
     end
 
     def self.build_artist_from_hash artist
-      Artist.find_or_create_by(name: artist[NAME],
-          spotify_link: artist[HREF])
+      artist = Artist.find_or_create_by(spotify_link: artist[HREF])
+      artist.update_attributes!(name: artist[NAME])
+      artist
     end
 
     def self.get_service_response search_term, search_url
