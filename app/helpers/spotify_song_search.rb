@@ -81,16 +81,15 @@ RELEASED='released'
     end
 
     def self.build_album_from_hash album
-      debugger
-      album = Album.find_or_create_by(spotify_link: album[HREF])
-      album.update_attributes!(name: album[NAME], release_date: album[RELEASED])
-      album
+      found = Album.find_or_create_by(spotify_link: album[HREF])
+      found.update_attributes!(name: album[NAME], release_date: album[RELEASED])
+      found
     end
 
     def self.build_artist_from_hash artist
-      artist = Artist.find_or_create_by(spotify_link: artist[HREF])
-      artist.update_attributes!(name: artist[NAME])
-      artist
+      found = Artist.find_or_create_by(spotify_link: artist[HREF])
+      found.update_attributes!(name: artist[NAME])
+      found
     end
 
     def self.get_service_response search_term, search_url
