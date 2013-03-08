@@ -28,10 +28,9 @@ end
 group :development do
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'rb-inotify', '~> 0.8.8'
   gem 'capistrano'
   gem 'debugger'
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-inotify', '~> 0.8.8' if RUBY_PLATFORM.downcase.include?("linux")
 end
 
 group :development, :test do
