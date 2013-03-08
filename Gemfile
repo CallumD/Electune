@@ -17,13 +17,12 @@ group :assets do
 end
 
 group :production do
-  gem 'pg'
+  gem 'mysql2'
   gem 'passenger'
 end
 
 group :test do
   gem 'launchy'
-  gem 'mysql2'
 end
 
 group :development do

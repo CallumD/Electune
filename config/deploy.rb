@@ -6,7 +6,7 @@ default_run_options[:pty] = true
 
 set :default_environment, {
   'RBENV_ROOT' => "/home/callum/.rbenv",
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+  'PATH' => "$HOME/.rvm/gems/ruby-1.9.3-p392/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
 set :bundle_flags,    "--deployment --quiet"
@@ -38,11 +38,11 @@ namespace :deploy do
     run "rake -f #{current_path}/Rakefile auto_shift:start RAILS_ENV=production"
   end
 
-  task :stop_daemon, :roles => :app do
+  task :stop_daemon, :roles => :app, :on_error => :continue do
     run "rake -f #{current_path}/Rakefile auto_shift:stop RAILS_ENV=production"
   end
 
-  task :maintenance_page, :roles => :app do
+  task :maintenance_page, :roles => :app, :on_error => :continue do
     run "ln -s /var/maintenance/maintenance.html /home/callum/Electune/current/public/"
   end
 
