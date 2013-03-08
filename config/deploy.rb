@@ -9,7 +9,10 @@ set :default_environment, {
   'PATH' => "$HOME/.rvm/gems/ruby-1.9.3-p392/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-set :bundle_flags,    "--deployment --quiet"
+
+require 'rvm/capistrano'
+
+set :bundle_flags,    "--deployment"
 set :bundle_cmd,      "bundle" # e.g. "/opt/ruby/bin/bundle"
 set :application, "Electune"
 set :repository,  "git@github.com:CallumD/Electune.git"

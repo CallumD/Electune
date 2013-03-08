@@ -35,6 +35,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rvm-capistrano'
   gem 'capybara', '1.1.2'
   gem 'spork'
   gem 'guard'
