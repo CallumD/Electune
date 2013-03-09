@@ -16,6 +16,7 @@
 .bundle\n
 
 #Ignore any generated assets or gems
+public/assets/*
 vendor/*
 
 *.swp
