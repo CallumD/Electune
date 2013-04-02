@@ -5,6 +5,14 @@ describe Playlist, "#playlist_items" do
 
   let(:playlist) { FactoryGirl.build(:playlist) }
 
+  it 'adds a song when the playlist empties' do
+    playlist.push(FactoryGirl.build(:playlist_item))
+    playlist.shift
+    playlist.count.should eq(1)
+    playlist.shift
+    playlist.count.should eq(1)
+  end
+
   it "should be empty when first initialised" do
     playlist.count.should eq(0)
   end
@@ -19,7 +27,7 @@ describe Playlist, "#playlist_items" do
     playlist_item = FactoryGirl.build(:playlist_item)
     playlist.push(playlist_item)
     playlist.shift.should eq(playlist_item)
-    playlist.count.should eq(0)
+    playlist.playlist_items.should_not include(playlist_item)
   end
 
   it "should have a start_time" do

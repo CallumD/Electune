@@ -10,7 +10,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def count
-    self.playlist_items.count
+    playlist_items.count
   end
 
   def push playlist_item
@@ -20,18 +20,19 @@ class Playlist < ActiveRecord::Base
   end
 
   def shift
-    playlist_item = self.playlist_items.shift
+    playlist_item = playlist_items.shift
     delete playlist_item
+    insert_random_song if count == 0 
     playlist_item
   end
 
   def delete playlist_item
-    self.playlist_items.delete playlist_item
+    playlist_items.delete playlist_item
     playlist_item
   end
 
   def include? playlist_item
-    self.playlist_items.include? playlist_item
+    playlist_items.include? playlist_item
   end
 
   def tick
@@ -43,7 +44,13 @@ class Playlist < ActiveRecord::Base
   end
 
   private
+    def insert_random_song
+      item = playlist_items.create(song: Song.first(:order => "RANDOM()"), user: User.first(:order => "RANDOM()"))
+      update_attributes(start_time: Time.now) if playlist_items.count == 1
+      push item 
+    end
+
     def default_values
-      self.playlist_items ||= Array.new
+      playlist_items ||= Array.new
     end
 end
