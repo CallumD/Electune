@@ -1,4 +1,7 @@
 class Song < ActiveRecord::Base
+
+  extend ActiveRandom
+
   belongs_to :album
   has_many :performers
   has_many :artists, through: :performers

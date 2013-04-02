@@ -45,7 +45,7 @@ class Playlist < ActiveRecord::Base
 
   private
     def insert_random_song
-      item = playlist_items.create(song: Song.first(:order => "RANDOM()"), user: User.first(:order => "RANDOM()"))
+      item = playlist_items.create(song: Song.random, user: User.random)
       update_attributes(start_time: Time.now) if playlist_items.count == 1
       push item 
     end

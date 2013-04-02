@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  extend ActiveRandom
+
   has_secure_password
   attr_accessible :email, :password, :password_confirmation
 
