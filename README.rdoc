@@ -1,12 +1,15 @@
 =Electune
 
 ==Intro
-Electune is a communal way to build a playlist. At its core is a queue of songs which are built up from the spotify meta data api. The client application is used in conjunction so that all users can listen in to the queue for the same song playing at the same point all the time.
+Electune is a communal way to build a playlist. At its core is a queue of songs which are built up from the spotify meta 
+data api. The client application is used in conjunction so that all users can listen in to the queue for the same 
+song playing at the same point all the time.
 
 ==Feature requests
 At the moment the project is predominantly being tracked using {trello.}[https://trello.com/board/electune/507e9cf2f94575622ea81355]
 
-The project however is open source and if you feel there is something missing then please feel free to submit a pull request. It is asked that all requests are submitted with tests. If not then issues are also welcome.
+The project however is open source and if you feel there is something missing then please feel free to submit a pull 
+request. It is asked that all requests are submitted with tests. If not then issues are also welcome.
 
 ==CI Builds
 Current status: {<img src="https://travis-ci.org/CallumD/Electune.png" />}[https://travis-ci.org/CallumD/Electune]
@@ -14,7 +17,7 @@ Current status: {<img src="https://travis-ci.org/CallumD/Electune.png" />}[https
 This project is currently being built under 1.9.2 and 1.9.3 compatibility on the excellent {travis.}[https://travis-ci.org/CallumD/Electune]
 
 ==Controller application
-Head over to http://electune.dyndns.org/ create an account and start adding songs to the playlist. You need the client application in order to follow along.
+Head over to http://callum.mine.nu:81/ create an account and start adding songs to the playlist. You need the client application in order to follow along.
 
 ==Player application
 Client for this application is: https://github.com/kvsm/electune_spotify_client
