@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  def seconds_to_mins seconds
+  def seconds_to_mins(seconds)
     mm, ss = seconds.to_f.divmod(60)
     "#{mm.floor}:#{'%02d' % ss.floor}"
   end

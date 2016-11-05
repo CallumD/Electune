@@ -1,5 +1,4 @@
 module SessionsHelper
-
   def sign_in(user)
     session[:user_id] = user.id
     self.current_user = user
@@ -22,15 +21,14 @@ module SessionsHelper
   end
 
   def sign_out
-   self.current_user = nil
-   session[:user_id] = nil
+    self.current_user = nil
+    session[:user_id] = nil
   end
-
 
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_path, notice: "Please sign in."
+      redirect_to signin_path, notice: 'Please sign in.'
     end
   end
 
@@ -43,4 +41,3 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 end
-

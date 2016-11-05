@@ -1,6 +1,6 @@
 module ActiveRandom
   def random
-    offset = rand(self.count)
-    self.first(:offset => offset)
+    offset = rand(count)
+    first(offset: offset)
   end
 end

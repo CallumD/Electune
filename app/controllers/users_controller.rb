@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_filter :signed_in_user, only: [:destroy, :index, :edit, :update]
   before_filter :correct_user, only: [:destroy, :edit, :update]
   # GET /users
@@ -50,11 +49,11 @@ class UsersController < ApplicationController
         format.html do
           sign_in @user
           redirect_back_or @user
-          flash[:notice] = "logged in successfully."
+          flash[:notice] = 'logged in successfully.'
         end
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -70,7 +69,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -90,8 +89,8 @@ class UsersController < ApplicationController
 
   private
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(signin_path) unless current_user?(@user)
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(signin_path) unless current_user?(@user)
+  end
 end

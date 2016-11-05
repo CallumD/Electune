@@ -1,4 +1,4 @@
 class Artist < ActiveRecord::Base
-  attr_accessible :name, :spotify_link
-  validates_uniqueness_of :spotify_link
+  attr_accessible :name, :link
+  validates_uniqueness_of :link
 end

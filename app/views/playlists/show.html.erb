@@ -8,11 +8,11 @@ $(function(){
 
 function doPoll(){
   $.ajax({
-      url : "/playlists/<%=@playlist.id%>.js",
-      type : "GET",
-      success: function(json){
-          setTimeout(doPoll,5000);
-      }
+    url : "/playlists/<%=@playlist.id%>.js",
+    type : "GET",
+    success: function(json){
+      setTimeout(doPoll,5000);
+    }
   });
 }
 </script>
@@ -20,17 +20,17 @@ function doPoll(){
 <h1><%=@playlist.name%> Playlist:</h1>
 <p id="error"><%= flash[:error] %></p>
 <table id="<%= target %>" class="table table-striped">
-<thead>
-<th>Name</th>
-<th>Album</th>
-<th>Artist</th>
-<th>Votes</th>
-<th>Upvote</th>
-<th>Veto</th>
-</thead>
-<tbody>
-  <%= render partial: "playlist_item", collection: @playlist.playlist_items %>
-</tbody>
+  <thead>
+    <th>Name</th>
+    <th>Album</th>
+    <th>Artist</th>
+    <th>Votes</th>
+    <th>Upvote</th>
+    <th>Veto</th>
+  </thead>
+  <tbody>
+    <%= render partial: "playlist_item", collection: @playlist.playlist_items %>
+  </tbody>
 </table>
 
 <a href="#addSongModal" role="button" class="btn btn-primary" data-toggle="modal">Add song</a>

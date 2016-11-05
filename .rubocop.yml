@@ -1,0 +1,163 @@
+AllCops:
+  Exclude:
+    - vendor/**/*
+    - db/schema.rb
+    - config/deploy.rb
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/ActionFilter:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+AmbiguousOperator:
+  Exclude:
+    - spec/**/*
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Align the elements of a hash literal if they span more than one line.
+AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedLastArgumentHashStyle: always_inspect
+
+Metrics/AbcSize:
+  Enabled: false
+
+AccessorMethodName:
+  Enabled: false
+
+BlockNesting:
+  Max: 5
+
+# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
+CaseIndentation:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+ClassAndModuleChildren:
+  Enabled: false
+
+# Configuration parameters: CountComments.
+ClassLength:
+  Enabled: false
+
+ClassVars:
+  Enabled: false
+
+CyclomaticComplexity:
+  Max: 36
+
+Documentation:
+  Enabled: false
+
+EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+FileName:
+  Exclude:
+    - lib/simplecov-cobertura.rb
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+FormatString:
+  Enabled: false
+
+GuardClause:
+  Enabled: false
+
+# Configuration parameters: AllowedVariables.
+GlobalVars:
+  Enabled: false
+
+HandleExceptions:
+  Enabled: false
+
+# Configuration parameters: MaxLineLength.
+IfUnlessModifier:
+  Enabled: false
+
+Lambda:
+  Enabled: false
+
+LineLength:
+  Enabled: false
+
+LiteralInCondition:
+  Enabled: false
+
+# Configuration parameters: CountComments.
+MethodLength:
+  Max: 179
+
+Next:
+  Enabled: false
+
+Output:
+  Enabled: false
+
+# Configuration parameters: CountKeywordArgs.
+ParameterLists:
+  Enabled: false
+
+ParenthesesAsGroupedExpression:
+  Enabled: false
+
+# Configuration parameters: NamePrefixBlacklist.
+PredicateName:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+RaiseArgs:
+  Enabled: false
+
+RedundantBegin:
+  Enabled: false
+
+RescueException:
+  Enabled: false
+
+RescueModifier:
+  Enabled: false
+
+SelfAssignment:
+  Enabled: false
+
+ShadowingOuterLocalVariable:
+  Enabled: false
+
+SingleLineBlockParams:
+  Enabled: false
+
+# Configuration parameters: ExactNameMatch, AllowPredicates, Whitelist.
+TrivialAccessors:
+  Enabled: false
+
+UnreachableCode:
+  Enabled: false
+
+UnusedBlockArgument:
+  Enabled: false
+
+UnusedMethodArgument:
+  Enabled: false
+
+UselessAccessModifier:
+  Enabled: false
+
+UselessAssignment:
+  Enabled: false
+
+# Configuration parameters: Include.
+Validation:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+VariableName:
+  Enabled: false
+
+Void:
+  Enabled: false

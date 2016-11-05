@@ -1,5 +1,4 @@
 class PlaylistItemsController < ApplicationController
-
   before_filter :signed_in_user
 
   def index
@@ -8,14 +7,14 @@ class PlaylistItemsController < ApplicationController
       begin
         @playlist_items = SpotifySongSearch.perform_search(params[:search])
       rescue OpenURI::HTTPError => e
-        render :action => "service_error"
+        render action: 'service_error'
       end
     elsif params[:artist].present?
       begin
         @artists = SpotifySongSearch.perform_search_by_artist(params[:artist])
-        render :action => "artist"
+        render action: 'artist'
       rescue OpenURI::HTTPError => e
-        render :action => "service_error"
+        render action: 'service_error'
       end
     end
   end
@@ -25,7 +24,7 @@ class PlaylistItemsController < ApplicationController
     begin
       @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link])
     rescue OpenURI::HTTPError => e
-        render :action => "service_error"
+      render action: 'service_error'
     end
   end
 
@@ -33,16 +32,16 @@ class PlaylistItemsController < ApplicationController
     @playlist = Playlist.find(params[:playlist_id])
     begin
       @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link])
-      render :action => "index"
+      render action: 'index'
     rescue OpenURI::HTTPError => e
-        render :action => "service_error"
+      render action: 'service_error'
     end
   end
 
   def create
-    @playlist = Playlist.find params["playlist_id"]
+    @playlist = Playlist.find params['playlist_id']
     @playlist_item = @playlist.playlist_items.create(song: Song.find(params[:id]), user: User.find(session[:user_id]))
-    @playlist.update_attributes(start_time: Time.now) if @playlist.playlist_items.count == 1
+    @playlist.update_attributes(start_time: Time.current) if @playlist.playlist_items.count == 1
   end
 
   def upvote

@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   before_filter :signed_in_user, only: :show
 
   def index
-  @playlists = Playlist.all
+    @playlists = Playlist.all
     respond_to do |format|
       format.json { render json: @playlists }
     end

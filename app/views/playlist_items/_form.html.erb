@@ -1,34 +1,34 @@
 <div id="addSongModal" class="modal hide fade">
   <div class="modal-header">
-  <h3>Search spotify</h3>
+    <h3>Search</h3>
   </div>
   <div class="modal-body">
     <%= form_tag(search_path, remote: true, id: 'search_form', class: 'form-search') do |f| %>
-    <%= hidden_field_tag "playlist_id", @playlist.id %>
-    <div class="control-group">
-      <div class="controls">
-      <%= label_tag :search, "By name:", class: "control-label" %>
-        <%= text_field_tag :search, nil, placeholder: "song name", class: "search-query" %>
+      <%= hidden_field_tag "playlist_id", @playlist.id %>
+      <div class="control-group">
+        <div class="controls">
+          <%= label_tag :search, "By name:", class: "control-label" %>
+          <%= text_field_tag :search, nil, placeholder: "song name", class: "search-query" %>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-      <%= label_tag :artist, "or by artist:", class: "control-label" %>
-        <%= text_field_tag :artist, nil, placeholder: "artist name", class: "search-query" %>
+      <div class="control-group">
+        <div class="controls">
+          <%= label_tag :artist, "or by artist:", class: "control-label" %>
+          <%= text_field_tag :artist, nil, placeholder: "artist name", class: "search-query" %>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <%= submit_tag 'search', :class => 'btn search_button' %>
+      <div class="control-group">
+        <div class="controls">
+          <%= submit_tag 'search', :class => 'btn search_button' %>
+        </div>
       </div>
-    </div>
     <% end %>
     <p class="loading">
-      <%= image_tag "spinner.gif" %>
+    <%= image_tag "spinner.gif" %>
     </p>
     <div id="results_table">
     </div>
     <div class="modal-footer">
-    <a data-dismiss="modal" class="btn">Close</a>
+      <a data-dismiss="modal" class="btn">Close</a>
+    </div>
   </div>
-</div>
