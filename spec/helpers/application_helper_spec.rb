@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationHelper do
+describe ApplicationHelper, type: :controller do
   describe 'flash notifications' do
     it 'returns empty when no flash' do
       expect(js_notifications).to be_empty

@@ -1,5 +1,5 @@
 class PlaylistItemsController < ApplicationController
-  before_filter :signed_in_user
+  before_action :signed_in_user
 
   def index
     @playlist = Playlist.find(params[:playlist_id])

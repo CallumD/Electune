@@ -56,7 +56,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
 
     describe 'a song songs artists' do
       it 'should be an array' do
-        result.first.artists.should be_a_kind_of Array
+        result.first.artists.to_a.should be_a_kind_of Array
       end
 
       it 'should only have the one stubbed artist' do

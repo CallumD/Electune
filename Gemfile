@@ -2,16 +2,17 @@ source 'https://rubygems.org'
 
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'rails', '3.2.11'
-gem 'coffee-rails', '~> 3.2.1'
+gem 'rails', '4.2.7'
+gem 'rails-observers'
+gem 'coffee-rails', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bootstrap-sass', '~> 2.2.2.0'
-gem 'humane-rails', '~> 3.0.5.0.1.5'
-gem 'sprockets-rails', '~> 0'
+gem 'humane-rails', '~> 5.1.0'
+gem 'sprockets-rails', '~> 3.2.0'
 
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
+  gem 'sass-rails', '5.0.6'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -29,10 +30,11 @@ group :development do
   gem 'capistrano'
   gem 'rb-inotify', '~> 0.8.8' if RUBY_PLATFORM.downcase.include?('linux')
   gem 'rubocop'
+  gem 'pry'
 end
 
 group :development, :test do
-  gem 'capybara', '1.1.2'
+  gem 'capybara', '2.10.1'
   gem 'spork'
   gem 'guard'
   gem 'guard-spork'

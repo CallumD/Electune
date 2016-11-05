@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PlaylistItemsController do
+describe PlaylistItemsController, type: :controller do
   let (:user) { FactoryGirl.create(:user) }
   let (:playlist_item) { FactoryGirl.create(:playlist_item) }
 
@@ -44,7 +44,7 @@ describe PlaylistItemsController do
         assert_template :service_error
       end
       it 'it should not raise the exception' do
-        assert_nothing_raised { xhr :get, :index, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }
+        expect { xhr :get, :index, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
       end
     end
 
@@ -54,7 +54,7 @@ describe PlaylistItemsController do
         assert_template :service_error
       end
       it 'it should not raise the exception' do
-        assert_nothing_raised { xhr :get, :index, artist: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }
+        expect { xhr :get, :index, artist: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
       end
     end
 
@@ -64,7 +64,7 @@ describe PlaylistItemsController do
         assert_template :service_error
       end
       it 'it should not raise the exception' do
-        assert_nothing_raised { xhr :get, :artist_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }
+        expect { xhr :get, :artist_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
       end
     end
 
@@ -74,7 +74,7 @@ describe PlaylistItemsController do
         assert_template :service_error
       end
       it 'it should not raise the exception' do
-        assert_nothing_raised { xhr :get, :album_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }
+        expect { xhr :get, :album_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
       end
     end
   end

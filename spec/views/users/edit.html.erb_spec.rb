@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe 'users/edit' do
+describe 'users/edit', type: :view do
   before(:each) do
-    @user = assign(:user, stub_model(User,
-                                     email: 'MyString'))
+    @user = assign(:user, User.new(email: 'MyString'))
   end
 
   it 'renders the edit user form' do

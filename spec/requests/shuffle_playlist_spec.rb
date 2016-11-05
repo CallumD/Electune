@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Shuffling a playlist' do
+describe 'Shuffling a playlist', type: :feature do
   context 'When there has been no previous shuffle' do
     before(:each) do
       playlist = FactoryGirl.create(:playlist)

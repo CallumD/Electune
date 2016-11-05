@@ -20,6 +20,6 @@ module ApplicationHelper
 
   private
   def humane_type_for_flash(name)
-    name == :notice ? 'info' : 'error'
+    name.to_sym == :notice ? 'info' : 'error'
   end
 end

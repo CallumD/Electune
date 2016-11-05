@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Upvoting' do
+describe 'Upvoting', type: :feature do
   subject { page }
 
   describe 'appearence of upvote link' do

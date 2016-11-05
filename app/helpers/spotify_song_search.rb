@@ -69,7 +69,7 @@ module SpotifySongSearch
   end
 
   def self.build_song_only_from_hash(data, album_data)
-    song = Song.find_or_create_by_spotify_link(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
     song.album = build_album_from_hash album_data
     song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
     song.save
@@ -77,7 +77,7 @@ module SpotifySongSearch
   end
 
   def self.build_song_from_hash(data)
-    song = Song.find_or_create_by_spotify_link(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
     song.album = build_album_from_hash data[ALBUM]
     song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
     song.save
@@ -85,11 +85,11 @@ module SpotifySongSearch
   end
 
   def self.build_album_from_hash(album)
-    Album.find_or_create_by_spotify_link(name: album[NAME], release_date: album[RELEASED], spotify_link: album[HREF])
+    Album.find_or_create_by(name: album[NAME], release_date: album[RELEASED], spotify_link: album[HREF])
   end
 
   def self.build_artist_from_hash(artist)
-    Artist.find_or_create_by_spotify_link(name: artist[NAME],
+    Artist.find_or_create_by(name: artist[NAME],
                                           spotify_link: artist[HREF])
   end
 

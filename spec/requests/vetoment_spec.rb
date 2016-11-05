@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'When vitoing a song on a playlist' do
+describe 'When vitoing a song on a playlist', type: :feature do
   let(:playlist) { FactoryGirl.create(:playlist) }
   let(:user) { FactoryGirl.create(:user) }
   let(:song) { FactoryGirl.create(:song) }

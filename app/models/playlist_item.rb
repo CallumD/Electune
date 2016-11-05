@@ -7,8 +7,6 @@ class PlaylistItem < ActiveRecord::Base
   belongs_to :song
   belongs_to :user
 
-  attr_accessible :song, :user
-
   after_create :default_values
 
   def default_values
@@ -30,11 +28,11 @@ class PlaylistItem < ActiveRecord::Base
   end
 
   def upvote(user_id)
-    upvotements.find_or_create_by_upvoter_id(user_id)
+    upvotements.find_or_create_by(upvoter_id: user_id)
   end
 
   def veto(user_id)
-    vetoments.find_or_create_by_vetoer_id(user_id) unless votes <= 0
+    vetoments.find_or_create_by(vetoer_id: user_id) unless votes <= 0
     checkremove
   end
 

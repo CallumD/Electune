@@ -1,6 +1,6 @@
 module ActiveRandom
   def random
     offset = rand(count)
-    first(offset: offset)
+    offset(offset).first
   end
 end

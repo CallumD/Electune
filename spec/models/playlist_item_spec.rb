@@ -66,14 +66,14 @@ describe PlaylistItem, '#voting' do
 
   it 'should have the same number of users as upvoters' do
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvoters.should have(1).User
+    playlist_item.upvoters.count.should eq 1
   end
 
   it 'should only allow single upvotement from user' do
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvotements.should have(1).Upvotement
+    playlist_item.upvotements.count.should eq(1)
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvotements.should have(1).Upvotement
+    playlist_item.upvotements.count.should eq(1)
   end
 
   it 'should only allow single upvote from user' do
@@ -102,15 +102,15 @@ describe PlaylistItem, '#voting' do
   it 'should have the same number of users as vetoers' do
     playlist_item = FactoryGirl.create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.vetoers.should have(1).User
+    playlist_item.vetoers.count.should eq(1)
   end
 
   it 'should only allow single veto from user' do
     playlist_item = FactoryGirl.create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.vetoments.should have(1).Upvotement
+    playlist_item.vetoments.count.should eq(1)
     playlist_item.veto user.id
-    playlist_item.vetoments.should have(1).Upvotement
+    playlist_item.vetoments.count.should eq(1)
   end
 
   it 'should only allow single veto from user' do

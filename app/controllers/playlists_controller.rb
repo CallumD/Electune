@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_filter :signed_in_user, only: :show
+  before_action :signed_in_user, only: :show
 
   def index
     @playlists = Playlist.all

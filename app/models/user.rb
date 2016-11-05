@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   extend ActiveRandom
 
   has_secure_password
-  attr_accessible :email, :password, :password_confirmation
 
   has_many :upvotements, foreign_key: 'upvoter_id', dependent: :destroy
   has_many :upvoted_playlist_items, through: :upvotements, source: :playlist_item

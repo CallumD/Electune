@@ -8,16 +8,16 @@ Electune::Application.routes.draw do
     resources :playlist_items, only: [:create]
   end
 
-  match '/search' => 'playlist_items#index', as: 'search', via: :post
-  match '/artist_lookup' => 'playlist_items#artist_lookup', as: 'artist_lookup', via: :get
-  match '/album_lookup' => 'playlist_items#album_lookup', as: 'album_lookup', via: :get
+  post '/search' => 'playlist_items#index', as: 'search'
+  get '/artist_lookup' => 'playlist_items#artist_lookup', as: 'artist_lookup'
+  get '/album_lookup' => 'playlist_items#album_lookup', as: 'album_lookup'
 
-  match '/playlist_items/upvote/:id' => 'playlist_items#upvote', as: 'upvote', via: :post
-  match '/playlist_items/veto/:id' => 'playlist_items#veto', as: 'veto', via: :post
+  post '/playlist_items/upvote/:id' => 'playlist_items#upvote', as: 'upvote'
+  post '/playlist_items/veto/:id' => 'playlist_items#veto', as: 'veto'
 
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  get '/signup',  to: 'users#new'
+  get '/signin',  to: 'sessions#new'
+  delete '/signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

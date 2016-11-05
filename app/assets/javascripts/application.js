@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
-//= require humane
+//= require humane-rails
 
 humane.baseCls = 'original';
 var notify = humane.create({ });

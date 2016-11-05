@@ -4,12 +4,6 @@ AllCops:
     - db/schema.rb
     - config/deploy.rb
 
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/ActionFilter:
-  Enabled: false
-
 Style/MutableConstant:
   Enabled: false
 

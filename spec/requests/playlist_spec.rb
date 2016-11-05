@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'the playlist page' do
+describe 'the playlist page', type: :feature do
   let(:playlist) { FactoryGirl.create(:playlist) }
 
   describe 'when a user is not logged in' do

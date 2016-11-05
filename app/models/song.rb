@@ -5,8 +5,6 @@ class Song < ActiveRecord::Base
   has_many :performers
   has_many :artists, through: :performers
 
-  attr_accessible :length, :name, :link
-
   validates_format_of :name, with: /(\w)+/i
-  validates_uniqueness_of :link
+  validates_uniqueness_of :spotify_link
 end

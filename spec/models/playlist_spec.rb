@@ -93,7 +93,7 @@ describe Playlist, '#playlist_items' do
 
     describe 'when the current time is less than the song time' do
       before(:each) do
-        Time.stub!(:now).and_return(Time.mktime(2012, 12, 12, 12, 12, 30))
+        Time.stub(:current).and_return(Time.new(12, 12, 12, 12, 12, 30))
       end
       it 'should not shift the song off the playlist' do
         count = @playlist.playlist_items.count
@@ -109,7 +109,7 @@ describe Playlist, '#playlist_items' do
 
     describe 'when the current time is more than the song time' do
       before(:each) do
-        Time.stub!(:now).and_return(Time.mktime(2012, 12, 12, 12, 13, 30))
+        Time.stub(:current).and_return(Time.new(12, 12, 12, 12, 13, 30))
       end
       it 'should shift the current song off the playlist' do
         count = @playlist.playlist_items.count

@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe 'users/new' do
+describe 'users/new', type: :view do
   before(:each) do
-    assign(:user, stub_model(User,
-                             email: 'MyString').as_new_record)
+    assign(:user, create(:user, email: 'MyString@gmail.com'))
   end
 
   it 'renders new user form' do

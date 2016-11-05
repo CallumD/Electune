@@ -1,5 +1,4 @@
 class Playlist < ActiveRecord::Base
-  attr_accessible :name, :start_time
   has_many :playlist_items
   after_initialize :default_values
   validates :name, uniqueness: { case_sensitive: false }
@@ -17,9 +16,10 @@ class Playlist < ActiveRecord::Base
   end
 
   def shift
-    playlist_item = playlist_items.shift
+    playlist_item = playlist_items.first
     delete playlist_item
-    insert_random_song if count.zero?
+    reload
+    insert_random_song if playlist_items.count.zero?
     playlist_item
   end
 

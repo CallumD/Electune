@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require_tree .
- *= require original
+*= require humane-rails/original
 */
 .navtext {
   padding: 10px 10px 11px;
