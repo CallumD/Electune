@@ -13,7 +13,7 @@ describe 'When vitoing a song on a playlist', type: :feature do
   end
 
   it 'should not allow vito on currently playling song' do
-    page.should have_content(song.name)
-    page.should_not have_link('veto')
+    expect(page).to have_content(song.name)
+    expect(page).not_to have_link('veto')
   end
 end

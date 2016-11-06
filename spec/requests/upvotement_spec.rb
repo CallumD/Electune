@@ -15,8 +15,8 @@ describe 'Upvoting', type: :feature do
       end
 
       describe 'after creating a playlist_item' do
-        it 'it should not show upote link' do
-          page.should_not have_selector('a', text: 'upvote')
+        it 'doesnt show upote link' do
+          expect(page).not_to have_selector('a', text: 'upvote')
         end
       end
     end
@@ -29,8 +29,8 @@ describe 'Upvoting', type: :feature do
       end
 
       describe 'after creating a playlist_item' do
-        it 'it should show upote link' do
-          page.should have_selector('a', text: 'upvote')
+        it 'shows upote link' do
+          expect(page).to have_selector('a', text: 'upvote')
         end
       end
     end
@@ -46,8 +46,8 @@ describe 'Upvoting', type: :feature do
       end
 
       describe 'after its already been vetoed' do
-        it 'it should not show veto link' do
-          page.should_not have_selector('a', text: 'veto')
+        it 'doesnt show veto link' do
+          expect(page).not_to have_selector('a', text: 'veto')
         end
       end
     end
@@ -61,8 +61,8 @@ describe 'Upvoting', type: :feature do
       end
 
       describe 'after bringing up the playlist' do
-        it 'it should show the veto link' do
-          page.should have_selector('a', text: 'veto')
+        it 'shows the veto link' do
+          expect(page).to have_selector('a', text: 'veto')
         end
       end
     end

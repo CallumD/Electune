@@ -4,6 +4,24 @@ AllCops:
     - db/schema.rb
     - config/deploy.rb
 
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Style/MultilineArrayBraceLayout:
+  Enabled: false
+
+Style/IndentArray:
+  Enabled: false
+
+Style/IndentHash:
+  Enabled: false
+
+Style/MultilineHashBraceLayout:
+  Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
 Style/MutableConstant:
   Enabled: false
 

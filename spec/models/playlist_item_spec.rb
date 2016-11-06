@@ -4,134 +4,134 @@ describe PlaylistItem, '#voting' do
   let(:playlist_item) { FactoryGirl.create(:playlist_item) }
   let(:user) { FactoryGirl.create(:user) }
 
-  it 'should have one vote when created' do
-    playlist_item.votes.should eq(1)
+  it 'has one vote when created' do
+    expect(playlist_item.votes).to eq(1)
   end
 
-  it 'should only allow upvoting when it has at least one vote' do
+  it 'only allows upvoting when it has at least one vote' do
     playlist_item.veto playlist_item.user.id
     playlist_item.upvote playlist_item.user.id
-    playlist_item.votes.should eq(0)
+    expect(playlist_item.votes).to eq(0)
   end
 
-  it 'should only allow vetoing when it has at least one vote' do
+  it 'only allows vetoing when it has at least one vote' do
     playlist_item.veto user.id
-    playlist_item.votes.should eq(0)
+    expect(playlist_item.votes).to eq(0)
   end
 
-  it 'should increase the votes when upvoted' do
+  it 'increases the votes when upvoted' do
     playlist_item.upvote user.id
-    playlist_item.votes.should eq(2)
+    expect(playlist_item.votes).to eq(2)
   end
 
-  it 'should decreate the votes when vetoed' do
-    playlist_item.upvote FactoryGirl.create(:user).id
+  it 'decreates the votes when vetoed' do
+    playlist_item.upvote create(:user).id
     playlist_item.veto user.id
-    playlist_item.votes.should eq(1)
+    expect(playlist_item.votes).to eq(1)
   end
 
-  it 'should persist an upvote' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'persists an upvote' do
+    playlist_item = create(:playlist_item)
     playlist_item.upvote user.id
     from_database = PlaylistItem.find playlist_item.id
-    from_database.votes.should eq(2)
+    expect(from_database.votes).to eq(2)
   end
 
-  it 'should be able to upvote a playlist_item' do
-    playlist_item.votes.should eq(1)
+  it 'upvotes a playlist_item' do
+    expect(playlist_item.votes).to eq(1)
     playlist_item.upvote user.id
-    playlist_item.votes.should eq(2)
+    expect(playlist_item.votes).to eq(2)
   end
 
-  it 'should be able to veto a playlist_item' do
-    playlist_item.votes.should eq(1)
+  it 'vetos a playlist_item' do
+    expect(playlist_item.votes).to eq(1)
     playlist_item.upvote user.id
     playlist_item.veto user.id
-    playlist_item.votes.should eq(1)
+    expect(playlist_item.votes).to eq(1)
   end
 
   it { should respond_to(:upvoters) }
   it { should respond_to(:upvotements) }
 
-  it 'should register user when upvoted' do
+  it 'registers user when upvoted' do
     playlist_item = FactoryGirl.create(:playlist_item)
     playlist_item.upvote user.id
-    playlist_item.upvoters.should include user
+    expect(playlist_item.upvoters).to include user
   end
 
-  it 'should register playlist_item when upvoted' do
+  it 'registers playlist_item when upvoted' do
     playlist_item.upvote user.id
-    user.upvoted_playlist_items.should include playlist_item
+    expect(user.upvoted_playlist_items).to include playlist_item
   end
 
-  it 'should have the same number of users as upvoters' do
+  it 'has the same number of users as upvoters' do
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvoters.count.should eq 1
+    expect(playlist_item.upvoters.count).to eq 1
   end
 
-  it 'should only allow single upvotement from user' do
+  it 'enforces single upvotement from user' do
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvotements.count.should eq(1)
+    expect(playlist_item.upvotements.count).to eq(1)
     playlist_item.upvote playlist_item.user.id
-    playlist_item.upvotements.count.should eq(1)
+    expect(playlist_item.upvotements.count).to eq(1)
   end
 
-  it 'should only allow single upvote from user' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'allows single upvote from user' do
+    playlist_item = create(:playlist_item)
     playlist_item.upvote playlist_item.user.id
-    playlist_item.votes.should eq(1)
+    expect(playlist_item.votes).to eq(1)
     playlist_item.upvote playlist_item.user.id
-    playlist_item.votes.should eq(1)
+    expect(playlist_item.votes).to eq(1)
   end
 
   it { should respond_to(:vetoers) }
   it { should respond_to(:vetoments) }
 
-  it 'should register user when vetoed' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'registers user when vetoed' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.vetoers.should include user
+    expect(playlist_item.vetoers).to include user
   end
 
-  it 'should register playlist_item when vetoed' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'registers playlist_item when vetoed' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto user.id
-    user.vetoed_playlist_items.should include playlist_item
+    expect(user.vetoed_playlist_items).to include playlist_item
   end
 
-  it 'should have the same number of users as vetoers' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'has the same number of users as vetoers' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.vetoers.count.should eq(1)
+    expect(playlist_item.vetoers.count).to eq(1)
   end
 
-  it 'should only allow single veto from user' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'allows single veto from user' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.vetoments.count.should eq(1)
+    expect(playlist_item.vetoments.count).to eq(1)
     playlist_item.veto user.id
-    playlist_item.vetoments.count.should eq(1)
+    expect(playlist_item.vetoments.count).to eq(1)
   end
 
-  it 'should only allow single veto from user' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'only allows single veto from user' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto user.id
-    playlist_item.votes.should eq(0)
+    expect(playlist_item.votes).to eq(0)
     playlist_item.veto user.id
-    playlist_item.votes.should eq(0)
+    expect(playlist_item.votes).to eq(0)
   end
 
   it { should respond_to(:already_vetoed_by_user?) }
 
-  it 'should return false if not vetoed by user' do
-    playlist_item = FactoryGirl.create(:playlist_item)
-    non_vetoed_user = FactoryGirl.create(:user)
-    playlist_item.already_vetoed_by_user?(non_vetoed_user.id).should eq false
+  it 'returns false if not vetoed by user' do
+    playlist_item = create(:playlist_item)
+    non_vetoed_user = create(:user)
+    expect(playlist_item.already_vetoed_by_user?(non_vetoed_user.id)).to eq false
   end
 
-  it 'should return true if not upvoted by user' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+  it 'returns true if not upvoted by user' do
+    playlist_item = create(:playlist_item)
     playlist_item.veto playlist_item.user.id
-    playlist_item.already_vetoed_by_user?(playlist_item.user.id).should eq true
+    expect(playlist_item.already_vetoed_by_user?(playlist_item.user.id)).to eq true
   end
 end

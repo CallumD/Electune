@@ -9,7 +9,7 @@ describe 'the playlist page', type: :feature do
     end
 
     it 'requires a user to be logged in to access the show page' do
-      current_path.should eq(signin_path)
+      expect(current_path).to eq(signin_path)
     end
   end
   describe 'when the user is logged in' do

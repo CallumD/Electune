@@ -90,7 +90,7 @@ module SpotifySongSearch
 
   def self.build_artist_from_hash(artist)
     Artist.find_or_create_by(name: artist[NAME],
-                                          spotify_link: artist[HREF])
+                             spotify_link: artist[HREF])
   end
 
   def self.get_service_response(search_term, search_url)

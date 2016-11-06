@@ -7,6 +7,6 @@ describe 'users/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    rendered.should match(/Email/)
+    expect(rendered).to match(/Email/)
   end
 end
