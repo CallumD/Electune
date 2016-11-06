@@ -275,6 +275,7 @@ DEPENDENCIES
   humane-rails (~> 5.1.0)
   jquery-rails
   launchy
+  listen (~> 3.0)
   mysql2
   passenger
   pry

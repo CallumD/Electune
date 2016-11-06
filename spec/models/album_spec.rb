@@ -17,4 +17,11 @@ describe Album do
   it 'has songs' do
     expect(album).to respond_to :songs
   end
+
+  it 'removes its songs when its deleted' do
+    create(:song, album_id: album.id)
+    expect(album.songs.count).to eq(1)
+    album.destroy
+    expect(Song.count).to eq(0)
+  end
 end

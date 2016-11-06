@@ -21,4 +21,9 @@ describe Song do
     song = FactoryGirl.create(:song, name: (0...400).inject('') { |start| start << 'a' })
     expect(song).to be_valid
   end
+
+  it 'destroys associated performers' do
+    song # Calls song create as its lazy loaded
+    expect { song.destroy }.to change { Performer.count }.from(1).to(0)
+  end
 end

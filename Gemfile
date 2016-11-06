@@ -12,6 +12,9 @@ gem 'humane-rails', '~> 5.1.0'
 gem 'sprockets-rails', '~> 3.2.0'
 gem 'ruby-mp3info'
 
+# Monitoring for music files
+gem 'listen', '~> 3.0'
+
 group :assets do
   gem 'sass-rails', '5.0.6'
   gem 'therubyracer'
