@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to "lookup", artist_lookup_path(playlist_id: @playlist.id, spotify_link: artist.spotify_link), remote: true, class: "btn btn-primary loadonclick"  %></td>
+  <td><%= link_to "lookup", artist_lookup_path(playlist_id: @playlist.id, link: artist.link), remote: true, class: "btn btn-primary loadonclick"  %></td>
   <td><%= truncate(artist.name , :length => 40, :omission => '...') %></td>
-  <td><%= link_to "artist",artist.spotify_link, class: "btn" %></td>
+  <td><%= link_to "artist",artist.link, class: "btn" %></td>
 </tr>

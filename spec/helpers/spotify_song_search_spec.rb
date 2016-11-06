@@ -37,7 +37,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
     end
 
     it 'has a spotify link' do
-      expect(result.first.spotify_link).to eq 'test.link'
+      expect(result.first.link).to eq 'test.link'
     end
 
     describe 'the songs album' do
@@ -54,7 +54,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
       end
 
       it 'has a spotify link' do
-        expect(result.first.album.spotify_link).to eq 'album.link'
+        expect(result.first.album.link).to eq 'album.link'
       end
     end
 
@@ -76,7 +76,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
       end
 
       it 'has a spotify link' do
-        expect(result.first.artists.first.spotify_link).to eq 'artist.link'
+        expect(result.first.artists.first.link).to eq 'artist.link'
       end
     end
   end
@@ -109,7 +109,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
     end
 
     it 'has a spotify link' do
-      expect(result.first.spotify_link).to eq 'test.link'
+      expect(result.first.link).to eq 'test.link'
     end
   end
 
@@ -145,7 +145,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
     end
 
     it 'has a spotify link' do
-      expect(result.first.spotify_link).to eq 'album.link'
+      expect(result.first.link).to eq 'album.link'
     end
   end
 
@@ -181,7 +181,7 @@ describe SpotifySongSearch, 'the spotify search helper' do
     end
 
     it 'has a spotify link' do
-      expect(result.first.spotify_link).to eq 'test.link'
+      expect(result.first.link).to eq 'test.link'
     end
   end
 

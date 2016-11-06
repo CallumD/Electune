@@ -2,7 +2,7 @@
   <td><%= link_to "add", playlist_playlist_items_path(playlist_id: @playlist,target: "#{@playlist.name}_table", id: song.id), method: 'post', remote: true, class: "btn btn-primary loadonclick" %></td>
   <td><%= truncate(song.name , :length => 40, :omission => '...') %></td>
   <td><%= seconds_to_mins song.length %></td>
-  <td><%= link_to "play", song.spotify_link, class: "btn" %></td>
-  <td><%= link_to song.album.name, album_lookup_path(playlist_id: @playlist.id, spotify_link: song.album.spotify_link), remote: true, class: 'loadonclick' %></td>
-  <td><%= link_to song.artists.first.name, artist_lookup_path(playlist_id: @playlist.id, spotify_link: song.artists.first.spotify_link), remote: true, class: 'loadonclick' %></td>
+  <td><%= link_to "play", song.link, class: "btn" %></td>
+  <td><%= link_to song.album.name, album_lookup_path(playlist_id: @playlist.id, link: song.album.link), remote: true, class: 'loadonclick' %></td>
+  <td><%= link_to song.artists.first.name, artist_lookup_path(playlist_id: @playlist.id, link: song.artists.first.link), remote: true, class: 'loadonclick' %></td>
 </tr>

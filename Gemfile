@@ -6,10 +6,11 @@ gem 'rails', '4.2.7'
 gem 'rails-observers'
 gem 'coffee-rails', '~> 4.2.1'
 gem 'jquery-rails'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'humane-rails', '~> 5.1.0'
 gem 'sprockets-rails', '~> 3.2.0'
+gem 'ruby-mp3info'
 
 group :assets do
   gem 'sass-rails', '5.0.6'

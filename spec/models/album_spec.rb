@@ -11,7 +11,7 @@ describe Album do
   end
 
   it 'has a spotify link' do
-    expect(album).to respond_to :spotify_link
+    expect(album).to respond_to :link
   end
 
   it 'has songs' do

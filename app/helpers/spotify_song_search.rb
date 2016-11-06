@@ -25,12 +25,12 @@ module SpotifySongSearch
     build_artists_from_results(get_service_response(search_term, ARTIST_SEARCH_URL))
   end
 
-  def self.perform_lookup_by_artist(artist_spotify_link)
-    build_albums_from_lookup(get_url_response(build_artist_lookup_url(artist_spotify_link)))
+  def self.perform_lookup_by_artist(artist_link)
+    build_albums_from_lookup(get_url_response(build_artist_lookup_url(artist_link)))
   end
 
-  def self.perform_lookup_by_album(album_spotify_link)
-    build_songs_from_lookup(get_url_response(build_album_lookup_url(album_spotify_link)))
+  def self.perform_lookup_by_album(album_link)
+    build_songs_from_lookup(get_url_response(build_album_lookup_url(album_link)))
   end
 
   def self.build_songs_from_results(service_result)
@@ -69,7 +69,7 @@ module SpotifySongSearch
   end
 
   def self.build_song_only_from_hash(data, album_data)
-    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], link: data[HREF])
     song.album = build_album_from_hash album_data
     song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
     song.save
@@ -77,7 +77,7 @@ module SpotifySongSearch
   end
 
   def self.build_song_from_hash(data)
-    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], spotify_link: data[HREF])
+    song = Song.find_or_create_by(name: data[NAME], length: data[LENGTH], link: data[HREF])
     song.album = build_album_from_hash data[ALBUM]
     song.artists = data[ARTISTS].map { |artist| build_artist_from_hash artist }
     song.save
@@ -85,12 +85,12 @@ module SpotifySongSearch
   end
 
   def self.build_album_from_hash(album)
-    Album.find_or_create_by(name: album[NAME], release_date: album[RELEASED], spotify_link: album[HREF])
+    Album.find_or_create_by(name: album[NAME], release_date: album[RELEASED], link: album[HREF])
   end
 
   def self.build_artist_from_hash(artist)
     Artist.find_or_create_by(name: artist[NAME],
-                             spotify_link: artist[HREF])
+                             link: artist[HREF])
   end
 
   def self.get_service_response(search_term, search_url)
@@ -101,11 +101,11 @@ module SpotifySongSearch
     JSON.parse(open(URI.escape(url)).read)
   end
 
-  def self.build_artist_lookup_url(spotify_link)
-    "http://ws.spotify.com/lookup/1/.json?uri=#{spotify_link}&extras=albumdetail"
+  def self.build_artist_lookup_url(link)
+    "http://ws.spotify.com/lookup/1/.json?uri=#{link}&extras=albumdetail"
   end
 
-  def self.build_album_lookup_url(spotify_link)
-    "http://ws.spotify.com/lookup/1/.json?uri=#{spotify_link}&extras=trackdetail"
+  def self.build_album_lookup_url(link)
+    "http://ws.spotify.com/lookup/1/.json?uri=#{link}&extras=trackdetail"
   end
 end

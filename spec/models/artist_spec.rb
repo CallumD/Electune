@@ -7,6 +7,6 @@ describe Artist do
   end
 
   it 'has a spotify link' do
-    expect(artist).to respond_to :spotify_link
+    expect(artist).to respond_to :link
   end
 end

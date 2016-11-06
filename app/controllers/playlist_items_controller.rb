@@ -22,7 +22,7 @@ class PlaylistItemsController < ApplicationController
   def artist_lookup
     @playlist = Playlist.find(params[:playlist_id])
     begin
-      @albums = SpotifySongSearch.perform_lookup_by_artist(params[:spotify_link])
+      @albums = SpotifySongSearch.perform_lookup_by_artist(params[:link])
     rescue OpenURI::HTTPError => e
       render action: 'service_error'
     end
@@ -31,7 +31,7 @@ class PlaylistItemsController < ApplicationController
   def album_lookup
     @playlist = Playlist.find(params[:playlist_id])
     begin
-      @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:spotify_link])
+      @playlist_items = SpotifySongSearch.perform_lookup_by_album(params[:link])
       render action: 'index'
     rescue OpenURI::HTTPError => e
       render action: 'service_error'

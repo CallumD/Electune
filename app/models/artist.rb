@@ -1,3 +1,3 @@
 class Artist < ActiveRecord::Base
-  validates_uniqueness_of :spotify_link
+  validates_uniqueness_of :link
 end
