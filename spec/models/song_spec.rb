@@ -24,6 +24,6 @@ describe Song do
 
   it 'destroys associated performers' do
     song # Calls song create as its lazy loaded
-    expect { song.destroy }.to change { Performer.count }.from(1).to(0)
+    expect { song.destroy }.to change { Performer.count }.by(-1)
   end
 end

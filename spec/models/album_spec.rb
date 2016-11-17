@@ -21,7 +21,6 @@ describe Album do
   it 'removes its songs when its deleted' do
     create(:song, album_id: album.id)
     expect(album.songs.count).to eq(1)
-    album.destroy
-    expect(Song.count).to eq(0)
+    expect { album.destroy }.to change { Song.count }.by(-1)
   end
 end

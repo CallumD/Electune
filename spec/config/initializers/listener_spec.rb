@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-describe 'folder listener' do
-
+xdescribe 'folder listener' do
   before(:all) { Dir['music/*'].each { |file| FileUtils.rm(file) } }
+
+  after(:all) do
+    Song.destroy_all
+    Album.destroy_all
+    Artist.destroy_all
+  end
 
   context 'adding a file' do
     before(:all) do
