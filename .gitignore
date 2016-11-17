@@ -22,3 +22,5 @@ vendor/*
 *.swp
 
 /music
+
+lib/daemons/*.pid
