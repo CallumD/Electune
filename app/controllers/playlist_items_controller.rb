@@ -5,7 +5,7 @@ class PlaylistItemsController < ApplicationController
     @playlist = Playlist.find(params[:playlist_id])
     if params[:search].present?
       begin
-        @playlist_items = SpotifySongSearch.perform_search(params[:search])
+        @playlist_items = Song.where("name like ?", "%#{params[:search]}%")
       rescue OpenURI::HTTPError => e
         render action: 'service_error'
       end
