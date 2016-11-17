@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'daemons'
-gem 'delayed_job_active_record'
 gem 'rails', '4.2.7'
 gem 'rails-observers'
 gem 'coffee-rails', '~> 4.2.1'
