@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'humane-rails', '~> 5.1.0'
 gem 'sprockets-rails', '~> 3.2.0'
 gem 'ruby-mp3info'
+gem 'thin'
 
 # Monitoring for music files
 gem 'listen', '~> 3.0'
