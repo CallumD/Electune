@@ -1,6 +1,7 @@
 <% target = "playlist_item_row_#{playlist_item.id}" %>
 <tr id="<%= target %>" class="<%= currently_playling_class playlist_item %>">
   <td><%= playlist_item.song.name %></td>
+  <td><%= seconds_to_mins playlist_item.song.length %></td>
   <td><%= playlist_item.song.album.name %></td>
   <td><%= playlist_item.song.artists.first.name %></td>
   <td><%= playlist_item.votes %></td>
