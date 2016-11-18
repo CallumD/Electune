@@ -36,18 +36,8 @@ describe PlaylistItemsController, type: :controller do
 
   describe 'when spotify service call throws an error' do
     before(:each) do
-      allow(SpotifySongSearch).to receive(:open).and_raise(OpenURI::HTTPError.new(nil, nil))
+      allow(Song).to receive(:where).and_raise(StandardError.new)
     end
-    describe 'index search by track name' do
-      it 'has a flash mentioning there hase been an error' do
-        xhr :get, :index, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist)
-        assert_template :service_error
-      end
-      it 'doesnt raise the exception' do
-        expect { xhr :get, :index, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
-      end
-    end
-
     describe 'index search by artist name' do
       it 'has a flash mentioning there hase been an error' do
         xhr :get, :index, artist: 'this does not matter', playlist_id: FactoryGirl.create(:playlist)
