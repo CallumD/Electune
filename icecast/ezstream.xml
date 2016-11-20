@@ -1,0 +1,11 @@
+<ezstream> 
+  <url>http://192.168.99.100:8000/stream</url> 
+  <sourcepassword>hackme</sourcepassword>
+  <format>MP3</format>
+  <filename>get_ezstream_filename.sh</filename>
+  <playlist_program>1</playlist_program> 
+  <svrinfoname>Electune</svrinfoname>
+  <svrinfourl>https://gitlab.com/callumdryden/Electune</svrinfourl>
+  <svrinfodescription>This is a communal playlist stream, what plays, you decide.</svrinfodescription>
+  <svrinfochannels>2</svrinfochannels> 
+</ezstream> 
