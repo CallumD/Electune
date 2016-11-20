@@ -38,13 +38,13 @@ class Playlist < ActiveRecord::Base
     Time.current - start_time
   end
 
-  private
   def insert_random_song
     item = playlist_items.create(song: Song.random, user: User.random)
     update_attributes(start_time: Time.current) if playlist_items.count == 1
     push item
   end
 
+  private
   def default_values
     playlist_items ||= []
   end

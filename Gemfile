@@ -32,7 +32,7 @@ end
 
 group :development do
   gem 'capistrano'
-  #gem 'rb-inotify', '~> 0.9.7' if RUBY_PLATFORM.downcase.include?('linux')
+  # gem 'rb-inotify', '~> 0.9.7' if RUBY_PLATFORM.downcase.include?('linux')
   gem 'rubocop'
   gem 'pry'
 end

@@ -10,7 +10,8 @@ class PlaylistsController < ApplicationController
 
   def current
     @playlist = Playlist.find params[:id]
-    @current_time = @playlist.playlist_items.empty? ? 0 : seconds_to_mins(@playlist.tick)
+    @playlist.shift unless @playlist.first_play
+    @playlist.update_attributes(first_play: false)
   end
 
   def show

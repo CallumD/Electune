@@ -4,7 +4,7 @@ Electune::Application.routes.draw do
   resources :users
   resources :sessions, only: [:create, :destroy]
   resources :playlists do
-    get 'current', on: :member
+    post 'current', on: :member
     resources :playlist_items, only: [:create]
   end
 

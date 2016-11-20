@@ -1,5 +1,3 @@
 {
-  "playlist": "<%= @playlist.name %>",
-  "song_link": "<%= @playlist.playlist_items.first.song.link unless @playlist.playlist_items.first.nil?  %>",
-  "current_time": "<%= @current_time  %>"
+  "song_link": "<%= raw(@playlist.playlist_items.first.song.link) unless @playlist.playlist_items.first.nil?  %>"
 }
