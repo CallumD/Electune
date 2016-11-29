@@ -37,6 +37,9 @@ describe UsersController, type: :controller do
                           { user_id: user.id }
   end
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
+
   describe 'GET index' do
     it 'assigns all users as @users' do
       user = create(:user)
@@ -116,6 +119,13 @@ describe UsersController, type: :controller do
         expect(assigns(:user)).to eq(user)
       end
 
+      it 'doesnt update if not signed in as the correct user' do
+        user = create(:user)
+        parameters = { id: user.to_param, user: valid_attributes }
+        put :update, parameters, valid_session(wrong_user)
+        expect(response).to redirect_to(signin_path)
+      end
+
       it 'redirects to the user' do
         user = create(:user)
         put :update, { id: user.to_param, user: valid_attributes }, valid_session(user)
@@ -141,8 +151,12 @@ describe UsersController, type: :controller do
       end.to change(User, :count).by(-1)
     end
 
+    it 'doesnt destroy if not signed in as the correct user' do
+      delete :destroy, { id: user.to_param }, valid_session(wrong_user)
+      expect(response).to redirect_to(signin_path)
+    end
+
     it 'redirects to the users list' do
-      user = create(:user)
       delete :destroy, { id: user.to_param }, valid_session(user)
       expect(response).to redirect_to(users_url)
     end

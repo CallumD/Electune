@@ -32,16 +32,6 @@ describe 'Authentication', type: :feature do
           expect(page.title).not_to eq('Edit user')
         end
       end
-
-      xdescribe 'submitting a PUT request to the Users#update action' do
-        before { put user_path(wrong_user) }
-        specify { expect(response).to redirect_to(signin_path) }
-      end
-
-      xdescribe 'submitting a DELETE request to the Users#update action' do
-        before { visit user_path(wrong_user) }
-        specify { expect(response).to redirect_to(signin_path) }
-      end
     end
 
     describe 'for non-signed-in users' do
@@ -84,11 +74,6 @@ describe 'Authentication', type: :feature do
         describe 'visiting the edit page' do
           before { visit edit_user_path(user) }
           it { expect(page.title).to eq('Sign in') }
-        end
-
-        xdescribe 'submitting to the update action' do
-          before { put user_path(user) }
-          specify { expect(response).to redirect_to(signin_path) }
         end
       end
     end

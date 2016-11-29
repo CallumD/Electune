@@ -68,7 +68,7 @@ describe Playlist, '#playlist_items' do
     user = create(:user)
     playlist_item = build(:playlist_item)
     playlist.push(playlist_item)
-    other_playlist_item = build(:playlist_item, :song => build(:song, :name => "b"))
+    other_playlist_item = build(:playlist_item, song: build(:song, name: 'b'))
     playlist.push(other_playlist_item)
     expect(playlist.fetch(other_playlist_item).votes).to eq(1)
     other_playlist_item.veto user.id
