@@ -38,6 +38,8 @@ class PlaylistItem < ActiveRecord::Base
 
   private
   def checkremove
-    playlist&.delete self if votes.zero?
+    if playlist.playlist_items.first != self
+      playlist.delete self if votes.zero?
+    end
   end
 end

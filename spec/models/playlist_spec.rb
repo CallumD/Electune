@@ -55,13 +55,24 @@ describe Playlist, '#playlist_items' do
     expect(playlist.include?(playlist_item_to_remove)).to eq(false)
   end
 
-  it 'removes playlist_item with 0 votes' do
+  it 'does not remove playlist_item with 0 votes if its the currently playing item' do
     user = create(:user)
     playlist_item = build(:playlist_item)
     playlist.push(playlist_item)
     expect(playlist.fetch(playlist_item).votes).to eq(1)
     playlist_item.veto user.id
-    expect(playlist.include?(playlist_item)).to eq(false)
+    expect(playlist.include?(playlist_item)).to eq(true)
+  end
+
+  it 'removes playlist_item with 0 votes if it is not currently playing item' do
+    user = create(:user)
+    playlist_item = build(:playlist_item)
+    playlist.push(playlist_item)
+    other_playlist_item = build(:playlist_item, :song => build(:song, :name => "b"))
+    playlist.push(other_playlist_item)
+    expect(playlist.fetch(other_playlist_item).votes).to eq(1)
+    other_playlist_item.veto user.id
+    expect(playlist.include?(other_playlist_item)).to eq(false)
   end
 
   it 'doesnt delete the playlist_item just the relationship' do
