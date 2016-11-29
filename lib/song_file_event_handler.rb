@@ -14,6 +14,11 @@ class SongFileEventHandler
   end
 
   def removed(files)
+    ActiveRecord::Base.transaction do
+      files.each do |filename|
+        Song.where(link: filename).destroy_all
+      end
+    end
   end
 
   def create_artists(artists)

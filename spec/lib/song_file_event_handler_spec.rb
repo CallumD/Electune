@@ -20,8 +20,20 @@ describe SongFileEventHandler do
   end
 
   context '#removed' do
-    xit 'removes the song for the added files'
-    xit 'does not remove the album for the added files'
-    xit 'does not remove the artist for the added files'
+    # Add the data so we can remove it
+    before { SongFileEventHandler.new.added(files) }
+    subject(:removed) { SongFileEventHandler.new.removed(files) }
+
+    it 'removes the song for the added files' do
+      expect { removed }.to change { Song.count }.by(-2)
+    end
+
+    it 'does not remove the album for the added files' do
+      expect { removed }.not_to change { Album.count }
+    end
+
+    it 'does not remove the artist for the added files' do
+      expect { removed }.not_to change { Artist.count }
+    end
   end
 end

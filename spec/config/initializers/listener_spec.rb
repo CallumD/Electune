@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-xdescribe 'folder listener' do
+describe 'folder listener' do
   before(:all) { Dir['music/*'].each { |file| FileUtils.rm(file) } }
 
   after(:all) do
