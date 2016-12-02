@@ -5,7 +5,7 @@ gem 'rails', '4.2.7'
 gem 'rails-observers'
 gem 'coffee-rails', '~> 4.2.1'
 gem 'jquery-rails'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'humane-rails', '~> 5.1.0'
 gem 'sprockets-rails', '~> 3.2.0'
@@ -32,7 +32,6 @@ group :test do
 end
 
 group :development do
-  gem 'capistrano'
   # gem 'rb-inotify', '~> 0.9.7' if RUBY_PLATFORM.downcase.include?('linux')
   gem 'rubocop'
   gem 'pry'

@@ -2,7 +2,7 @@ sqlite: &sqlite
   adapter: sqlite3
   database: db/<%= Rails.env %>.sqlite3
 
-mysql: &mysql
+mysql2: &mysql2
   adapter: mysql2
   username: travis
   password:
