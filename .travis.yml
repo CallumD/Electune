@@ -1,11 +1,13 @@
 language: ruby
 services:
   - postgresql
+  - mysql
 rvm:
   - 2.3.1
 env:
   - DB=sqlite
   - DB=postgresql
+  - DB=mysql2
 script: 
   - bundle exec rake db:create
   - bundle exec rake db:migrate
@@ -14,4 +16,5 @@ script:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database electune_test;' -U postgres
+  - mysql -e 'create database electune_test;'
 bundler_args: --binstubs=./bundler_stubs --without development

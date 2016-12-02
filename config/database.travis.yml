@@ -4,9 +4,10 @@ sqlite: &sqlite
 
 mysql: &mysql
   adapter: mysql2
-  username: root
+  username: travis
   password:
   database: electune_<%= Rails.env %>
+  encoding: utf8
 
 postgresql: &postgresql
   adapter: postgresql

@@ -11,6 +11,7 @@ gem 'humane-rails', '~> 5.1.0'
 gem 'sprockets-rails', '~> 3.2.0'
 gem 'ruby-mp3info'
 gem 'thin'
+gem 'mysql2'
 
 # Monitoring for music files
 gem 'listen', '~> 3.0'
@@ -22,12 +23,12 @@ group :assets do
 end
 
 group :production do
-  gem 'pg'
   gem 'passenger'
 end
 
 group :test do
   gem 'launchy'
+  gem 'pg'
 end
 
 group :development do
