@@ -12,6 +12,8 @@ RUN bundle install --deployment --without development:test
 
 COPY . .
 
+RUN bundle exec rake assets:precompile
+
 RUN chmod -R g+rw /src
 USER 1001
 
