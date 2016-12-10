@@ -19,4 +19,4 @@ USER 1001
 
 EXPOSE 8080
 
-CMD bundle exec rackup -p 8080
+CMD ["entrypoint.sh", $APP_ROLE]

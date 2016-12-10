@@ -11,4 +11,4 @@ end
 
 sleep 2
 path = ENV['PATH']
-system({'PATH' => "#{path}:#{Rails.root}/icecast"}, "cd #{Rails.root}/icecast; ezstream -c #{Rails.root}/icecast/ezstream.xml")
+system({'PATH' => "#{path}:#{Rails.root}/ezstream"}, "cd #{Rails.root}/ezstream; ezstream -c #{Rails.root}/ezstream/ezstream.xml")
