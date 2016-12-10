@@ -12,9 +12,9 @@ fi
 
 case $1 in
   worker)
-    exec "bundle exec rake auto_shift:run"
+    bundle exec rake auto_shift:run
     ;;
   *)
-    exec "bundle exec rackup -p 8080"
+    bundle exec rackup -p 8080
     ;;
 esac

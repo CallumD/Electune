@@ -15,8 +15,10 @@ COPY . .
 RUN bundle exec rake assets:precompile
 
 RUN chmod -R g+rw /src
+RUN chmod +x /src/entrypoint.sh
+
 USER 1001
 
 EXPOSE 8080
 
-CMD ["entrypoint.sh", $APP_ROLE]
+CMD /src/entrypoint.sh $APP_ROLE
