@@ -5,6 +5,8 @@ RUN mkdir -p /src && \
     touch /src/log/production.log
 WORKDIR /src
 
+RUN apt-get update && apt-get install -y ezstream
+
 # Optimisation: copy the Gemfiles and bundle install first to enable docker to use cached layers
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
