@@ -15,6 +15,9 @@ case $1 in
     cp spec/fixtures/music_files/* music
     bundle exec rake auto_shift:run
     ;;
+  debug)
+    yes >> /dev/null
+    ;;
   *)
     bundle exec rackup -p 8080
     ;;
