@@ -12,6 +12,7 @@ fi
 
 case $1 in
   worker)
+    cp spec/fixtures/music_files/* music
     bundle exec rake auto_shift:run
     ;;
   *)
