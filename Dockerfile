@@ -18,6 +18,7 @@ RUN bundle exec rake assets:precompile
 
 RUN chmod -R g+rw /src
 RUN chmod +x entrypoint.sh  ezstream/get_ezstream_filename.sh
+RUN chmod 644 ezstream/ezstream.xml
 
 USER 1001
 
