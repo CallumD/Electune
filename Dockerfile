@@ -23,6 +23,6 @@ RUN chmod 755 ezstream/get_ezstream_filename.sh
 USER 1001
 
 EXPOSE 8080
-RUN export PATH=$PATH:/src/ezstream
+ENV PATH=$PATH:/src/ezstream
 
 CMD /src/entrypoint.sh $APP_ROLE
