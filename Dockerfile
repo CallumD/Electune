@@ -20,9 +20,9 @@ RUN chmod -R g+rw /src
 RUN chmod +x entrypoint.sh
 RUN chmod 644 ezstream/ezstream.xml
 RUN chmod 755 ezstream/get_ezstream_filename.sh
-RUN export PATH=$PATH:/src/ezstream
 USER 1001
 
 EXPOSE 8080
+RUN export PATH=$PATH:/src/ezstream
 
 CMD /src/entrypoint.sh $APP_ROLE
