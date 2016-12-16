@@ -18,6 +18,9 @@ function doPoll(){
 </script>
 
 <h1><%=@playlist.name%> Playlist:</h1>
+<audio controls>
+  <source src="<%= Electune::Application.config.icecast_public_url %>" type="audio/mpeg">
+</audio>
 <p id="error"><%= flash[:error] %></p>
 <table id="<%= target %>" class="table table-striped">
   <thead>
