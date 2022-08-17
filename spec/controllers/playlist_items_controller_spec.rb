@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe PlaylistItemsController, type: :controller do
-  let (:user) { FactoryGirl.create(:user) }
-  let (:playlist_item) { FactoryGirl.create(:playlist_item) }
+  let (:user) { FactoryBot.create(:user) }
+  let (:playlist_item) { FactoryBot.create(:playlist_item) }
 
   before(:each) do
     sign_in user
@@ -11,26 +11,26 @@ describe PlaylistItemsController, type: :controller do
   describe 'upvote a playlist_item with Ajax' do
     it 'increments votes count' do
       expect do
-        xhr :post, :upvote, id: playlist_item.id
+        post :upvote, params: { id: playlist_item.id }, xhr: true
       end.to change { PlaylistItem.find(playlist_item.id).votes }.by(1)
     end
 
     it 'responds with success' do
-      xhr :post, :upvote, id: playlist_item.id
-      expect(response).to be_success
+      post :upvote, params: { id: playlist_item.id }, xhr: true
+      expect(response).to be_successful
     end
   end
 
   describe 'veto a playlist_item with Ajax' do
     it 'decrements votes count' do
       expect do
-        xhr :post, :veto, id: playlist_item.id
+        post :veto, params: { id: playlist_item.id }, xhr: true
       end.to change { PlaylistItem.find(playlist_item.id).votes }.by(-1)
     end
 
     it 'responds with success' do
-      xhr :post, :veto, id: playlist_item.id
-      expect(response).to be_success
+      post :veto, params: { id: playlist_item.id }, xhr: true
+      expect(response).to be_successful
     end
   end
 
@@ -40,31 +40,34 @@ describe PlaylistItemsController, type: :controller do
     end
     describe 'index search by artist name' do
       it 'has a flash mentioning there hase been an error' do
-        xhr :get, :index, artist: 'this does not matter', playlist_id: FactoryGirl.create(:playlist)
+        get :index, params: {
+          artist: 'this does not matter',
+          playlist_id: FactoryBot.create(:playlist)
+        }, xhr: true
         assert_template :service_error
       end
       it 'doesnt raise the exception' do
-        expect { xhr :get, :index, artist: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
+        expect { get :index, params: { artist: 'this does not matter', playlist_id: FactoryBot.create(:playlist) }, xhr: true }.not_to raise_error
       end
     end
 
     describe 'artist lookup' do
       it 'has a flash mentioning there hase been an error' do
-        xhr :get, :artist_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist)
+        get :artist_lookup, params: { search: 'this does not matter', playlist_id: FactoryBot.create(:playlist) }, xhr: true
         assert_template :service_error
       end
       it 'does not raise the exception' do
-        expect { xhr :get, :artist_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
+        expect { get :artist_lookup, params: { search: 'this does not matter', playlist_id: FactoryBot.create(:playlist) }, xhr: true }.not_to raise_error
       end
     end
 
     describe 'album lookup' do
       it 'has a flash mentioning there hase been an error' do
-        xhr :get, :album_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist)
+        get :album_lookup, params: { search: 'this does not matter', playlist_id: FactoryBot.create(:playlist) }, xhr: true
         assert_template :service_error
       end
       it 'doesnt raise the exception' do
-        expect { xhr :get, :album_lookup, search: 'this does not matter', playlist_id: FactoryGirl.create(:playlist) }.not_to raise_error
+        expect { get :album_lookup, params: { search: 'this does not matter', playlist_id: FactoryBot.create(:playlist) }, xhr: true }.not_to raise_error
       end
     end
   end

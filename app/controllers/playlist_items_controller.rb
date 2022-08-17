@@ -41,7 +41,7 @@ class PlaylistItemsController < ApplicationController
   def create
     @playlist = Playlist.find params['playlist_id']
     @playlist_item = @playlist.playlist_items.create(song: Song.find(params[:id]), user: User.find(session[:user_id]))
-    @playlist.update_attributes(start_time: Time.current) if @playlist.playlist_items.count == 1
+    @playlist.update(start_time: Time.current) if @playlist.playlist_items.count == 1
   end
 
   def upvote

@@ -4,7 +4,7 @@ class Playlist < ActiveRecord::Base
   validates :name, uniqueness: { case_sensitive: false }
 
   def fetch(playlist_item)
-    PlaylistItem.find playlist_item
+    PlaylistItem.find playlist_item.id
   end
 
   delegate :count, to: :playlist_items
@@ -32,7 +32,7 @@ class Playlist < ActiveRecord::Base
 
   def tick
     if Time.current > start_time + playlist_items.first.song.length.to_f
-      update_attributes(start_time: (start_time + playlist_items.first.song.length))
+      update(start_time: (start_time + playlist_items.first.song.length))
       shift
     end
     Time.current - start_time
@@ -40,7 +40,7 @@ class Playlist < ActiveRecord::Base
 
   def insert_random_song
     item = playlist_items.create(song: Song.random, user: User.random)
-    update_attributes(start_time: Time.current) if playlist_items.count == 1
+    update(start_time: Time.current) if playlist_items.count == 1
     push item
   end
 

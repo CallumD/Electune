@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Performer do
-  let(:performer) { FactoryGirl.create(:performer) }
+  let(:performer) { FactoryBot.create(:performer) }
   it 'has a song' do
     expect(performer).to respond_to :song
   end

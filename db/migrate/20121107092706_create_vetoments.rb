@@ -1,4 +1,4 @@
-class CreateVetoments < ActiveRecord::Migration
+class CreateVetoments < ActiveRecord::Migration[7.0]
   def change
     create_table :vetoments do |t|
       t.integer :song_id

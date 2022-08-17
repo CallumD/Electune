@@ -11,7 +11,7 @@ class PlaylistsController < ApplicationController
   def current
     @playlist = Playlist.find params[:id]
     @playlist.shift unless @playlist.first_play
-    @playlist.update_attributes(first_play: false)
+    @playlist.update(first_play: false)
   end
 
   def show

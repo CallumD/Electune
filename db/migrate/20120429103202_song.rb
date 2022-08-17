@@ -1,4 +1,4 @@
-class Song < ActiveRecord::Migration
+class Song < ActiveRecord::Migration[7.0]
   def up
     create_table :songs do |t|
       t.integer :votes

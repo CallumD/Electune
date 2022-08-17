@@ -1,24 +1,23 @@
-<%= link_to "Home", root_path, :class => 'brand' %>
-<ul class="nav">
+<ul class="navbar-nav mr-auto">
   <% if signed_in? %>
-    <li>
-    <%= link_to('Sign out', signout_path, :method=>'delete') %>
+    <li class="nav-item active">
+      <%= link_to('Sign out', signout_path, :method=>'delete', :class => 'nav-link') %>
     </li>
   <% else %>
-    <li>
-    <%= link_to('Sign in', signin_path)  %>
+    <li class="nav-item">
+      <%= link_to('Sign in', signin_path, :class => 'nav-link')  %>
     </li>
   <% end %>
   <% if signed_in? %>
-    <li>
-      <div class="navtext">Signed in as:</div>
+    <li class="nav-item">
+      <div class="nav-link disabled">Signed in as:</div>
     </li>
-    <li>
+    <li class="nav-item">
       <%= gravatar_for(current_user) %>
     </li>
   <% else %>
-    <li>
-    <%= link_to('Sign up', new_user_path)  %>
+    <li class="nav-item">
+      <%= link_to('Sign up', new_user_path, :class => 'nav-link')  %>
     </li>
   <% end %>
 </ul>

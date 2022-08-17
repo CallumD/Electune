@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :artist do
     sequence(:name) { |n| "MyString#{n}" }
     sequence(:link) { |n| "spotify:link#{n}" }

@@ -1,4 +1,4 @@
-class ChangeDataTypeForLength < ActiveRecord::Migration
+class ChangeDataTypeForLength < ActiveRecord::Migration[7.0]
   def up
     remove_column :songs, :length
     add_column :songs, :length, :integer

@@ -33,17 +33,17 @@ describe UsersController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
-  def valid_session(user) user
-                          { user_id: user.id }
+  def valid_session(user)
+    { user_id: user.id }
   end
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
+  let(:user) { FactoryBot.create(:user) }
+  let(:wrong_user) { FactoryBot.create(:user, email: 'wrong@example.com') }
 
   describe 'GET index' do
     it 'assigns all users as @users' do
       user = create(:user)
-      get :index, nil, valid_session(user)
+      get :index, session: valid_session(user)
       expect(assigns(:users)).to eq([user])
     end
   end
@@ -51,7 +51,7 @@ describe UsersController, type: :controller do
   describe 'GET show' do
     it 'assigns the requested user as @user' do
       user = create(:user)
-      get :show, { id: user.to_param }, valid_session(user)
+      get :show, params: { id: user.to_param }, session: valid_session(user)
       expect(assigns(:user)).to eq(user)
     end
   end
@@ -66,7 +66,7 @@ describe UsersController, type: :controller do
   describe 'GET edit' do
     it 'assigns the requested user as @user' do
       user = create(:user)
-      get :edit, { id: user.to_param }, valid_session(user)
+      get :edit, params: { id: user.to_param }, session: valid_session(user)
       expect(assigns(:user)).to eq(user)
     end
   end
@@ -75,18 +75,18 @@ describe UsersController, type: :controller do
     describe 'with valid params' do
       it 'creates a new User' do
         expect do
-          post :create, user: valid_attributes
+          post :create, params: { user: valid_attributes }
         end.to change(User, :count).by(1)
       end
 
       it 'assigns a newly created user as @user' do
-        post :create, user: valid_attributes
+        post :create, params: { user: valid_attributes }
         expect(assigns(:user)).to be_a(User)
         expect(assigns(:user)).to be_persisted
       end
 
       it 'redirects to the created user' do
-        post :create, user: valid_attributes
+        post :create, params: { user: valid_attributes }
         expect(response).to redirect_to(User.last)
       end
     end
@@ -109,26 +109,26 @@ describe UsersController, type: :controller do
         # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect(user).to receive(:update_attributes).with('email' => 'test@gmail.com')
-        put :update, { id: user.to_param, user: { 'email' => 'test@gmail.com' } }, valid_session(user)
+        expect(user).to receive(:update).with('email' => 'test@gmail.com')
+        put :update, params: { id: user.to_param, user: { 'email' => 'test@gmail.com' } }, session: valid_session(user)
       end
 
       it 'assigns the requested user as @user' do
         user = create(:user)
-        put :update, { id: user.to_param, user: valid_attributes }, valid_session(user)
+        put :update, params: { id: user.to_param, user: valid_attributes }, session: valid_session(user)
         expect(assigns(:user)).to eq(user)
       end
 
       it 'doesnt update if not signed in as the correct user' do
         user = create(:user)
         parameters = { id: user.to_param, user: valid_attributes }
-        put :update, parameters, valid_session(wrong_user)
+        put :update, params: parameters, session: valid_session(wrong_user)
         expect(response).to redirect_to(signin_path)
       end
 
       it 'redirects to the user' do
         user = create(:user)
-        put :update, { id: user.to_param, user: valid_attributes }, valid_session(user)
+        put :update, params: { id: user.to_param, user: valid_attributes }, session: valid_session(user)
         expect(response).to redirect_to(user)
       end
     end
@@ -147,17 +147,17 @@ describe UsersController, type: :controller do
     it 'destroys the requested user' do
       user = create(:user)
       expect do
-        delete :destroy, { id: user.to_param }, valid_session(user)
+        delete :destroy, params: { id: user.to_param }, session: valid_session(user)
       end.to change(User, :count).by(-1)
     end
 
     it 'doesnt destroy if not signed in as the correct user' do
-      delete :destroy, { id: user.to_param }, valid_session(wrong_user)
+      delete :destroy, params: { id: user.to_param }, session: valid_session(wrong_user)
       expect(response).to redirect_to(signin_path)
     end
 
     it 'redirects to the users list' do
-      delete :destroy, { id: user.to_param }, valid_session(user)
+      delete :destroy, params: { id: user.to_param }, session: valid_session(user)
       expect(response).to redirect_to(users_url)
     end
   end

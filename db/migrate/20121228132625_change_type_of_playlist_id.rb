@@ -1,4 +1,4 @@
-class ChangeTypeOfPlaylistId < ActiveRecord::Migration
+class ChangeTypeOfPlaylistId < ActiveRecord::Migration[7.0]
   def up
     remove_column :playlist_items, :playlist_id
     add_column :playlist_items, :playlist_id, :integer

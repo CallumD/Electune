@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'the playlist page', type: :feature do
-  let(:playlist) { FactoryGirl.create(:playlist) }
+  let(:playlist) { FactoryBot.create(:playlist) }
 
   describe 'when a user is not logged in' do
     before do
@@ -14,7 +14,7 @@ describe 'the playlist page', type: :feature do
   end
   describe 'when the user is logged in' do
     before do
-      sign_in_capy FactoryGirl.create(:user)
+      sign_in_capy FactoryBot.create(:user)
       visit playlist_path(playlist)
     end
     it 'allows access if the user is logged in' do

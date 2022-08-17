@@ -1,4 +1,4 @@
-class AddNameToSong < ActiveRecord::Migration
+class AddNameToSong < ActiveRecord::Migration[7.0]
   def change
     add_column :songs, :name, :string
   end

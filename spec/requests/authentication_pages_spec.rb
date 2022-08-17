@@ -5,7 +5,7 @@ describe 'Authentication', type: :feature do
 
   describe 'authorization' do
     describe 'for non-signed-in users' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
 
       describe 'when attempting to visit a protected page' do
         before do
@@ -22,8 +22,8 @@ describe 'Authentication', type: :feature do
     end
 
     describe 'as wrong user' do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
+      let(:user) { FactoryBot.create(:user) }
+      let(:wrong_user) { FactoryBot.create(:user, email: 'wrong@example.com') }
       before { sign_in_capy user }
 
       describe 'visiting Users#edit page' do
@@ -35,7 +35,7 @@ describe 'Authentication', type: :feature do
     end
 
     describe 'for non-signed-in users' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
 
       describe 'when attempting to visit a protected page' do
         before do
@@ -97,13 +97,13 @@ describe 'Authentication', type: :feature do
       it { should_not have_link('Settings') }
 
       describe 'after visiting another page' do
-        before { click_link 'Home' }
+        before { click_link 'Electune' }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
 
     describe 'with valid information' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
       before { valid_signin(user) }
 
       it { should have_link('Sign out', href: signout_path) }

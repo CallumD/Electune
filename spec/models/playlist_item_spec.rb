@@ -1,8 +1,8 @@
 require_relative '../../app/models/playlist_item'
 
 describe PlaylistItem, '#voting' do
-  let(:playlist_item) { FactoryGirl.create(:playlist_item) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:playlist_item) { FactoryBot.create(:playlist_item) }
+  let(:user) { FactoryBot.create(:user) }
 
   it 'has one vote when created' do
     expect(playlist_item.votes).to eq(1)
@@ -54,7 +54,7 @@ describe PlaylistItem, '#voting' do
   it { should respond_to(:upvotements) }
 
   it 'registers user when upvoted' do
-    playlist_item = FactoryGirl.create(:playlist_item)
+    playlist_item = FactoryBot.create(:playlist_item)
     playlist_item.upvote user.id
     expect(playlist_item.upvoters).to include user
   end

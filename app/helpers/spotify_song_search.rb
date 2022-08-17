@@ -94,11 +94,11 @@ module SpotifySongSearch
   end
 
   def self.get_service_response(search_term, search_url)
-    JSON.parse(open(URI.escape(search_url + %('#{search_term}'))).read)
+    JSON.parse(URI.open(search_url + %('#{CGI.escape(search_term)}')).read)
   end
 
   def self.get_url_response(url)
-    JSON.parse(open(URI.escape(url)).read)
+    JSON.parse(URI.open(url).read)
   end
 
   def self.build_artist_lookup_url(link)

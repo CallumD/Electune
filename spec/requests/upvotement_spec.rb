@@ -4,12 +4,12 @@ describe 'Upvoting', type: :feature do
   subject { page }
 
   describe 'appearence of upvote link' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:playlist) { FactoryGirl.create(:playlist) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:playlist) { FactoryBot.create(:playlist) }
 
     describe 'when created a playlist_item' do
       before do
-        playlist.push FactoryGirl.create(:playlist_item, user: user)
+        playlist.push FactoryBot.create(:playlist_item, user: user)
         visit playlist_path(playlist)
         sign_in_capy user
       end
@@ -23,7 +23,7 @@ describe 'Upvoting', type: :feature do
 
     describe 'when playlist_item created by someone else' do
       before do
-        playlist.push FactoryGirl.create(:playlist_item)
+        playlist.push FactoryBot.create(:playlist_item)
         visit playlist_path(playlist)
         sign_in_capy user
       end
@@ -37,7 +37,7 @@ describe 'Upvoting', type: :feature do
 
     describe 'when vetoing a playlist_item' do
       before do
-        playlist_item = FactoryGirl.create(:playlist_item)
+        playlist_item = FactoryBot.create(:playlist_item)
         playlist_item.upvote user.id
         playlist_item.veto user.id
         playlist.push playlist_item
@@ -54,8 +54,8 @@ describe 'Upvoting', type: :feature do
 
     describe 'when vetoing a playlist_item' do
       before do
-        playlist.push FactoryGirl.create(:playlist_item)
-        playlist.push FactoryGirl.create(:playlist_item)
+        playlist.push FactoryBot.create(:playlist_item)
+        playlist.push FactoryBot.create(:playlist_item)
         visit playlist_path(playlist)
         sign_in_capy user
       end

@@ -1,4 +1,4 @@
-class RenameSongssToPlaylistItems < ActiveRecord::Migration
+class RenameSongssToPlaylistItems < ActiveRecord::Migration[7.0]
   def up
     drop_table :songs
     create_table :playlist_items do |t|

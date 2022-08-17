@@ -1,4 +1,4 @@
-class AddPlaylistItemIdToVetoments < ActiveRecord::Migration
+class AddPlaylistItemIdToVetoments < ActiveRecord::Migration[7.0]
   def up
     add_column :vetoments, :playlist_item_id, :integer
     remove_column :vetoments, :song_id

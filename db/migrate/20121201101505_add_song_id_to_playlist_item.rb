@@ -1,4 +1,4 @@
-class AddSongIdToPlaylistItem < ActiveRecord::Migration
+class AddSongIdToPlaylistItem < ActiveRecord::Migration[7.0]
   def up
     add_column :playlist_items, :song_id, :integer
     remove_column :playlist_items, :name

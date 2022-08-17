@@ -11,11 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap
-//= require_tree .
 //= require humane-rails
+//= link_tree .
 
+alert('th');
 humane.baseCls = 'original';
 var notify = humane.create({ });
 notify.error = notify.spawn({addnCls: 'humane-original-error'});

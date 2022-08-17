@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Album do
-  let(:album) { FactoryGirl.create(:album) }
+  let(:album) { FactoryBot.create(:album) }
   it 'has a name' do
     expect(album).to respond_to :name
   end
